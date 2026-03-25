@@ -541,6 +541,7 @@
   display: block;
   height: 10px;
   margin-top: 10px;
+  transform-origin: left center;
 }
 
 .buildBars span:first-child,
@@ -669,6 +670,7 @@
     linear-gradient(rgba(211, 255, 202, 0.26), rgba(211, 255, 202, 0.26)) center/54% 1px no-repeat,
     linear-gradient(rgba(211, 255, 202, 0.26), rgba(211, 255, 202, 0.26)) center/1px 48% no-repeat;
   inset: 0;
+  opacity: 0.4;
   position: absolute;
 }
 
@@ -781,6 +783,18 @@
 .workItem {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 0 22px;
+}
+
+.workItemActive {
+  border-bottom-color: rgba(211, 255, 202, 0.18);
+}
+
+.workItemActive .workMeta {
+  color: var(--nebula-accent);
+}
+
+.workItemActive p {
+  color: rgba(255, 255, 255, 0.74);
 }
 
 .workItem + .workItem {
@@ -1125,7 +1139,12 @@
   font-family: var(--font-display), sans-serif;
   font-size: 18px;
   line-height: 1;
+  transition: transform 0.3s ease;
   width: 14px;
+}
+
+.faqItem[open] .faqIcon {
+  transform: rotate(45deg);
 }
 
 .faqItem summary span:last-child {

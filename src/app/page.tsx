@@ -1,8 +1,12 @@
+"use client";
+
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type Variants } from "framer-motion";
+import { type PointerEvent, useState } from "react";
 import styles from "./page.module.css";
 
 const ARROW_ICON = "https://framerusercontent.com/images/80ciNZpezWIjtjuOmGuff6aTdc.png";
 const WORK_IMAGE =
-  "https://framerusercontent.com/images/FtBTCikkRjMCS12d4b8jdRfTs4.jpeg?scale-down-to=2048";
+  "https://framerusercontent.com/images/cYK8jsG9LU2Eg0kDJPpRChJ3I0.jpeg?scale-down-to=2048";
 
 const processSteps = [
   {
@@ -205,37 +209,104 @@ const stars = [
   { top: "81%", left: "77%" },
 ];
 
-function ArrowIcon({ className }: { className?: string }) {
-  return <img className={className} src={ARROW_ICON} alt="" aria-hidden="true" />;
+const revealTransition = {
+  type: "spring",
+  damping: 60,
+  stiffness: 300,
+  mass: 1,
+} as const;
+
+const snappierTransition = {
+  type: "spring",
+  damping: 60,
+  stiffness: 500,
+  mass: 1,
+} as const;
+
+const revealUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: revealTransition,
+  },
+};
+
+const staggerChildren = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.06,
+    },
+  },
+};
+
+function ArrowIcon({
+  className,
+  variants,
+}: {
+  className?: string;
+  variants?: Variants;
+}) {
+  return (
+    <motion.img
+      className={className}
+      src={ARROW_ICON}
+      alt=""
+      aria-hidden="true"
+      variants={variants}
+    />
+  );
 }
 
-function ProcessVisual({ type }: { type: string }) {
+function ProcessVisual({ type, reducedMotion }: { type: string; reducedMotion: boolean }) {
   if (type === "plans") {
     return (
-      <div className={`${styles.processVisual} ${styles.processSubscription}`}>
+      <motion.div
+        className={`${styles.processVisual} ${styles.processSubscription}`}
+        animate={reducedMotion ? undefined : { y: [0, -6, 0] }}
+        transition={reducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      >
         <div className={styles.subscriptionToggle}>
           <span className={styles.subscriptionOff}>Off</span>
           <span className={styles.subscriptionChip}>Basic</span>
           <span className={styles.subscriptionChipMuted}>Pro</span>
         </div>
         <div className={styles.subscriptionLabel}>Subscription</div>
-      </div>
+      </motion.div>
     );
   }
 
   if (type === "request") {
     return (
       <div className={`${styles.processVisual} ${styles.processRequest}`}>
-        <div className={styles.requestBubble}>New contact form entry</div>
+        <motion.div
+          className={styles.requestBubble}
+          animate={reducedMotion ? undefined : { y: [0, -6, 0] }}
+          transition={reducedMotion ? undefined : { duration: 4.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        >
+          New contact form entry
+        </motion.div>
         <div className={styles.requestArrow} />
-        <div className={styles.requestBubbleStrong}>Write welcome message</div>
+        <motion.div
+          className={styles.requestBubbleStrong}
+          animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
+          transition={reducedMotion ? undefined : { duration: 4.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.35 }}
+        >
+          Write welcome message
+        </motion.div>
       </div>
     );
   }
 
   if (type === "build") {
     return (
-      <div className={`${styles.processVisual} ${styles.processBuild}`}>
+      <motion.div
+        className={`${styles.processVisual} ${styles.processBuild}`}
+        animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
+        transition={reducedMotion ? undefined : { duration: 4.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      >
         <div className={styles.buildBars}>
           <span />
           <span />
@@ -247,54 +318,97 @@ function ProcessVisual({ type }: { type: string }) {
           <span />
           <span />
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   if (type === "metrics") {
     return (
       <div className={`${styles.processVisual} ${styles.processMetrics}`}>
-        <div className={styles.metricPill}>Speed</div>
-        <div className={styles.metricPill}>Accuracy</div>
-        <div className={styles.metricPill}>Security</div>
+        {["Speed", "Accuracy", "Security"].map((label, index) => (
+          <motion.div
+            key={label}
+            className={styles.metricPill}
+            animate={reducedMotion ? undefined : { y: [0, index % 2 === 0 ? -6 : 6, 0] }}
+            transition={
+              reducedMotion
+                ? undefined
+                : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.2 }
+            }
+          >
+            {label}
+          </motion.div>
+        ))}
       </div>
     );
   }
 
   return (
     <div className={`${styles.processVisual} ${styles.processGlobe}`}>
-      <div className={styles.globeOrb} />
-      <div className={styles.globeRing} />
+      <motion.div
+        className={styles.globeOrb}
+        animate={reducedMotion ? undefined : { scale: [1, 1.06, 1], opacity: [0.9, 1, 0.9] }}
+        transition={reducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      />
+      <motion.div
+        className={styles.globeRing}
+        animate={reducedMotion ? undefined : { rotate: 360 }}
+        transition={reducedMotion ? undefined : { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+      />
     </div>
   );
 }
 
-function ServiceVisual({ type }: { type: string }) {
+function ServiceVisual({ type, reducedMotion }: { type: string; reducedMotion: boolean }) {
   if (type === "workflow") {
     return (
       <div className={`${styles.serviceVisual} ${styles.workflowVisual}`}>
-        <div className={styles.workflowNode}>
+        <motion.div
+          className={styles.workflowNode}
+          animate={reducedMotion ? undefined : { y: [0, -7, 0] }}
+          transition={reducedMotion ? undefined : { duration: 5.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        >
           <img
             src="https://framerusercontent.com/images/FCIhg4w8Oic6PzzMBeFQQ09s200.png?width=600&height=600"
             alt="OpenAI logo"
           />
           <span>OpenAI</span>
-        </div>
-        <div className={styles.workflowNode}>
+        </motion.div>
+        <motion.div
+          className={styles.workflowNode}
+          animate={reducedMotion ? undefined : { y: [0, 7, 0] }}
+          transition={
+            reducedMotion
+              ? undefined
+              : { duration: 5.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.3 }
+          }
+        >
           <img
             src="https://framerusercontent.com/images/ElXA9BRDlk1EUYX76fVdPRGVs.png?width=512&height=512"
             alt="Airtable logo"
           />
           <span>Airtable</span>
-        </div>
-        <div className={styles.workflowNode}>
+        </motion.div>
+        <motion.div
+          className={styles.workflowNode}
+          animate={reducedMotion ? undefined : { y: [0, -5, 0] }}
+          transition={
+            reducedMotion
+              ? undefined
+              : { duration: 5.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }
+          }
+        >
           <img
             src="https://framerusercontent.com/images/jgI8KEzSaG810pJKQsKIMoGc.webp?width=512&height=512"
             alt="Framer logo"
           />
           <span>Framer</span>
-        </div>
-        <div className={styles.workflowLines} />
+        </motion.div>
+        <motion.div
+          className={styles.workflowLines}
+          animate={reducedMotion ? undefined : { opacity: [0.28, 0.6, 0.28] }}
+          transition={reducedMotion ? undefined : { duration: 3.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        />
       </div>
     );
   }
@@ -302,39 +416,125 @@ function ServiceVisual({ type }: { type: string }) {
   if (type === "chat") {
     return (
       <div className={`${styles.serviceVisual} ${styles.chatVisual}`}>
-        <div className={styles.chatPrompt}>Summarize this report</div>
-        <div className={styles.chatReply}>
+        <motion.div
+          className={styles.chatPrompt}
+          animate={reducedMotion ? undefined : { x: [0, 8, 0] }}
+          transition={reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        >
+          Summarize this report
+        </motion.div>
+        <motion.div
+          className={styles.chatReply}
+          animate={reducedMotion ? undefined : { x: [0, -8, 0], y: [0, -4, 0] }}
+          transition={
+            reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.25 }
+          }
+        >
           <div className={styles.chatBadge}>AI assistant</div>
           <p>Sure, here&apos;s a summary:</p>
           <p>
             Quokka BV experienced a 15% increase in revenue to EUR120 million. Compared to the
             previous year, this year was better, mostly due to the increase in...
           </p>
-        </div>
+        </motion.div>
       </div>
     );
   }
 
   return (
     <div className={`${styles.serviceVisual} ${styles.consultingVisual}`}>
-      <div className={styles.consultingMetric}>+15%</div>
-      <div className={styles.consultingMetricMuted}>+32%</div>
+      <motion.div
+        className={styles.consultingMetric}
+        animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
+        transition={reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      >
+        +15%
+      </motion.div>
+      <motion.div
+        className={styles.consultingMetricMuted}
+        animate={reducedMotion ? undefined : { y: [0, 4, 0] }}
+        transition={
+          reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.25 }
+        }
+      >
+        +32%
+      </motion.div>
       <div className={styles.consultingChart}>
-        <span />
-        <span />
-        <span />
+        {[0, 1, 2].map((index) => (
+          <motion.span
+            key={index}
+            animate={reducedMotion ? undefined : { scaleX: [0.94, 1, 0.94] }}
+            transition={
+              reducedMotion
+                ? undefined
+                : { duration: 3.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.2 }
+            }
+          />
+        ))}
       </div>
     </div>
   );
 }
 
 export default function Home() {
+  const prefersReducedMotion = useReducedMotion();
+  const [activeWork, setActiveWork] = useState(0);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const heroGlowX = useSpring(pointerX, { damping: 40, stiffness: 160, mass: 0.6 });
+  const heroGlowY = useSpring(pointerY, { damping: 40, stiffness: 160, mass: 0.6 });
+  const heroGlowRedX = useTransform(heroGlowX, (value) => value * 0.35);
+  const heroGlowRedY = useTransform(heroGlowY, (value) => value * 0.35);
+  const heroGlowGreenX = useTransform(heroGlowX, (value) => value * 0.58);
+  const heroGlowGreenY = useTransform(heroGlowY, (value) => value * 0.58);
+
+  const interactiveCardHover = prefersReducedMotion
+    ? undefined
+    : {
+        y: -6,
+        borderColor: "rgba(211, 255, 202, 0.2)",
+        boxShadow: "0 0 0 1px rgba(211,255,202,0.06), 0 20px 40px rgba(0,0,0,0.22)",
+        transition: snappierTransition,
+      };
+
+  const arrowHover = prefersReducedMotion
+    ? undefined
+    : {
+        hover: {
+          rotate: 45,
+          x: 2,
+          y: -2,
+          transition: snappierTransition,
+        },
+      };
+
+  const handleHeroPointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (prefersReducedMotion) return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - bounds.left - bounds.width / 2;
+    const y = event.clientY - bounds.top - bounds.height / 2;
+
+    pointerX.set(x);
+    pointerY.set(y);
+  };
+
+  const resetHeroPointer = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
     <main className={styles.page}>
       <div className={styles.backgroundGlowTop} />
       <div className={styles.backgroundGlowBottom} />
 
-      <nav className={styles.desktopNav}>
+      <motion.nav
+        className={styles.desktopNav}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: -110 }}
+        animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+        transition={prefersReducedMotion ? undefined : snappierTransition}
+      >
         <a className={styles.logo} href="/">
           <span className={styles.logoDot} />
           <span>NEBULA</span>
@@ -346,16 +546,25 @@ export default function Home() {
           <a href="#work">Work</a>
           <a href="#plans">Plans</a>
           <a href="#team">Team</a>
-          <a className={styles.contactLink} href="#contact">
+          <motion.a className={styles.contactLink} href="#contact" whileHover="hover">
             <span>Contact</span>
-            <ArrowIcon className={styles.navArrow} />
-          </a>
+            <ArrowIcon className={styles.navArrow} variants={arrowHover} />
+          </motion.a>
         </div>
 
-        <a className={styles.buyButton} href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6">
+        <motion.a
+          className={styles.buyButton}
+          href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6"
+          whileHover={
+            prefersReducedMotion
+              ? undefined
+              : { scale: 1.02, boxShadow: "0 0 28px rgba(211,255,202,0.28)" }
+          }
+          transition={snappierTransition}
+        >
           Buy this template
-        </a>
-      </nav>
+        </motion.a>
+      </motion.nav>
 
       <details className={styles.mobileNav}>
         <summary className={styles.mobileSummary}>
@@ -378,64 +587,131 @@ export default function Home() {
         </div>
       </details>
 
-      <section className={styles.hero}>
+      <section className={styles.hero} onPointerMove={handleHeroPointerMove} onPointerLeave={resetHeroPointer}>
         <div className={styles.starField} aria-hidden="true">
           {stars.map((star, index) => (
-            <span
+            <motion.span
               key={`${star.top}-${star.left}-${index}`}
               className={styles.star}
               style={{ top: star.top, left: star.left }}
+              initial={prefersReducedMotion ? false : { opacity: 0 }}
+              animate={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      opacity: [0.25, 0.85, 0.25],
+                      scale: [1, 1.35, 1],
+                    }
+              }
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      duration: 3.6,
+                      repeat: Number.POSITIVE_INFINITY,
+                      delay: index * 0.16,
+                      ease: "easeInOut",
+                    }
+              }
             />
           ))}
         </div>
 
         <div className={styles.heroInner}>
-          <div className={styles.heroGlowRed} />
-          <div className={styles.heroGlowGreen} />
-          <div className={styles.heroCopy}>
-            <h1 className={styles.heroTitle}>
+          <motion.div
+            className={styles.heroGlowRed}
+            style={prefersReducedMotion ? undefined : { x: heroGlowRedX, y: heroGlowRedY }}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.7 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+            transition={prefersReducedMotion ? undefined : { delay: 0.2, duration: 0.4 }}
+          />
+          <motion.div
+            className={styles.heroGlowGreen}
+            style={prefersReducedMotion ? undefined : { x: heroGlowGreenX, y: heroGlowGreenY }}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.7 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+            transition={prefersReducedMotion ? undefined : { delay: 0.28, duration: 0.5 }}
+          />
+          <motion.div
+            className={styles.heroCopy}
+            variants={staggerChildren}
+            initial={prefersReducedMotion ? false : "hidden"}
+            animate={prefersReducedMotion ? undefined : "show"}
+          >
+            <motion.h1 className={styles.heroTitle} variants={revealUp}>
               Driving <span className={styles.heroWarm}>growth</span> with{" "}
               <span className={styles.heroAccent}>AI</span>.
-            </h1>
-            <p className={styles.heroDescription}>
+            </motion.h1>
+            <motion.p className={styles.heroDescription} variants={revealUp}>
               We craft workflow automations and bespoke AI solutions for forward-thinking
               companies.
-            </p>
-            <div className={styles.heroActions}>
-              <a className={styles.primaryButton} href="#services">
+            </motion.p>
+            <motion.div className={styles.heroActions} variants={revealUp}>
+              <motion.a
+                className={styles.primaryButton}
+                href="#services"
+                whileHover={
+                  prefersReducedMotion ? undefined : { scale: 1.03, boxShadow: "0 0 34px rgba(23,196,121,0.44)" }
+                }
+                transition={snappierTransition}
+              >
                 Our services
-              </a>
-              <a className={styles.secondaryButton} href="#contact">
+              </motion.a>
+              <motion.a
+                className={styles.secondaryButton}
+                href="#contact"
+                whileHover="hover"
+                transition={snappierTransition}
+              >
                 <span>Get in touch</span>
-                <ArrowIcon className={styles.buttonArrow} />
-              </a>
-            </div>
-          </div>
+                <ArrowIcon className={styles.buttonArrow} variants={arrowHover} />
+              </motion.a>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      <section className={styles.about} id="about-us">
+      <motion.section
+        className={styles.about}
+        id="about-us"
+        variants={staggerChildren}
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <div className={styles.sectionShell}>
-          <div className={styles.aboutText}>
+          <motion.div className={styles.aboutText} variants={revealUp}>
             <p>We&apos;re a full-service AI Automation Agency</p>
             <p>Into AI-driven</p>
-          </div>
-          <div className={styles.aboutText}>
+          </motion.div>
+          <motion.div className={styles.aboutText} variants={revealUp}>
             <p>We turn businesses</p>
             <p>industry leaders.</p>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="our-process">
+      <motion.section
+        className={styles.section}
+        id="our-process"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             Our <span>process</span>
-          </h2>
-          <div className={styles.processGrid}>
+          </motion.h2>
+          <motion.div className={styles.processGrid} variants={staggerChildren}>
             {processSteps.map((step) => (
-              <article key={step.number} className={styles.processCard}>
-                <ProcessVisual type={step.visual} />
+              <motion.article
+                key={step.number}
+                className={styles.processCard}
+                variants={revealUp}
+                whileHover={interactiveCardHover}
+              >
+                <ProcessVisual type={step.visual} reducedMotion={Boolean(prefersReducedMotion)} />
                 <div className={styles.processText}>
                   <h3>
                     <span>{step.number}</span>
@@ -443,66 +719,110 @@ export default function Home() {
                   </h3>
                   <p>{step.description}</p>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="services">
+      <motion.section
+        className={styles.section}
+        id="services"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             Our <span>services</span>
-          </h2>
-          <div className={styles.serviceGrid}>
+          </motion.h2>
+          <motion.div className={styles.serviceGrid} variants={staggerChildren}>
             {services.map((service) => (
-              <article key={service.title} className={styles.serviceCard}>
-                <ServiceVisual type={service.visual} />
+              <motion.article
+                key={service.title}
+                className={styles.serviceCard}
+                variants={revealUp}
+                whileHover={interactiveCardHover}
+              >
+                <ServiceVisual type={service.visual} reducedMotion={Boolean(prefersReducedMotion)} />
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="work">
+      <motion.section
+        className={styles.section}
+        id="work"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             Our <span>Work</span>
-          </h2>
+          </motion.h2>
           <div className={styles.workLayout}>
-            <div className={styles.workList}>
-              {workItems.map((item) => (
-                <article key={item.title} className={styles.workItem}>
+            <motion.div className={styles.workList} variants={staggerChildren}>
+              {workItems.map((item, index) => (
+                <motion.article
+                  key={item.title}
+                  className={`${styles.workItem} ${activeWork === index ? styles.workItemActive : ""}`}
+                  variants={revealUp}
+                  initial={prefersReducedMotion ? false : "hidden"}
+                  whileInView={prefersReducedMotion ? undefined : "show"}
+                  viewport={{ once: true, amount: 0.6 }}
+                  onHoverStart={() => setActiveWork(index)}
+                  whileHover={prefersReducedMotion ? undefined : { borderColor: "rgba(211,255,202,0.16)" }}
+                >
                   <div className={styles.workMeta}>{item.year}</div>
-                  <div className={styles.workRow}>
+                  <motion.div className={styles.workRow} whileHover="hover">
                     <div>
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
                     </div>
-                    <ArrowIcon className={styles.workArrow} />
-                  </div>
-                </article>
+                    <ArrowIcon className={styles.workArrow} variants={arrowHover} />
+                  </motion.div>
+                </motion.article>
               ))}
-            </div>
-            <div className={styles.workPreview}>
-              <img src={WORK_IMAGE} alt="Green laptop mockup" />
-            </div>
+            </motion.div>
+            <motion.div className={styles.workPreview} variants={revealUp}>
+              <motion.img
+                key={activeWork}
+                src={WORK_IMAGE}
+                alt="Green laptop mockup"
+                initial={prefersReducedMotion ? false : { opacity: 0.6, scale: 0.97 }}
+                animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+                transition={snappierTransition}
+              />
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="plans">
+      <motion.section
+        className={styles.section}
+        id="plans"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             <span>Plans</span> to suit your needs
-          </h2>
-          <div className={styles.planGrid}>
+          </motion.h2>
+          <motion.div className={styles.planGrid} variants={staggerChildren}>
             {plans.map((plan) => (
-              <article
+              <motion.article
                 key={plan.name}
                 className={`${styles.planCard} ${plan.popular ? styles.planCardFeatured : ""}`}
+                variants={revealUp}
+                whileHover={interactiveCardHover}
               >
                 <div className={styles.planHeader}>
                   <div>
@@ -521,24 +841,36 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <a className={styles.planButton} href="#contact">
+                <motion.a className={styles.planButton} href="#contact" whileHover="hover">
                   <span>{plan.cta}</span>
-                  <ArrowIcon className={styles.buttonArrow} />
-                </a>
-              </article>
+                  <ArrowIcon className={styles.buttonArrow} variants={arrowHover} />
+                </motion.a>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="testimonials">
+      <motion.section
+        className={styles.section}
+        id="testimonials"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             What our <span>clients</span> say
-          </h2>
-          <div className={styles.testimonialGrid}>
+          </motion.h2>
+          <motion.div className={styles.testimonialGrid} variants={staggerChildren}>
             {testimonials.map((testimonial) => (
-              <article key={testimonial.name} className={styles.testimonialCard}>
+              <motion.article
+                key={testimonial.name}
+                className={styles.testimonialCard}
+                variants={revealUp}
+                whileHover={interactiveCardHover}
+              >
                 <h3>{testimonial.quote}</h3>
                 <p>{testimonial.description}</p>
                 <div className={styles.testimonialPerson}>
@@ -548,38 +880,57 @@ export default function Home() {
                     <span>{testimonial.role}</span>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="team">
+      <motion.section
+        className={styles.section}
+        id="team"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             Meet the <span>team</span>
-          </h2>
-          <div className={styles.teamGrid}>
+          </motion.h2>
+          <motion.div className={styles.teamGrid} variants={staggerChildren}>
             {team.map((member) => (
-              <article key={member.name} className={styles.teamCard}>
+              <motion.article
+                key={member.name}
+                className={styles.teamCard}
+                variants={revealUp}
+                whileHover={interactiveCardHover}
+              >
                 <img src={member.avatar} alt={member.name} />
                 <div className={styles.teamInfo}>
                   <strong>{member.name}</strong>
                   <span>{member.role}</span>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className={styles.section} id="contact">
+      <motion.section
+        className={styles.section}
+        id="contact"
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
         <div className={styles.sectionShell}>
-          <h2 className={styles.sectionTitle}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
             Get in <span>touch</span>
-          </h2>
+          </motion.h2>
           <div className={styles.contactLayout}>
-            <div className={styles.contactDetails}>
+            <motion.div className={styles.contactDetails} variants={revealUp}>
               <div className={styles.contactBlock}>
                 <h3>Office</h3>
                 <p>Keizersgracht 520, 1017EK</p>
@@ -589,22 +940,22 @@ export default function Home() {
               <div className={styles.contactLine} />
               <div className={styles.contactBlock}>
                 <h3>Email</h3>
-                <a href="mailto:mail@nebula.com">
+                <motion.a href="mailto:mail@nebula.com" whileHover="hover">
                   <span>mail@nebula.com</span>
-                  <ArrowIcon className={styles.inlineArrow} />
-                </a>
+                  <ArrowIcon className={styles.inlineArrow} variants={arrowHover} />
+                </motion.a>
               </div>
               <div className={styles.contactLine} />
               <div className={styles.contactBlock}>
                 <h3>Phone</h3>
-                <a href="tel:+310203439223">
+                <motion.a href="tel:+310203439223" whileHover="hover">
                   <span>+31 (0) 20 343 9223</span>
-                  <ArrowIcon className={styles.inlineArrow} />
-                </a>
+                  <ArrowIcon className={styles.inlineArrow} variants={arrowHover} />
+                </motion.a>
               </div>
-            </div>
+            </motion.div>
 
-            <form className={styles.contactForm}>
+            <motion.form className={styles.contactForm} variants={revealUp}>
               <div className={styles.formRow}>
                 <label>
                   <span>First Name</span>
@@ -629,13 +980,18 @@ export default function Home() {
                 <span>Message</span>
                 <textarea />
               </label>
-              <button className={styles.submitButton} type="submit">
+              <motion.button
+                className={styles.submitButton}
+                type="submit"
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
+                transition={snappierTransition}
+              >
                 Submit
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className={styles.faqSection} id="faq">
         <div className={styles.sectionShell}>
@@ -697,13 +1053,17 @@ export default function Home() {
         </div>
       </footer>
 
-      <a
+      <motion.a
         className={styles.floatingBuy}
         href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6"
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+        animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+        transition={prefersReducedMotion ? undefined : { delay: 0.5, duration: 0.4 }}
+        whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
       >
         <span>Buy template</span>
-        <ArrowIcon className={styles.floatingArrow} />
-      </a>
+        <ArrowIcon className={styles.floatingArrow} variants={arrowHover} />
+      </motion.a>
     </main>
   );
 }
