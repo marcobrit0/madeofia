@@ -146,18 +146,18 @@
 }
 
 .hero {
-  min-height: 1040px;
-  padding: 0 0 110px;
+  min-height: 980px;
+  padding: 0 0 80px;
 }
 
 .heroInner {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   justify-content: center;
   margin: 0 auto;
   max-width: 1440px;
-  min-height: 1040px;
-  padding: 220px 40px 130px;
+  min-height: 980px;
+  padding: 170px 40px 100px;
   position: relative;
 }
 
@@ -169,6 +169,7 @@
   max-width: 1180px;
   position: relative;
   text-align: center;
+  transform: translateY(42px);
   width: 100%;
   z-index: 2;
 }
@@ -268,12 +269,11 @@
 }
 
 .ctaGlow {
-  animation: ctaSpin 3.9s linear infinite;
-  background: radial-gradient(30% 30% at 50% 100%, rgba(211, 255, 202, 0.56) 0%, rgba(211, 255, 202, 0.14) 42%, rgba(211, 255, 202, 0) 100%);
+  background: radial-gradient(42% 56% at 50% 112%, rgba(211, 255, 202, 0.52) 0%, rgba(211, 255, 202, 0.16) 42%, rgba(211, 255, 202, 0) 100%);
   filter: blur(15px);
-  inset: -24px;
-  opacity: 0.22;
-  transform: scale(0.88);
+  inset: -20px -16px -24px;
+  opacity: 0.04;
+  transform: scale(0.94);
   transition:
     opacity 0.35s ease,
     transform 0.35s ease;
@@ -281,9 +281,18 @@
 }
 
 .ctaBorder {
-  animation: ctaSpin 3.9s linear infinite;
-  background: radial-gradient(39.8% 40.3% at 50% 100%, rgba(211, 255, 202, 1) 0%, rgba(211, 255, 202, 0.18) 34%, rgba(211, 255, 202, 0) 100%);
-  opacity: 0.92;
+  animation: ctaSpin 4.8s linear infinite;
+  background: conic-gradient(
+    from 0deg,
+    rgba(211, 255, 202, 0) 0deg,
+    rgba(211, 255, 202, 0) 235deg,
+    rgba(211, 255, 202, 0.16) 258deg,
+    rgba(211, 255, 202, 0.82) 279deg,
+    rgba(211, 255, 202, 0.18) 306deg,
+    rgba(211, 255, 202, 0) 330deg,
+    rgba(211, 255, 202, 0) 360deg
+  );
+  opacity: 0.7;
   padding: 1px;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -297,7 +306,7 @@
   background: var(--cta-fill-color);
   box-shadow:
     inset 0 0 0 1px rgba(211, 255, 202, 0.05),
-    0 0 30px rgba(23, 196, 121, 0.16);
+    0 0 16px rgba(23, 196, 121, 0.08);
   inset: 1px;
   transition:
     background 0.35s ease,
@@ -306,15 +315,27 @@
 }
 
 .ctaButton:hover .ctaGlow {
-  opacity: 0.68;
+  opacity: 0.42;
   transform: scale(1);
+}
+
+.ctaButton:hover .ctaBorder {
+  background: conic-gradient(
+    from 0deg,
+    rgba(211, 255, 202, 0.2) 0deg,
+    rgba(211, 255, 202, 0.34) 88deg,
+    rgba(211, 255, 202, 0.96) 156deg,
+    rgba(211, 255, 202, 0.3) 238deg,
+    rgba(211, 255, 202, 0.2) 360deg
+  );
+  opacity: 0.96;
 }
 
 .ctaButton:hover .ctaFill {
   background: var(--cta-fill-hover);
   box-shadow:
     inset 0 0 0 1px rgba(211, 255, 202, 0.16),
-    0 0 34px rgba(146, 255, 176, 0.26);
+    0 0 26px rgba(146, 255, 176, 0.18);
 }
 
 .ctaContent {
@@ -328,14 +349,48 @@
 
 .ctaLabelMask {
   display: inline-flex;
+  height: 1.2em;
   overflow: hidden;
   perspective: 500px;
+  position: relative;
 }
 
-.ctaLabel {
-  display: inline-block;
-  transform-origin: center bottom;
+.ctaLabelTrack {
+  display: block;
+  position: relative;
+}
+
+.ctaLabelPrimary,
+.ctaLabelSecondary {
+  display: block;
+  transform-origin: center center;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+  white-space: nowrap;
   will-change: transform;
+}
+
+.ctaLabelPrimary {
+  position: relative;
+}
+
+.ctaLabelSecondary {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  transform: translateY(12%) rotateX(-92deg);
+}
+
+.ctaButton:hover .ctaLabelPrimary {
+  opacity: 0;
+  transform: translateY(-112%) rotateX(92deg);
+}
+
+.ctaButton:hover .ctaLabelSecondary {
+  opacity: 1;
+  transform: translateY(-100%) rotateX(0deg);
 }
 
 .ctaIcon {
@@ -395,8 +450,8 @@
   background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(211, 255, 202, 0.92) 72%, rgba(211, 255, 202, 0.15) 100%);
   border-radius: 999px;
   box-shadow:
-    0 0 10px rgba(255, 255, 255, 0.26),
-    0 0 18px rgba(211, 255, 202, 0.18);
+    0 0 12px rgba(255, 255, 255, 0.32),
+    0 0 22px rgba(211, 255, 202, 0.22);
   filter: blur(0.15px);
   position: absolute;
   will-change: transform, opacity;
@@ -1580,12 +1635,16 @@
   }
 
   .hero {
-    min-height: 780px;
+    min-height: 720px;
   }
 
   .heroInner {
-    min-height: 780px;
-    padding: 170px 15px 90px;
+    min-height: 720px;
+    padding: 138px 15px 72px;
+  }
+
+  .heroCopy {
+    transform: translateY(12px);
   }
 
   .heroDescription {

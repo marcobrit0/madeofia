@@ -207,18 +207,20 @@ const faqItems = [
 ];
 
 const stars = [
-  { top: "12%", left: "15%", size: 3, driftX: 16, driftY: -18, duration: 10.5, delay: 0.2 },
-  { top: "16%", left: "41%", size: 2, driftX: -12, driftY: 14, duration: 9.4, delay: 0.6 },
-  { top: "19%", left: "63%", size: 4, driftX: 18, driftY: -16, duration: 11.2, delay: 1.1 },
-  { top: "24%", left: "84%", size: 3, driftX: -14, driftY: 12, duration: 8.9, delay: 1.5 },
-  { top: "36%", left: "22%", size: 2, driftX: 13, driftY: -10, duration: 9.8, delay: 0.4 },
-  { top: "42%", left: "56%", size: 3, driftX: -16, driftY: 16, duration: 10.6, delay: 0.9 },
-  { top: "46%", left: "73%", size: 4, driftX: 20, driftY: -14, duration: 11.6, delay: 1.8 },
-  { top: "55%", left: "88%", size: 3, driftX: -12, driftY: 18, duration: 9.7, delay: 1.3 },
-  { top: "63%", left: "12%", size: 4, driftX: 17, driftY: -13, duration: 10.8, delay: 0.7 },
-  { top: "71%", left: "35%", size: 2, driftX: -11, driftY: 14, duration: 8.7, delay: 1.1 },
-  { top: "76%", left: "52%", size: 3, driftX: 14, driftY: -12, duration: 9.6, delay: 0.5 },
-  { top: "82%", left: "78%", size: 3, driftX: -15, driftY: 12, duration: 10.1, delay: 1.7 },
+  { top: "12%", left: "15%", size: 3, driftX: 24, driftY: -28, duration: 5.2, delay: 0.2 },
+  { top: "16%", left: "41%", size: 2, driftX: -20, driftY: 22, duration: 4.6, delay: 0.6 },
+  { top: "19%", left: "63%", size: 4, driftX: 28, driftY: -24, duration: 5.4, delay: 1.1 },
+  { top: "24%", left: "84%", size: 3, driftX: -22, driftY: 18, duration: 4.2, delay: 1.5 },
+  { top: "31%", left: "9%", size: 2, driftX: 18, driftY: -15, duration: 4.8, delay: 0.35 },
+  { top: "36%", left: "22%", size: 2, driftX: 21, driftY: -16, duration: 4.7, delay: 0.4 },
+  { top: "42%", left: "56%", size: 3, driftX: -24, driftY: 22, duration: 5, delay: 0.9 },
+  { top: "46%", left: "73%", size: 4, driftX: 30, driftY: -20, duration: 5.6, delay: 1.8 },
+  { top: "55%", left: "88%", size: 3, driftX: -18, driftY: 24, duration: 4.8, delay: 1.3 },
+  { top: "63%", left: "12%", size: 4, driftX: 24, driftY: -18, duration: 5.1, delay: 0.7 },
+  { top: "71%", left: "35%", size: 2, driftX: -18, driftY: 18, duration: 4.1, delay: 1.1 },
+  { top: "76%", left: "52%", size: 3, driftX: 22, driftY: -20, duration: 4.5, delay: 0.5 },
+  { top: "82%", left: "78%", size: 3, driftX: -22, driftY: 16, duration: 4.9, delay: 1.7 },
+  { top: "87%", left: "90%", size: 2, driftX: 16, driftY: -18, duration: 4.4, delay: 0.95 },
 ];
 
 const aboutLines = [
@@ -277,28 +279,10 @@ const staggerChildren = {
 const ctaVariants = {
   rest: {
     scale: 1,
-    y: 0,
   },
   hover: {
-    scale: 1.02,
-    y: -1,
+    scale: 1.015,
     transition: snappierTransition,
-  },
-};
-
-const ctaTextVariants = {
-  rest: {
-    y: 0,
-    rotateX: 0,
-  },
-  hover: {
-    y: [0, -12, 0],
-    rotateX: [0, -70, 0],
-    transition: {
-      duration: 0.52,
-      ease: "easeInOut" as const,
-      times: [0, 0.42, 1],
-    },
   },
 };
 
@@ -336,9 +320,12 @@ function CTAInner({
       <span className={styles.ctaFill} aria-hidden="true" />
       <span className={styles.ctaContent}>
         <span className={styles.ctaLabelMask}>
-          <motion.span className={styles.ctaLabel} variants={reducedMotion ? undefined : ctaTextVariants}>
-            {label}
-          </motion.span>
+          <span className={styles.ctaLabelTrack}>
+            <span className={styles.ctaLabelPrimary}>{label}</span>
+            <span className={styles.ctaLabelSecondary} aria-hidden="true">
+              {label}
+            </span>
+          </span>
         </span>
         {showArrow ? (
           <motion.span className={styles.ctaIcon} variants={reducedMotion ? undefined : arrowHoverVariants}>
@@ -911,10 +898,10 @@ export default function Home() {
                 prefersReducedMotion
                   ? undefined
                   : {
-                      x: [0, star.driftX, star.driftX * -0.58, 0],
-                      y: [0, star.driftY, star.driftY * -0.42, 0],
-                      opacity: [0.28, 1, 0.66, 0.28],
-                      scale: [1, 1.48, 1.02, 1],
+                      x: [0, star.driftX, star.driftX * -0.62, 0],
+                      y: [0, star.driftY, star.driftY * -0.48, 0],
+                      opacity: [0.34, 1, 0.74, 0.34],
+                      scale: [1, 1.56, 1.06, 1],
                     }
               }
               transition={
