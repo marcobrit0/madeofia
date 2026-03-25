@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+const interTight = localFont({
+  src: "./fonts/inter-tight-400.woff2",
+  variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const spaceGrotesk = localFont({
+  src: "./fonts/space-grotesk-400.woff2",
+  variable: "--font-accent",
   display: "swap",
 });
 
@@ -33,7 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${jetbrainsMono.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${interTight.variable} ${spaceGrotesk.variable}`}
+      style={{ ["--font-body" as string]: "var(--font-display)" }}
+    >
       <body className="min-h-screen">{children}</body>
     </html>
   );

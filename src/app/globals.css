@@ -8,8 +8,8 @@
   --color-fg: #ffffff;
   --color-green: #4ade80;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-accent), ui-sans-serif, system-ui, sans-serif;
 
   --animate-blink: blink 1s step-end infinite;
   --animate-marquee: marquee 40s linear infinite;
@@ -51,7 +51,7 @@ html {
 body {
   background-color: #080807;
   color: #ffffff;
-  font-family: var(--font-sans);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
