@@ -208,19 +208,27 @@ const faqItems = [
 
 const stars = [
   { top: "12%", left: "15%", size: 3, driftX: 24, driftY: -28, duration: 5.2, delay: 0.2 },
+  { top: "15%", left: "1%", size: 2, driftX: 12, driftY: -18, duration: 4.8, delay: 0.1 },
   { top: "16%", left: "41%", size: 2, driftX: -20, driftY: 22, duration: 4.6, delay: 0.6 },
   { top: "19%", left: "63%", size: 4, driftX: 28, driftY: -24, duration: 5.4, delay: 1.1 },
   { top: "24%", left: "84%", size: 3, driftX: -22, driftY: 18, duration: 4.2, delay: 1.5 },
+  { top: "26%", left: "78%", size: 2, driftX: 18, driftY: -14, duration: 4.4, delay: 0.3 },
   { top: "31%", left: "9%", size: 2, driftX: 18, driftY: -15, duration: 4.8, delay: 0.35 },
   { top: "36%", left: "22%", size: 2, driftX: 21, driftY: -16, duration: 4.7, delay: 0.4 },
   { top: "42%", left: "56%", size: 3, driftX: -24, driftY: 22, duration: 5, delay: 0.9 },
   { top: "46%", left: "73%", size: 4, driftX: 30, driftY: -20, duration: 5.6, delay: 1.8 },
+  { top: "49%", left: "90%", size: 2, driftX: -12, driftY: 18, duration: 4.5, delay: 0.8 },
   { top: "55%", left: "88%", size: 3, driftX: -18, driftY: 24, duration: 4.8, delay: 1.3 },
   { top: "63%", left: "12%", size: 4, driftX: 24, driftY: -18, duration: 5.1, delay: 0.7 },
+  { top: "67%", left: "57%", size: 2, driftX: 16, driftY: -16, duration: 4.3, delay: 1.2 },
   { top: "71%", left: "35%", size: 2, driftX: -18, driftY: 18, duration: 4.1, delay: 1.1 },
+  { top: "73%", left: "4%", size: 2, driftX: 14, driftY: -14, duration: 4.9, delay: 0.55 },
   { top: "76%", left: "52%", size: 3, driftX: 22, driftY: -20, duration: 4.5, delay: 0.5 },
   { top: "82%", left: "78%", size: 3, driftX: -22, driftY: 16, duration: 4.9, delay: 1.7 },
+  { top: "84%", left: "39%", size: 2, driftX: -14, driftY: 15, duration: 4.2, delay: 0.45 },
   { top: "87%", left: "90%", size: 2, driftX: 16, driftY: -18, duration: 4.4, delay: 0.95 },
+  { top: "91%", left: "14%", size: 3, driftX: 18, driftY: -12, duration: 4.6, delay: 0.25 },
+  { top: "93%", left: "61%", size: 2, driftX: -12, driftY: 14, duration: 4.1, delay: 1.35 },
 ];
 
 const aboutLines = [
