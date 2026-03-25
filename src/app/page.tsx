@@ -207,15 +207,18 @@ const faqItems = [
 ];
 
 const stars = [
-  { top: "13%", left: "18%", size: 2, driftX: 10, driftY: -14, duration: 16, delay: 0.2 },
-  { top: "17%", left: "62%", size: 3, driftX: -12, driftY: 12, duration: 18, delay: 0.8 },
-  { top: "24%", left: "84%", size: 2, driftX: 8, driftY: -10, duration: 15, delay: 1.1 },
-  { top: "38%", left: "28%", size: 2, driftX: -9, driftY: 8, duration: 14, delay: 0.4 },
-  { top: "45%", left: "71%", size: 3, driftX: 14, driftY: -12, duration: 19, delay: 1.6 },
-  { top: "54%", left: "89%", size: 2, driftX: -8, driftY: 14, duration: 17, delay: 0.9 },
-  { top: "68%", left: "14%", size: 3, driftX: 12, driftY: -9, duration: 18, delay: 1.3 },
-  { top: "74%", left: "46%", size: 2, driftX: -10, driftY: 10, duration: 16, delay: 0.6 },
-  { top: "81%", left: "77%", size: 2, driftX: 9, driftY: -8, duration: 15, delay: 1.8 },
+  { top: "12%", left: "15%", size: 3, driftX: 16, driftY: -18, duration: 10.5, delay: 0.2 },
+  { top: "16%", left: "41%", size: 2, driftX: -12, driftY: 14, duration: 9.4, delay: 0.6 },
+  { top: "19%", left: "63%", size: 4, driftX: 18, driftY: -16, duration: 11.2, delay: 1.1 },
+  { top: "24%", left: "84%", size: 3, driftX: -14, driftY: 12, duration: 8.9, delay: 1.5 },
+  { top: "36%", left: "22%", size: 2, driftX: 13, driftY: -10, duration: 9.8, delay: 0.4 },
+  { top: "42%", left: "56%", size: 3, driftX: -16, driftY: 16, duration: 10.6, delay: 0.9 },
+  { top: "46%", left: "73%", size: 4, driftX: 20, driftY: -14, duration: 11.6, delay: 1.8 },
+  { top: "55%", left: "88%", size: 3, driftX: -12, driftY: 18, duration: 9.7, delay: 1.3 },
+  { top: "63%", left: "12%", size: 4, driftX: 17, driftY: -13, duration: 10.8, delay: 0.7 },
+  { top: "71%", left: "35%", size: 2, driftX: -11, driftY: 14, duration: 8.7, delay: 1.1 },
+  { top: "76%", left: "52%", size: 3, driftX: 14, driftY: -12, duration: 9.6, delay: 0.5 },
+  { top: "82%", left: "78%", size: 3, driftX: -15, driftY: 12, duration: 10.1, delay: 1.7 },
 ];
 
 const aboutLines = [
@@ -908,10 +911,10 @@ export default function Home() {
                 prefersReducedMotion
                   ? undefined
                   : {
-                      x: [0, star.driftX, star.driftX * -0.45, 0],
-                      y: [0, star.driftY, star.driftY * -0.35, 0],
-                      opacity: [0.2, 0.82, 0.48, 0.2],
-                      scale: [1, 1.25, 0.92, 1],
+                      x: [0, star.driftX, star.driftX * -0.58, 0],
+                      y: [0, star.driftY, star.driftY * -0.42, 0],
+                      opacity: [0.28, 1, 0.66, 0.28],
+                      scale: [1, 1.48, 1.02, 1],
                     }
               }
               transition={
