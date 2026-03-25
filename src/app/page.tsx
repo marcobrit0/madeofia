@@ -1,5 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { FAQAccordion } from "@/components/FAQAccordion";
+import { PortfolioSection } from "@/components/PortfolioSection";
 
 /* ── DATA ─────────────────────────────────────────────── */
 
@@ -49,30 +51,6 @@ const services = [
     title: "Estratégia em IA",
     desc: "Mergulhamos fundo na sua operação e consultamos como as automações com IA podem transformar seu negócio. +30% eficiência média.",
     visual: "consulting",
-  },
-];
-
-const caseStudies = [
-  {
-    year: "2024",
-    name: "CriarRecibo",
-    type: "SaaS · Fintech",
-    desc: "Plataforma de geração de recibos digitais para autônomos e MEIs. Zero a 3.000 usuários em 60 dias.",
-    metrics: ["3K usuários", "60 dias", "R$0 ad spend"],
-  },
-  {
-    year: "2024",
-    name: "TextoIA",
-    type: "SaaS · Copywriting",
-    desc: "Editor de textos com IA para criadores de conteúdo brasileiros. Integração com Claude e GPT-4.",
-    metrics: ["500+ assinantes", "4.8★ rating", "14-day trial"],
-  },
-  {
-    year: "2024",
-    name: "Bizu",
-    type: "EdTech · Mobile",
-    desc: "App de flashcards com IA para estudantes de concursos. Personalização via machine learning.",
-    metrics: ["10K downloads", "App Store 4.9★", "Retenção 68%"],
   },
 ];
 
@@ -173,34 +151,20 @@ const testimonials = [
 ];
 
 const team = [
-  { name: "CEO Agente", role: "Estratégia & Produto", initials: "C" },
-  { name: "CTO Agente", role: "Arquitetura & Código", initials: "T" },
-  { name: "CMO Agente", role: "Copy & Marketing", initials: "M" },
-  { name: "Designer Agente", role: "UI/UX & Brand", initials: "D" },
+  { name: "CEO Agente", role: "Estratégia & Produto", initials: "C", color: "#4ade80" },
+  { name: "CTO Agente", role: "Arquitetura & Código", initials: "T", color: "#22d3ee" },
+  { name: "CMO Agente", role: "Copy & Marketing", initials: "M", color: "#a78bfa" },
+  { name: "Designer Agente", role: "UI/UX & Brand", initials: "D", color: "#fb923c" },
 ];
 
-const faqs = [
-  {
-    q: "O que diferencia a MadeofIA de uma agência tradicional?",
-    a: "Usamos times de agentes de IA especializados para entregar projetos até 3× mais rápido e 70% mais barato que agências tradicionais, sem abrir mão da qualidade.",
-  },
-  {
-    q: "Quantas revisões posso solicitar?",
-    a: "Revisões ilimitadas até você aprovar. Trabalhamos em ciclos rápidos de feedback para garantir que o resultado seja exatamente o que você precisa.",
-  },
-  {
-    q: "Posso cancelar ou pausar minha assinatura?",
-    a: "Sim, no plano Parceiro Digital você pode pausar ou cancelar a qualquer momento, sem multas ou burocracia.",
-  },
-  {
-    q: "As soluções são seguras e escaláveis?",
-    a: "Utilizamos as melhores práticas de segurança e infraestrutura em nuvem (Vercel, AWS, Supabase) para garantir segurança e escalabilidade.",
-  },
-  {
-    q: "Em quanto tempo vocês entregam?",
-    a: "O plano Essencial é entregue em 2 semanas. Crescimento em 4 semanas. Produto Digital em 8 semanas. Datas cumpridas ou trabalhamos de graça.",
-  },
-];
+/* ── GRADIENT TEXT STYLE ───────────────────────────────── */
+
+const gradientStyle: React.CSSProperties = {
+  background: "linear-gradient(135deg, #4ade80 0%, #22d3ee 100%)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+};
 
 /* ── COMPONENT ─────────────────────────────────────────── */
 
@@ -212,27 +176,56 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 md:pt-20">
+        {/* Star particle field */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { top: "12%", left: "8%", delay: "0s" },
+            { top: "22%", left: "85%", delay: "0.8s" },
+            { top: "38%", left: "15%", delay: "1.6s" },
+            { top: "55%", left: "92%", delay: "0.4s" },
+            { top: "70%", left: "6%", delay: "2.1s" },
+            { top: "80%", left: "78%", delay: "1.2s" },
+            { top: "15%", left: "50%", delay: "0.6s" },
+            { top: "45%", left: "65%", delay: "1.9s" },
+            { top: "90%", left: "40%", delay: "0.3s" },
+            { top: "5%", left: "30%", delay: "1.4s" },
+            { top: "60%", left: "45%", delay: "0.9s" },
+            { top: "33%", left: "75%", delay: "2.4s" },
+          ].map((s, i) => (
+            <div
+              key={i}
+              className="absolute w-px h-px bg-white rounded-full"
+              style={{
+                top: s.top,
+                left: s.left,
+                opacity: 0.3,
+                animation: `pulse 3s ease-in-out ${s.delay} infinite`,
+              }}
+            />
+          ))}
+        </div>
+
         {/* Glow orb */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(74,222,128,0.28) 0%, rgba(234,179,8,0.12) 30%, rgba(74,222,128,0.05) 55%, transparent 72%)",
+              "radial-gradient(ellipse at center, rgba(74,222,128,0.22) 0%, rgba(34,211,238,0.08) 35%, rgba(74,222,128,0.04) 55%, transparent 72%)",
             filter: "blur(40px)",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] pointer-events-none rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(74,222,128,0.18) 0%, transparent 60%)",
-            filter: "blur(20px)",
           }}
         />
 
         <div className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
           <div className="max-w-4xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-8 bg-white/[0.03]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
+              <span className="text-white/50 text-xs tracking-widest uppercase font-mono">
+                Boutique de IA · Brasil
+              </span>
+            </div>
+
             <h1
               className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.92] tracking-tight text-white mb-8"
               style={{ letterSpacing: "-0.03em" }}
@@ -241,7 +234,8 @@ export default function Home() {
               <br />
               negócios com
               <br />
-              agentes de IA.
+              agentes de{" "}
+              <span style={gradientStyle}>IA.</span>
             </h1>
 
             <p className="text-white/50 text-lg md:text-xl max-w-lg leading-relaxed mb-10">
@@ -249,16 +243,16 @@ export default function Home() {
               que querem crescer na velocidade da tecnologia.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="#servicos"
-                className="inline-flex items-center justify-center text-sm px-6 py-3 rounded-full border border-white/15 text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200"
+                className="inline-flex items-center justify-center text-sm px-6 py-3 rounded-full bg-[#4ade80] text-[#080807] font-semibold hover:bg-[#4ade80]/85 transition-all duration-200"
               >
                 Nossos serviços
               </a>
               <a
                 href="#contato"
-                className="inline-flex items-center justify-center text-sm px-6 py-3 rounded-full border border-white/15 text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200"
+                className="inline-flex items-center justify-center text-sm px-6 py-3 rounded-full border border-white/15 text-white hover:border-white/30 hover:bg-white/5 transition-all duration-200"
               >
                 Fale conosco
               </a>
@@ -268,7 +262,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          MARQUEE  
+          MARQUEE
       ══════════════════════════════════════════════════ */}
       <div className="border-y border-white/8 overflow-hidden py-5 bg-[#080807]">
         <div
@@ -276,43 +270,60 @@ export default function Home() {
           style={{ animation: "marquee 35s linear infinite" }}
         >
           {Array.from({ length: 2 }).flatMap((_, i) =>
-            ["MADEOFIA", "·", "AGENTES DE IA", "·", "NEXT.JS", "·", "REACT", "·", "TYPESCRIPT", "·", "VERCEL", "·", "CLAUDE", "·", "GPT-4", "·"].map(
-              (t, j) => (
-                <span
-                  key={`${t}-${i}-${j}`}
-                  className="font-mono text-xs tracking-[0.25em] text-white/20 whitespace-nowrap uppercase"
-                >
-                  {t}
-                </span>
-              )
-            )
+            [
+              "MADEOFIA",
+              "·",
+              "AGENTES DE IA",
+              "·",
+              "NEXT.JS",
+              "·",
+              "REACT",
+              "·",
+              "TYPESCRIPT",
+              "·",
+              "VERCEL",
+              "·",
+              "CLAUDE",
+              "·",
+              "GPT-4",
+              "·",
+            ].map((t, j) => (
+              <span
+                key={`${t}-${i}-${j}`}
+                className="font-mono text-xs tracking-[0.25em] text-white/20 whitespace-nowrap uppercase"
+              >
+                {t}
+              </span>
+            ))
           )}
         </div>
       </div>
 
       {/* ══════════════════════════════════════════════════
-          STATEMENT
+          STATEMENT / ABOUT
       ══════════════════════════════════════════════════ */}
       <section className="py-32 max-w-7xl mx-auto px-6">
-        <p className="text-white/35 text-sm uppercase tracking-widest mb-8">Sobre a MadeofIA</p>
+        <p className="text-white/35 text-sm uppercase tracking-widest mb-8">
+          Sobre a MadeofIA
+        </p>
         <h2
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] max-w-4xl"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] max-w-4xl"
           style={{ letterSpacing: "-0.025em" }}
         >
-          Somos uma boutique
+          <span className="text-white">Somos uma boutique</span>
           <br />
-          de desenvolvimento web{" "}
-          <span className="text-white/40">com IA</span>{" "}
-          🤖
+          <span className="text-white">de desenvolvimento web </span>
+          <span style={gradientStyle}>com IA</span>
+          <span className="text-white"> 🤖</span>
         </h2>
-        <div className="mt-8 max-w-3xl">
+        <div className="mt-10 max-w-3xl">
           <p
             className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1]"
             style={{ letterSpacing: "-0.02em" }}
           >
-            <span className="text-white/40">Transformamos empresas em</span>{" "}
+            <span className="text-white/35">Transformamos empresas em</span>{" "}
             <span className="text-white">líderes digitais</span>{" "}
-            <span className="text-white/40">impulsionados por IA.</span>{" "}
+            <span className="text-white/35">impulsionados por IA.</span>{" "}
             ✨
           </p>
         </div>
@@ -324,26 +335,30 @@ export default function Home() {
       <section id="processo" className="py-32 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Left: label + plan types */}
+            {/* Left */}
             <div className="lg:sticky lg:top-32 self-start">
-              <p className="text-white/35 text-sm uppercase tracking-widest mb-6">Nosso processo</p>
+              <p className="text-white/35 text-sm uppercase tracking-widest mb-6">
+                Nosso processo
+              </p>
               <h2
                 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-8"
                 style={{ letterSpacing: "-0.025em" }}
               >
                 Como
                 <br />
-                funciona.
+                <span style={gradientStyle}>funciona.</span>
               </h2>
-              <div className="space-y-2">
-                {["Por Projeto", "Essencial", "Crescimento", "Produto", "Parceiro"].map((p) => (
-                  <div
-                    key={p}
-                    className="inline-flex items-center gap-2 text-sm text-white/35 border border-white/8 rounded-full px-4 py-1.5 mr-2 mb-2"
-                  >
-                    {p}
-                  </div>
-                ))}
+              <div className="flex flex-wrap gap-2">
+                {["Por Projeto", "Essencial", "Crescimento", "Produto", "Parceiro"].map(
+                  (p) => (
+                    <div
+                      key={p}
+                      className="inline-flex items-center text-xs text-white/35 border border-white/8 rounded-full px-4 py-1.5 hover:border-white/15 hover:text-white/55 transition-colors cursor-default"
+                    >
+                      {p}
+                    </div>
+                  )
+                )}
               </div>
             </div>
 
@@ -352,17 +367,19 @@ export default function Home() {
               {processSteps.map((step, i) => (
                 <div
                   key={step.num}
-                  className={`py-8 border-b border-white/8 ${i === 0 ? "border-t border-white/8" : ""}`}
+                  className={`py-8 border-b border-white/8 ${
+                    i === 0 ? "border-t border-white/8" : ""
+                  }`}
                 >
                   <div className="flex gap-8">
-                    <span className="font-mono text-white/25 text-sm mt-1 shrink-0 w-8">
+                    <span className="font-mono text-white/20 text-sm mt-0.5 shrink-0 w-8">
                       {step.num}.
                     </span>
                     <div>
-                      <h3 className="text-lg font-semibold text-white mb-2">
+                      <h3 className="text-base font-semibold text-white mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-white/45 text-sm leading-relaxed">
+                      <p className="text-white/40 text-sm leading-relaxed">
                         {step.desc}
                       </p>
                     </div>
@@ -379,12 +396,15 @@ export default function Home() {
       ══════════════════════════════════════════════════ */}
       <section id="servicos" className="py-32 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">Serviços</p>
+          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">
+            Serviços
+          </p>
           <h2
-            className="text-4xl md:text-5xl font-bold text-white mb-16"
+            className="text-4xl md:text-5xl font-bold mb-16"
             style={{ letterSpacing: "-0.025em" }}
           >
-            O que entregamos.
+            <span className="text-white">O que </span>
+            <span style={gradientStyle}>entregamos.</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -397,11 +417,24 @@ export default function Home() {
                 <div className="h-44 rounded-xl mb-6 overflow-hidden relative border border-white/8 bg-white/[0.02]">
                   {s.visual === "dev" && (
                     <div className="absolute inset-0 p-4 font-mono text-xs text-green-400/70 leading-relaxed">
-                      <div className="text-white/25 mb-1">// page.tsx</div>
-                      <div><span className="text-blue-400/60">import</span> <span className="text-white/40">Next</span> <span className="text-blue-400/60">from</span> <span className="text-green-400/60">&apos;next&apos;</span></div>
-                      <div className="mt-2"><span className="text-purple-400/60">export default</span> <span className="text-yellow-400/60">function</span> <span className="text-white/40">Page()</span> {"{"}</div>
-                      <div className="pl-4 text-white/30">return {"<"}div{">"}</div>
-                      <div className="pl-8 text-green-400/50">{"<"}h1{">"} MadeofIA {"</"}h1{">"}</div>
+                      <div className="text-white/20 mb-1">// page.tsx</div>
+                      <div>
+                        <span className="text-blue-400/60">import</span>{" "}
+                        <span className="text-white/40">Next</span>{" "}
+                        <span className="text-blue-400/60">from</span>{" "}
+                        <span className="text-green-400/60">&apos;next&apos;</span>
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-purple-400/60">export default</span>{" "}
+                        <span className="text-yellow-400/60">function</span>{" "}
+                        <span className="text-white/40">Page()</span> {"{"}
+                      </div>
+                      <div className="pl-4 text-white/30">
+                        return {"<"}div{">"}
+                      </div>
+                      <div className="pl-8 text-green-400/50">
+                        {"<"}h1{">"} MadeofIA {"</"}h1{">"}
+                      </div>
                       <div className="pl-4 text-white/30">{"</"}div{">"}</div>
                       <div>{"}"}</div>
                     </div>
@@ -422,8 +455,15 @@ export default function Home() {
                   )}
                   {s.visual === "consulting" && (
                     <div className="absolute inset-0 p-4 flex flex-col justify-center items-center">
-                      <span className="text-5xl font-bold text-white/90 font-mono">+30%</span>
-                      <span className="text-white/35 text-xs mt-2 uppercase tracking-widest">eficiência média</span>
+                      <span
+                        className="text-5xl font-bold text-white/90 font-mono"
+                        style={gradientStyle}
+                      >
+                        +30%
+                      </span>
+                      <span className="text-white/30 text-xs mt-2 uppercase tracking-widest">
+                        eficiência média
+                      </span>
                       <div className="mt-4 w-full px-4">
                         <div className="h-1.5 w-full rounded-full bg-white/5">
                           <div className="h-1.5 rounded-full bg-[#4ade80]/60 w-[75%]" />
@@ -433,11 +473,11 @@ export default function Home() {
                   )}
                 </div>
 
-                <span className="text-white/30 text-xs uppercase tracking-widest block mb-2">
+                <span className="text-white/25 text-xs uppercase tracking-widest block mb-2">
                   {s.tag}
                 </span>
                 <h3 className="text-xl font-semibold text-white mb-3">{s.title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-white/40 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -445,63 +485,21 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          WORK / PORTFOLIO
+          WORK / PORTFOLIO  (interactive client component)
       ══════════════════════════════════════════════════ */}
       <section id="trabalhos" className="py-32 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">Trabalhos</p>
+          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">
+            Trabalhos
+          </p>
           <h2
-            className="text-4xl md:text-5xl font-bold text-white mb-16"
+            className="text-4xl md:text-5xl font-bold mb-16"
             style={{ letterSpacing: "-0.025em" }}
           >
-            Nosso trabalho.
+            <span className="text-white">Nosso </span>
+            <span style={gradientStyle}>trabalho.</span>
           </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {caseStudies.map((cs) => (
-              <div
-                key={cs.name}
-                className="group rounded-2xl border border-white/8 overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/15 transition-all duration-300 cursor-pointer"
-              >
-                {/* Project color block */}
-                <div className="h-52 bg-gradient-to-br from-white/5 to-white/[0.02] relative overflow-hidden flex items-center justify-center">
-                  <span
-                    className="text-6xl font-bold text-white/5 font-mono select-none"
-                    style={{ letterSpacing: "-0.05em" }}
-                  >
-                    {cs.name}
-                  </span>
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: "radial-gradient(ellipse at center, rgba(74,222,128,0.08) 0%, transparent 70%)",
-                    }}
-                  />
-                </div>
-
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-white/25 text-xs">{cs.year}</span>
-                    <span className="text-white/25 text-xs">{cs.type}</span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#4ade80] transition-colors duration-200">
-                    {cs.name}
-                  </h3>
-                  <p className="text-white/40 text-sm leading-relaxed mb-4">{cs.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {cs.metrics.map((m) => (
-                      <span
-                        key={m}
-                        className="text-xs text-white/40 border border-white/8 rounded-full px-3 py-1"
-                      >
-                        {m}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <PortfolioSection />
         </div>
       </section>
 
@@ -510,14 +508,15 @@ export default function Home() {
       ══════════════════════════════════════════════════ */}
       <section id="planos" className="py-32 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">Planos</p>
+          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">
+            Planos
+          </p>
           <h2
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-4xl md:text-5xl font-bold mb-4"
             style={{ letterSpacing: "-0.025em" }}
           >
-            Planos para cada
-            <br />
-            necessidade.
+            <span className="text-white">Planos para cada </span>
+            <span style={gradientStyle}>necessidade.</span>
           </h2>
           <p className="text-white/40 text-lg mb-16 max-w-lg">
             Preços fixos, escopo claro, entrega garantida.
@@ -529,22 +528,25 @@ export default function Home() {
                 key={p.name}
                 className={`rounded-2xl border p-6 flex flex-col relative ${
                   p.highlight
-                    ? "border-[#4ade80]/30 bg-[#4ade80]/[0.04]"
+                    ? "border-[#4ade80]/25 bg-[#4ade80]/[0.04]"
                     : "border-white/8 bg-white/[0.02]"
                 }`}
               >
                 {p.highlight && (
-                  <div className="absolute -top-3 left-6">
-                    <span className="text-xs bg-[#4ade80] text-[#080807] font-semibold px-3 py-1 rounded-full">
-                      Mais Popular
-                    </span>
-                  </div>
+                  <span className="absolute -top-px left-6 -translate-y-1/2 text-xs bg-[#4ade80] text-[#080807] font-semibold px-3 py-1 rounded-full leading-none">
+                    Mais Popular
+                  </span>
                 )}
 
                 <div className="mb-6">
-                  <p className="text-white/40 text-xs uppercase tracking-widest mb-3">{p.name}</p>
+                  <p className="text-white/40 text-xs uppercase tracking-widest mb-3">
+                    {p.name}
+                  </p>
                   <div className="flex items-baseline gap-1 mb-1">
-                    <span className="text-3xl font-bold text-white" style={{ letterSpacing: "-0.03em" }}>
+                    <span
+                      className="text-3xl font-bold text-white"
+                      style={{ letterSpacing: "-0.03em" }}
+                    >
                       {p.price}
                     </span>
                     <span className="text-white/35 text-sm">{p.period}</span>
@@ -563,9 +565,9 @@ export default function Home() {
 
                 <a
                   href="#contato"
-                  className={`block text-center text-sm py-2.5 rounded-full border transition-all duration-200 ${
+                  className={`block text-center text-sm py-2.5 rounded-full border font-medium transition-all duration-200 ${
                     p.highlight
-                      ? "border-[#4ade80]/40 bg-[#4ade80]/10 text-[#4ade80] hover:bg-[#4ade80]/20"
+                      ? "border-[#4ade80] bg-[#4ade80] text-[#080807] hover:bg-[#4ade80]/85"
                       : "border-white/10 text-white/60 hover:border-white/25 hover:text-white"
                   }`}
                 >
@@ -578,34 +580,33 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          TESTIMONIALS (scrolling)
+          TESTIMONIALS (scrolling marquee)
       ══════════════════════════════════════════════════ */}
       <section className="py-32 border-t border-white/8 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12">
-          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">Depoimentos</p>
+          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">
+            Depoimentos
+          </p>
           <h2
-            className="text-4xl md:text-5xl font-bold text-white"
+            className="text-4xl md:text-5xl font-bold"
             style={{ letterSpacing: "-0.025em" }}
           >
-            O que dizem.
+            <span className="text-white">O que </span>
+            <span style={gradientStyle}>dizem.</span>
           </h2>
         </div>
 
-        {/* Scrolling track */}
         <div className="relative">
           <div
             className="flex gap-5"
-            style={{
-              width: "max-content",
-              animation: "scroll-left 50s linear infinite",
-            }}
+            style={{ width: "max-content", animation: "scroll-left 50s linear infinite" }}
           >
             {[...testimonials, ...testimonials].map((t, i) => (
               <div
                 key={i}
                 className="w-80 shrink-0 rounded-2xl border border-white/8 bg-white/[0.02] p-6"
               >
-                <p className="text-white/70 text-sm leading-relaxed mb-6 italic">
+                <p className="text-white/65 text-sm leading-relaxed mb-6 italic">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="border-t border-white/8 pt-4">
@@ -627,28 +628,43 @@ export default function Home() {
       ══════════════════════════════════════════════════ */}
       <section id="equipe" className="py-32 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">Equipe</p>
+          <p className="text-white/35 text-sm uppercase tracking-widest mb-4">
+            Equipe
+          </p>
           <h2
-            className="text-4xl md:text-5xl font-bold text-white mb-16"
+            className="text-4xl md:text-5xl font-bold mb-16"
             style={{ letterSpacing: "-0.025em" }}
           >
-            Conheça o time.
+            <span className="text-white">Conheça o </span>
+            <span style={gradientStyle}>time.</span>
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {team.map((m) => (
               <div
                 key={m.name}
-                className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 text-center hover:border-white/15 hover:bg-white/[0.04] transition-all duration-300"
+                className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 text-center hover:border-white/15 hover:bg-white/[0.04] transition-all duration-300 group"
               >
-                {/* Avatar circle */}
-                <div className="w-16 h-16 rounded-full border border-white/10 bg-white/[0.04] flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white/60 font-mono">
+                {/* Gradient avatar */}
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5 relative overflow-hidden"
+                  style={{
+                    background: `radial-gradient(circle at 30% 30%, ${m.color}40 0%, ${m.color}15 60%, transparent 100%)`,
+                    border: `1px solid ${m.color}25`,
+                  }}
+                >
+                  <span
+                    className="text-2xl font-bold font-mono"
+                    style={{ color: m.color, opacity: 0.8 }}
+                  >
                     {m.initials}
                   </span>
                 </div>
                 <h3 className="text-white font-semibold text-sm mb-1">{m.name}</h3>
-                <p className="text-white/35 text-xs">{m.role}</p>
+                <p className="text-white/35 text-xs mb-4">{m.role}</p>
+                <span className="inline-flex items-center gap-1 text-xs text-white/25 border border-white/8 rounded-full px-3 py-1 group-hover:border-white/15 group-hover:text-white/40 transition-colors">
+                  LinkedIn ↗
+                </span>
               </div>
             ))}
           </div>
@@ -661,19 +677,24 @@ export default function Home() {
       <section id="contato" className="py-32 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Left: contact info */}
+            {/* Left: contact info + FAQ */}
             <div>
-              <p className="text-white/35 text-sm uppercase tracking-widest mb-4">Contato</p>
+              <p className="text-white/35 text-sm uppercase tracking-widest mb-4">
+                Contato
+              </p>
               <h2
-                className="text-4xl md:text-5xl font-bold text-white mb-8"
+                className="text-4xl md:text-5xl font-bold mb-8"
                 style={{ letterSpacing: "-0.025em" }}
               >
-                Vamos conversar.
+                <span className="text-white">Vamos </span>
+                <span style={gradientStyle}>conversar.</span>
               </h2>
 
               <div className="space-y-6 text-sm mb-12">
                 <div>
-                  <p className="text-white/25 text-xs uppercase tracking-widest mb-2">Email</p>
+                  <p className="text-white/25 text-xs uppercase tracking-widest mb-2">
+                    Email
+                  </p>
                   <a
                     href="mailto:ola@madeofia.com"
                     className="text-white/60 hover:text-white transition-colors flex items-center gap-2"
@@ -682,7 +703,9 @@ export default function Home() {
                   </a>
                 </div>
                 <div>
-                  <p className="text-white/25 text-xs uppercase tracking-widest mb-2">Empresa</p>
+                  <p className="text-white/25 text-xs uppercase tracking-widest mb-2">
+                    Empresa
+                  </p>
                   <p className="text-white/60">
                     MadeofIA Boutique
                     <br />
@@ -693,20 +716,12 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* FAQ */}
+              {/* FAQ — accordion */}
               <div>
-                <p className="text-white/35 text-sm uppercase tracking-widest mb-6">FAQ</p>
-                <div className="space-y-0">
-                  {faqs.map((f, i) => (
-                    <div
-                      key={i}
-                      className={`py-5 border-b border-white/8 ${i === 0 ? "border-t border-white/8" : ""}`}
-                    >
-                      <p className="text-white/80 text-sm font-medium mb-2">{f.q}</p>
-                      <p className="text-white/40 text-sm leading-relaxed">{f.a}</p>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-white/35 text-sm uppercase tracking-widest mb-6">
+                  FAQ
+                </p>
+                <FAQAccordion />
               </div>
             </div>
 
@@ -761,7 +776,7 @@ export default function Home() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-full bg-white text-[#080807] text-sm font-semibold hover:bg-white/90 transition-colors duration-200"
+                    className="w-full py-3 rounded-full bg-[#4ade80] text-[#080807] text-sm font-semibold hover:bg-[#4ade80]/85 transition-colors duration-200"
                   >
                     Enviar mensagem
                   </button>
@@ -775,33 +790,33 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════
           CLOSING CTA
       ══════════════════════════════════════════════════ */}
-      <section className="py-32 border-t border-white/8 relative overflow-hidden">
+      <section className="py-40 border-t border-white/8 relative overflow-hidden">
         {/* Glow */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(74,222,128,0.12) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(74,222,128,0.10) 0%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
 
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <p className="text-white/35 text-sm uppercase tracking-widest mb-8">Próximo passo</p>
+        <div className="relative max-w-5xl mx-auto px-6 text-center">
+          <p className="text-white/35 text-sm uppercase tracking-widest mb-8">
+            Próximo passo
+          </p>
           <h2
-            className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight"
-            style={{ letterSpacing: "-0.035em" }}
+            className="font-bold text-white mb-6 leading-tight"
+            style={{ letterSpacing: "-0.04em", fontSize: "clamp(3rem, 10vw, 7rem)" }}
           >
-            Pronto para ter seu
-            <br />
-            time de IA?
+            Vamos conversar.
           </h2>
-          <p className="text-white/45 text-lg mb-10 max-w-md mx-auto">
+          <p className="text-white/40 text-lg mb-10 max-w-md mx-auto">
             Agende uma conversa de 30 min. Sem compromisso, sem pitch. Só clareza.
           </p>
           <a
             href="mailto:ola@madeofia.com"
-            className="inline-flex items-center justify-center text-sm px-8 py-4 rounded-full bg-white text-[#080807] font-semibold hover:bg-white/90 transition-colors duration-200"
+            className="inline-flex items-center justify-center text-base px-10 py-4 rounded-full bg-[#4ade80] text-[#080807] font-semibold hover:bg-[#4ade80]/85 transition-colors duration-200"
           >
             ola@madeofia.com →
           </a>
