@@ -2,7 +2,7 @@
 
 import {
   motion,
-  useMotionValue,
+  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -10,7 +10,7 @@ import {
   type MotionValue,
   type Variants,
 } from "framer-motion";
-import { type PointerEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./page.module.css";
 
 const ARROW_ICON = "https://framerusercontent.com/images/80ciNZpezWIjtjuOmGuff6aTdc.png";
@@ -315,11 +315,9 @@ function ArrowIcon({
 function CTAInner({
   label,
   showArrow = false,
-  reducedMotion,
 }: {
   label: string;
   showArrow?: boolean;
-  reducedMotion: boolean;
 }) {
   return (
     <>
@@ -327,16 +325,9 @@ function CTAInner({
       <span className={styles.ctaBorder} aria-hidden="true" />
       <span className={styles.ctaFill} aria-hidden="true" />
       <span className={styles.ctaContent}>
-        <span className={styles.ctaLabelMask}>
-          <span className={styles.ctaLabelTrack}>
-            <span className={styles.ctaLabelPrimary}>{label}</span>
-            <span className={styles.ctaLabelSecondary} aria-hidden="true">
-              {label}
-            </span>
-          </span>
-        </span>
+        <span className={styles.ctaLabelText}>{label}</span>
         {showArrow ? (
-          <motion.span className={styles.ctaIcon} variants={reducedMotion ? undefined : arrowHoverVariants}>
+          <motion.span className={styles.ctaIcon} variants={arrowHoverVariants}>
             <ArrowIcon className={styles.buttonArrow} />
           </motion.span>
         ) : null}
@@ -367,7 +358,7 @@ function CTAAnchor({
       whileHover={reducedMotion ? undefined : "hover"}
       variants={reducedMotion ? undefined : ctaVariants}
     >
-      <CTAInner label={label} showArrow={showArrow} reducedMotion={reducedMotion} />
+      <CTAInner label={label} showArrow={showArrow} />
     </motion.a>
   );
 }
@@ -394,7 +385,7 @@ function CTAButtonElement({
       whileHover={reducedMotion ? undefined : "hover"}
       variants={reducedMotion ? undefined : ctaVariants}
     >
-      <CTAInner label={label} showArrow={showArrow} reducedMotion={reducedMotion} />
+      <CTAInner label={label} showArrow={showArrow} />
     </motion.button>
   );
 }
@@ -498,17 +489,22 @@ function AboutRevealLine({
   segments,
   progress,
   reducedMotion,
+  revealed,
 }: {
   segments: (typeof aboutLines)[number];
   progress: MotionValue<number>;
   reducedMotion: boolean;
+  revealed: boolean;
 }) {
   const clipPath = useTransform(progress, (value) => `inset(0 ${Math.max(0, 100 - value)}% 0 0)`);
 
   return (
     <div className={styles.aboutLine}>
       <div className={styles.aboutLineBase}>{renderAboutSegments(segments, false, reducedMotion)}</div>
-      <motion.div className={styles.aboutLineReveal} style={reducedMotion ? undefined : { clipPath }}>
+      <motion.div
+        className={styles.aboutLineReveal}
+        style={reducedMotion || revealed ? { clipPath: "inset(0 0% 0 0)" } : { clipPath }}
+      >
         {renderAboutSegments(segments, true, reducedMotion)}
       </motion.div>
     </div>
@@ -783,15 +779,8 @@ function ServiceVisual({ type, reducedMotion }: { type: string; reducedMotion: b
 export default function Home() {
   const prefersReducedMotion = useReducedMotion();
   const [activeWork, setActiveWork] = useState(0);
+  const [aboutRevealed, setAboutRevealed] = useState(Boolean(prefersReducedMotion));
   const aboutRef = useRef<HTMLElement | null>(null);
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const heroGlowX = useSpring(pointerX, { damping: 40, stiffness: 160, mass: 0.6 });
-  const heroGlowY = useSpring(pointerY, { damping: 40, stiffness: 160, mass: 0.6 });
-  const heroGlowRedX = useTransform(heroGlowX, (value) => value * 0.35);
-  const heroGlowRedY = useTransform(heroGlowY, (value) => value * 0.35);
-  const heroGlowGreenX = useTransform(heroGlowX, (value) => value * 0.58);
-  const heroGlowGreenY = useTransform(heroGlowY, (value) => value * 0.58);
   const { scrollYProgress: aboutScrollProgress } = useScroll({
     target: aboutRef,
     offset: ["start 80%", "end 38%"],
@@ -812,6 +801,12 @@ export default function Home() {
     mass: 0.5,
   });
 
+  useMotionValueEvent(aboutScrollProgress, "change", (latest) => {
+    if (!aboutRevealed && latest >= 0.72) {
+      setAboutRevealed(true);
+    }
+  });
+
   const interactiveCardHover = prefersReducedMotion
     ? undefined
     : {
@@ -820,22 +815,6 @@ export default function Home() {
         boxShadow: "0 0 0 1px rgba(211,255,202,0.06), 0 20px 40px rgba(0,0,0,0.22)",
         transition: snappierTransition,
       };
-
-  const handleHeroPointerMove = (event: PointerEvent<HTMLElement>) => {
-    if (prefersReducedMotion) return;
-
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = event.clientX - bounds.left - bounds.width / 2;
-    const y = event.clientY - bounds.top - bounds.height / 2;
-
-    pointerX.set(x);
-    pointerY.set(y);
-  };
-
-  const resetHeroPointer = () => {
-    pointerX.set(0);
-    pointerY.set(0);
-  };
 
   return (
     <main className={styles.page}>
@@ -850,7 +829,7 @@ export default function Home() {
       >
         <a className={styles.logo} href="/">
           <span className={styles.logoDot} />
-          <span>NEBULA</span>
+          <span>madeofIA</span>
         </a>
 
         <div className={styles.navPill}>
@@ -877,7 +856,7 @@ export default function Home() {
         <summary className={styles.mobileSummary}>
           <span className={styles.logo}>
             <span className={styles.logoDot} />
-            <span>NEBULA</span>
+            <span>madeofIA</span>
           </span>
           <span className={styles.burger}>
             <span />
@@ -894,7 +873,7 @@ export default function Home() {
         </div>
       </details>
 
-      <section className={styles.hero} onPointerMove={handleHeroPointerMove} onPointerLeave={resetHeroPointer}>
+      <section className={styles.hero}>
         <div className={styles.starField} aria-hidden="true">
           {stars.map((star, index) => (
             <motion.span
@@ -928,18 +907,48 @@ export default function Home() {
 
         <div className={styles.heroInner}>
           <motion.div
-            className={styles.heroGlowRed}
-            style={prefersReducedMotion ? undefined : { x: heroGlowRedX, y: heroGlowRedY }}
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.7 }}
-            animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
-            transition={prefersReducedMotion ? undefined : { delay: 0.2, duration: 0.4 }}
+            className={styles.heroGlowWheel}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.88 }}
+            animate={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    opacity: 1,
+                    scale: 1,
+                    rotate: 360,
+                  }
+            }
+            transition={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    opacity: { delay: 0.2, duration: 0.5 },
+                    scale: { delay: 0.2, duration: 0.5 },
+                    rotate: { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                  }
+            }
           />
           <motion.div
-            className={styles.heroGlowGreen}
-            style={prefersReducedMotion ? undefined : { x: heroGlowGreenX, y: heroGlowGreenY }}
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.7 }}
-            animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
-            transition={prefersReducedMotion ? undefined : { delay: 0.28, duration: 0.5 }}
+            className={styles.heroGlowAura}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.92 }}
+            animate={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    opacity: [0.66, 0.92, 0.66],
+                    scale: [0.96, 1.04, 0.96],
+                    rotate: 360,
+                  }
+            }
+            transition={
+              prefersReducedMotion
+                ? undefined
+                : {
+                    opacity: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+                    scale: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+                    rotate: { duration: 24, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                  }
+            }
           />
           <motion.div
             className={styles.heroCopy}
@@ -985,16 +994,19 @@ export default function Home() {
               segments={aboutLines[0]}
               progress={aboutLineOneProgress}
               reducedMotion={Boolean(prefersReducedMotion)}
+              revealed={aboutRevealed}
             />
             <AboutRevealLine
               segments={aboutLines[1]}
               progress={aboutLineTwoProgress}
               reducedMotion={Boolean(prefersReducedMotion)}
+              revealed={aboutRevealed}
             />
             <AboutRevealLine
               segments={aboutLines[2]}
               progress={aboutLineThreeProgress}
               reducedMotion={Boolean(prefersReducedMotion)}
+              revealed={aboutRevealed}
             />
           </div>
         </div>
@@ -1329,7 +1341,7 @@ export default function Home() {
           <div className={styles.footerBrand}>
             <a className={styles.logo} href="/">
               <span className={styles.logoDot} />
-              <span>NEBULA</span>
+              <span>madeofIA</span>
             </a>
             <div className={styles.footerMeta}>
               <p>Office</p>

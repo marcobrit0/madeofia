@@ -147,7 +147,7 @@
 
 .hero {
   min-height: 980px;
-  padding: 0 0 58px;
+  padding: 0 0 26px;
 }
 
 .heroInner {
@@ -157,7 +157,7 @@
   margin: 0 auto;
   max-width: 1440px;
   min-height: 980px;
-  padding: 142px 40px 78px;
+  padding: 136px 40px 26px;
   position: relative;
 }
 
@@ -169,7 +169,7 @@
   max-width: 1180px;
   position: relative;
   text-align: center;
-  transform: translateY(-8px);
+  transform: translateY(-10px);
   width: 100%;
   z-index: 2;
 }
@@ -355,50 +355,9 @@
   z-index: 2;
 }
 
-.ctaLabelMask {
-  display: inline-flex;
-  height: 1.2em;
-  overflow: hidden;
-  perspective: 500px;
-  position: relative;
-}
-
-.ctaLabelTrack {
-  display: block;
-  position: relative;
-}
-
-.ctaLabelPrimary,
-.ctaLabelSecondary {
-  display: block;
-  transform-origin: center center;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.35s ease;
+.ctaLabelText {
+  display: inline-block;
   white-space: nowrap;
-  will-change: transform;
-}
-
-.ctaLabelPrimary {
-  position: relative;
-}
-
-.ctaLabelSecondary {
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  top: 100%;
-  transform: translateY(12%) rotateX(-92deg);
-}
-
-.ctaButton:hover .ctaLabelPrimary {
-  opacity: 0;
-  transform: translateY(-112%) rotateX(92deg);
-}
-
-.ctaButton:hover .ctaLabelSecondary {
-  opacity: 1;
-  transform: translateY(-100%) rotateX(0deg);
 }
 
 .ctaIcon {
@@ -422,29 +381,40 @@
   z-index: 2;
 }
 
-.heroGlowRed,
-.heroGlowGreen {
+.heroGlowWheel,
+.heroGlowAura {
   border-radius: 999px;
   filter: blur(72px);
   pointer-events: none;
   position: absolute;
 }
 
-.heroGlowRed {
-  background: rgba(255, 114, 92, 0.44);
-  bottom: 252px;
-  height: 260px;
-  left: calc(50% - 120px);
-  width: 260px;
+.heroGlowWheel {
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255, 139, 107, 0.88) 0deg,
+      rgba(255, 208, 149, 0.82) 82deg,
+      rgba(54, 255, 194, 0.9) 196deg,
+      rgba(30, 171, 131, 0.76) 268deg,
+      rgba(255, 139, 107, 0.88) 360deg
+    );
+  bottom: 206px;
+  height: 460px;
+  left: calc(50% - 168px);
+  width: 460px;
   z-index: 0;
 }
 
-.heroGlowGreen {
-  background: rgba(0, 255, 184, 0.5);
-  bottom: 170px;
-  height: 380px;
-  left: calc(50% - 28px);
-  width: 380px;
+.heroGlowAura {
+  background:
+    radial-gradient(circle at 35% 44%, rgba(255, 175, 126, 0.46) 0%, rgba(255, 175, 126, 0) 42%),
+    radial-gradient(circle at 62% 64%, rgba(0, 255, 184, 0.46) 0%, rgba(0, 255, 184, 0) 48%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 68%);
+  bottom: 172px;
+  height: 520px;
+  left: calc(50% - 196px);
+  width: 520px;
   z-index: 0;
 }
 
@@ -496,7 +466,7 @@
 }
 
 .about {
-  padding: 560px 0 240px;
+  padding: 220px 0 180px;
 }
 
 .about .sectionShell {
@@ -1671,11 +1641,11 @@
 
   .heroInner {
     min-height: 720px;
-    padding: 138px 15px 72px;
+    padding: 132px 15px 24px;
   }
 
   .heroCopy {
-    transform: translateY(12px);
+    transform: translateY(-4px);
   }
 
   .heroDescription {
@@ -1686,18 +1656,18 @@
     flex-wrap: wrap;
   }
 
-  .heroGlowRed {
-    bottom: 150px;
-    height: 86px;
-    left: calc(50% - 82px);
-    width: 86px;
+  .heroGlowWheel {
+    bottom: 112px;
+    height: 280px;
+    left: calc(50% - 118px);
+    width: 280px;
   }
 
-  .heroGlowGreen {
-    bottom: 130px;
-    height: 108px;
-    left: calc(50% - 22px);
-    width: 108px;
+  .heroGlowAura {
+    bottom: 84px;
+    height: 320px;
+    left: calc(50% - 136px);
+    width: 320px;
   }
 
   .sectionShell,
@@ -1707,7 +1677,7 @@
   }
 
   .about {
-    padding: 320px 0 130px;
+    padding: 120px 0 110px;
   }
 
   .about .sectionShell {
