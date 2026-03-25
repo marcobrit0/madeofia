@@ -1,7 +1,16 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type Variants } from "framer-motion";
-import { type PointerEvent, useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
+  type Variants,
+} from "framer-motion";
+import { type PointerEvent, useRef, useState } from "react";
 import styles from "./page.module.css";
 
 const ARROW_ICON = "https://framerusercontent.com/images/80ciNZpezWIjtjuOmGuff6aTdc.png";
@@ -198,16 +207,36 @@ const faqItems = [
 ];
 
 const stars = [
-  { top: "13%", left: "18%" },
-  { top: "17%", left: "62%" },
-  { top: "24%", left: "84%" },
-  { top: "38%", left: "28%" },
-  { top: "45%", left: "71%" },
-  { top: "54%", left: "89%" },
-  { top: "68%", left: "14%" },
-  { top: "74%", left: "46%" },
-  { top: "81%", left: "77%" },
+  { top: "13%", left: "18%", size: 2, driftX: 10, driftY: -14, duration: 16, delay: 0.2 },
+  { top: "17%", left: "62%", size: 3, driftX: -12, driftY: 12, duration: 18, delay: 0.8 },
+  { top: "24%", left: "84%", size: 2, driftX: 8, driftY: -10, duration: 15, delay: 1.1 },
+  { top: "38%", left: "28%", size: 2, driftX: -9, driftY: 8, duration: 14, delay: 0.4 },
+  { top: "45%", left: "71%", size: 3, driftX: 14, driftY: -12, duration: 19, delay: 1.6 },
+  { top: "54%", left: "89%", size: 2, driftX: -8, driftY: 14, duration: 17, delay: 0.9 },
+  { top: "68%", left: "14%", size: 3, driftX: 12, driftY: -9, duration: 18, delay: 1.3 },
+  { top: "74%", left: "46%", size: 2, driftX: -10, driftY: 10, duration: 16, delay: 0.6 },
+  { top: "81%", left: "77%", size: 2, driftX: 9, driftY: -8, duration: 15, delay: 1.8 },
 ];
+
+const aboutLines = [
+  [
+    { text: "We're a " },
+    { text: "full-service", accent: true },
+    { text: " AI Automation" },
+  ],
+  [
+    { text: "Agency " },
+    { pill: "👋", label: "Wave" },
+    { text: " We turn businesses" },
+  ],
+  [
+    { text: "Into " },
+    { text: "AI-driven", accent: true },
+    { text: " " },
+    { pill: "✨", label: "Sparkle" },
+    { text: " industry leaders." },
+  ],
+] as const;
 
 const revealTransition = {
   type: "spring",
@@ -242,6 +271,34 @@ const staggerChildren = {
   },
 };
 
+const ctaVariants = {
+  rest: {
+    scale: 1,
+    y: 0,
+  },
+  hover: {
+    scale: 1.02,
+    y: -1,
+    transition: snappierTransition,
+  },
+};
+
+const ctaTextVariants = {
+  rest: {
+    y: 0,
+    rotateX: 0,
+  },
+  hover: {
+    y: [0, -12, 0],
+    rotateX: [0, -70, 0],
+    transition: {
+      duration: 0.52,
+      ease: "easeInOut" as const,
+      times: [0, 0.42, 1],
+    },
+  },
+};
+
 function ArrowIcon({
   className,
   variants,
@@ -257,6 +314,206 @@ function ArrowIcon({
       aria-hidden="true"
       variants={variants}
     />
+  );
+}
+
+function CTAInner({
+  label,
+  showArrow = false,
+  reducedMotion,
+}: {
+  label: string;
+  showArrow?: boolean;
+  reducedMotion: boolean;
+}) {
+  return (
+    <>
+      <span className={styles.ctaGlow} aria-hidden="true" />
+      <span className={styles.ctaBorder} aria-hidden="true" />
+      <span className={styles.ctaFill} aria-hidden="true" />
+      <span className={styles.ctaContent}>
+        <span className={styles.ctaLabelMask}>
+          <motion.span className={styles.ctaLabel} variants={reducedMotion ? undefined : ctaTextVariants}>
+            {label}
+          </motion.span>
+        </span>
+        {showArrow ? (
+          <motion.span className={styles.ctaIcon} variants={reducedMotion ? undefined : arrowHoverVariants}>
+            <ArrowIcon className={styles.buttonArrow} />
+          </motion.span>
+        ) : null}
+      </span>
+    </>
+  );
+}
+
+function CTAAnchor({
+  className,
+  href,
+  label,
+  reducedMotion,
+  showArrow = false,
+}: {
+  className: string;
+  href: string;
+  label: string;
+  reducedMotion: boolean;
+  showArrow?: boolean;
+}) {
+  return (
+    <motion.a
+      className={`${className} ${styles.ctaButton}`}
+      href={href}
+      initial={reducedMotion ? false : "rest"}
+      animate={reducedMotion ? undefined : "rest"}
+      whileHover={reducedMotion ? undefined : "hover"}
+      variants={reducedMotion ? undefined : ctaVariants}
+    >
+      <CTAInner label={label} showArrow={showArrow} reducedMotion={reducedMotion} />
+    </motion.a>
+  );
+}
+
+function CTAButtonElement({
+  className,
+  type,
+  label,
+  reducedMotion,
+  showArrow = false,
+}: {
+  className: string;
+  type: "button" | "submit";
+  label: string;
+  reducedMotion: boolean;
+  showArrow?: boolean;
+}) {
+  return (
+    <motion.button
+      className={`${className} ${styles.ctaButton}`}
+      type={type}
+      initial={reducedMotion ? false : "rest"}
+      animate={reducedMotion ? undefined : "rest"}
+      whileHover={reducedMotion ? undefined : "hover"}
+      variants={reducedMotion ? undefined : ctaVariants}
+    >
+      <CTAInner label={label} showArrow={showArrow} reducedMotion={reducedMotion} />
+    </motion.button>
+  );
+}
+
+const arrowHoverVariants = {
+  rest: {
+    rotate: 0,
+    x: 0,
+    y: 0,
+  },
+  hover: {
+    rotate: 45,
+    x: 2,
+    y: -2,
+    transition: snappierTransition,
+  },
+};
+
+function AboutPill({
+  emoji,
+  label,
+  muted,
+  reducedMotion,
+}: {
+  emoji: string;
+  label: string;
+  muted: boolean;
+  reducedMotion: boolean;
+}) {
+  return (
+    <motion.span
+      className={`${styles.aboutPill} ${muted ? styles.aboutPillMuted : styles.aboutPillBright}`}
+      aria-label={label}
+      animate={
+        reducedMotion
+          ? undefined
+          : {
+              y: [0, -4, 0],
+              scale: [1, 1.015, 1],
+            }
+      }
+      transition={
+        reducedMotion
+          ? undefined
+          : {
+              duration: 4.2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }
+      }
+    >
+      <motion.span
+        className={styles.aboutPillEmoji}
+        animate={reducedMotion ? undefined : { rotate: [0, 8, -6, 0], scale: [1, 1.06, 1] }}
+        transition={
+          reducedMotion
+            ? undefined
+            : {
+                duration: 3.8,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }
+        }
+      >
+        {emoji}
+      </motion.span>
+    </motion.span>
+  );
+}
+
+function renderAboutSegments(
+  segments: (typeof aboutLines)[number],
+  reveal: boolean,
+  reducedMotion: boolean,
+) {
+  return segments.map((segment, index) => {
+    if ("pill" in segment) {
+      return (
+        <AboutPill
+          key={`${segment.label}-${index}-${reveal ? "reveal" : "base"}`}
+          emoji={segment.pill}
+          label={segment.label}
+          muted={!reveal}
+          reducedMotion={reducedMotion}
+        />
+      );
+    }
+
+    return (
+      <span
+        key={`${segment.text}-${index}-${reveal ? "reveal" : "base"}`}
+        className={"accent" in segment && segment.accent ? (reveal ? styles.aboutAccentReveal : styles.aboutAccentBase) : undefined}
+      >
+        {segment.text}
+      </span>
+    );
+  });
+}
+
+function AboutRevealLine({
+  segments,
+  progress,
+  reducedMotion,
+}: {
+  segments: (typeof aboutLines)[number];
+  progress: MotionValue<number>;
+  reducedMotion: boolean;
+}) {
+  const clipPath = useTransform(progress, (value) => `inset(0 ${Math.max(0, 100 - value)}% 0 0)`);
+
+  return (
+    <div className={styles.aboutLine}>
+      <div className={styles.aboutLineBase}>{renderAboutSegments(segments, false, reducedMotion)}</div>
+      <motion.div className={styles.aboutLineReveal} style={reducedMotion ? undefined : { clipPath }}>
+        {renderAboutSegments(segments, true, reducedMotion)}
+      </motion.div>
+    </div>
   );
 }
 
@@ -279,22 +536,52 @@ function ProcessVisual({ type, reducedMotion }: { type: string; reducedMotion: b
   }
 
   if (type === "request") {
+    const requestCards = [
+      "Lead capture automation",
+      "Sales follow-up bot",
+      "Internal ops workflow",
+    ];
+
     return (
       <div className={`${styles.processVisual} ${styles.processRequest}`}>
+        <div className={styles.requestFrame}>
+          {requestCards.map((card, index) => (
+            <motion.div
+              key={card}
+              className={`${styles.requestCardAnimated} ${
+                index === 1 ? styles.requestCardAnimatedStrong : styles.requestCardAnimatedMuted
+              }`}
+              animate={
+                reducedMotion
+                  ? undefined
+                  : {
+                      y: [56, 12, -32],
+                      opacity: [0, 1, 0],
+                      scale: [0.94, 1, 0.96],
+                    }
+              }
+              transition={
+                reducedMotion
+                  ? undefined
+                  : {
+                      duration: 5.8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                      delay: index * 0.95,
+                    }
+              }
+            >
+              <span className={styles.requestCardDot} />
+              <span>{card}</span>
+            </motion.div>
+          ))}
+        </div>
         <motion.div
           className={styles.requestBubble}
-          animate={reducedMotion ? undefined : { y: [0, -6, 0] }}
-          transition={reducedMotion ? undefined : { duration: 4.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          animate={reducedMotion ? undefined : { opacity: [0.4, 1, 0.4] }}
+          transition={reducedMotion ? undefined : { duration: 2.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         >
           New contact form entry
-        </motion.div>
-        <div className={styles.requestArrow} />
-        <motion.div
-          className={styles.requestBubbleStrong}
-          animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
-          transition={reducedMotion ? undefined : { duration: 4.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.35 }}
-        >
-          Write welcome message
         </motion.div>
       </div>
     );
@@ -355,6 +642,25 @@ function ProcessVisual({ type, reducedMotion }: { type: string; reducedMotion: b
         animate={reducedMotion ? undefined : { rotate: 360 }}
         transition={reducedMotion ? undefined : { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
       />
+      {[0, 1, 2].map((index) => (
+        <motion.div
+          key={index}
+          className={styles.globeOrbit}
+          style={{ rotate: index * 120 }}
+          animate={reducedMotion ? undefined : { rotate: index * 120 + (index % 2 === 0 ? 360 : -360) }}
+          transition={
+            reducedMotion
+              ? undefined
+              : {
+                  duration: 10 + index * 2.5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }
+          }
+        >
+          <span className={styles.globeNode} />
+        </motion.div>
+      ))}
     </div>
   );
 }
@@ -479,6 +785,7 @@ function ServiceVisual({ type, reducedMotion }: { type: string; reducedMotion: b
 export default function Home() {
   const prefersReducedMotion = useReducedMotion();
   const [activeWork, setActiveWork] = useState(0);
+  const aboutRef = useRef<HTMLElement | null>(null);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const heroGlowX = useSpring(pointerX, { damping: 40, stiffness: 160, mass: 0.6 });
@@ -487,6 +794,25 @@ export default function Home() {
   const heroGlowRedY = useTransform(heroGlowY, (value) => value * 0.35);
   const heroGlowGreenX = useTransform(heroGlowX, (value) => value * 0.58);
   const heroGlowGreenY = useTransform(heroGlowY, (value) => value * 0.58);
+  const { scrollYProgress: aboutScrollProgress } = useScroll({
+    target: aboutRef,
+    offset: ["start 80%", "end 38%"],
+  });
+  const aboutLineOneProgress = useSpring(useTransform(aboutScrollProgress, [0, 0.4], [0, 100]), {
+    damping: 26,
+    stiffness: 120,
+    mass: 0.5,
+  });
+  const aboutLineTwoProgress = useSpring(useTransform(aboutScrollProgress, [0.14, 0.58], [0, 100]), {
+    damping: 26,
+    stiffness: 120,
+    mass: 0.5,
+  });
+  const aboutLineThreeProgress = useSpring(useTransform(aboutScrollProgress, [0.28, 0.76], [0, 100]), {
+    damping: 26,
+    stiffness: 120,
+    mass: 0.5,
+  });
 
   const interactiveCardHover = prefersReducedMotion
     ? undefined
@@ -495,17 +821,6 @@ export default function Home() {
         borderColor: "rgba(211, 255, 202, 0.2)",
         boxShadow: "0 0 0 1px rgba(211,255,202,0.06), 0 20px 40px rgba(0,0,0,0.22)",
         transition: snappierTransition,
-      };
-
-  const arrowHover = prefersReducedMotion
-    ? undefined
-    : {
-        hover: {
-          rotate: 45,
-          x: 2,
-          y: -2,
-          transition: snappierTransition,
-        },
       };
 
   const handleHeroPointerMove = (event: PointerEvent<HTMLElement>) => {
@@ -548,22 +863,16 @@ export default function Home() {
           <a href="#team">Team</a>
           <motion.a className={styles.contactLink} href="#contact" whileHover="hover">
             <span>Contact</span>
-            <ArrowIcon className={styles.navArrow} variants={arrowHover} />
+            <ArrowIcon className={styles.navArrow} variants={arrowHoverVariants} />
           </motion.a>
         </div>
 
-        <motion.a
+        <CTAAnchor
           className={styles.buyButton}
           href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6"
-          whileHover={
-            prefersReducedMotion
-              ? undefined
-              : { scale: 1.02, boxShadow: "0 0 28px rgba(211,255,202,0.28)" }
-          }
-          transition={snappierTransition}
-        >
-          Buy this template
-        </motion.a>
+          label="Buy this template"
+          reducedMotion={Boolean(prefersReducedMotion)}
+        />
       </motion.nav>
 
       <details className={styles.mobileNav}>
@@ -593,23 +902,25 @@ export default function Home() {
             <motion.span
               key={`${star.top}-${star.left}-${index}`}
               className={styles.star}
-              style={{ top: star.top, left: star.left }}
+              style={{ top: star.top, left: star.left, width: star.size, height: star.size }}
               initial={prefersReducedMotion ? false : { opacity: 0 }}
               animate={
                 prefersReducedMotion
                   ? undefined
                   : {
-                      opacity: [0.25, 0.85, 0.25],
-                      scale: [1, 1.35, 1],
+                      x: [0, star.driftX, star.driftX * -0.45, 0],
+                      y: [0, star.driftY, star.driftY * -0.35, 0],
+                      opacity: [0.2, 0.82, 0.48, 0.2],
+                      scale: [1, 1.25, 0.92, 1],
                     }
               }
               transition={
                 prefersReducedMotion
                   ? undefined
                   : {
-                      duration: 3.6,
+                      duration: star.duration,
                       repeat: Number.POSITIVE_INFINITY,
-                      delay: index * 0.16,
+                      delay: star.delay + index * 0.05,
                       ease: "easeInOut",
                     }
               }
@@ -647,49 +958,49 @@ export default function Home() {
               companies.
             </motion.p>
             <motion.div className={styles.heroActions} variants={revealUp}>
-              <motion.a
+              <CTAAnchor
                 className={styles.primaryButton}
                 href="#services"
-                whileHover={
-                  prefersReducedMotion ? undefined : { scale: 1.03, boxShadow: "0 0 34px rgba(23,196,121,0.44)" }
-                }
-                transition={snappierTransition}
-              >
-                Our services
-              </motion.a>
-              <motion.a
+                label="Our services"
+                reducedMotion={Boolean(prefersReducedMotion)}
+              />
+              <CTAAnchor
                 className={styles.secondaryButton}
                 href="#contact"
-                whileHover="hover"
-                transition={snappierTransition}
-              >
-                <span>Get in touch</span>
-                <ArrowIcon className={styles.buttonArrow} variants={arrowHover} />
-              </motion.a>
+                label="Get in touch"
+                reducedMotion={Boolean(prefersReducedMotion)}
+                showArrow
+              />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      <motion.section
+      <section
+        ref={aboutRef}
         className={styles.about}
         id="about-us"
-        variants={staggerChildren}
-        initial={prefersReducedMotion ? false : "hidden"}
-        whileInView={prefersReducedMotion ? undefined : "show"}
-        viewport={{ once: true, amount: 0.3 }}
       >
         <div className={styles.sectionShell}>
-          <motion.div className={styles.aboutText} variants={revealUp}>
-            <p>We&apos;re a full-service AI Automation Agency</p>
-            <p>Into AI-driven</p>
-          </motion.div>
-          <motion.div className={styles.aboutText} variants={revealUp}>
-            <p>We turn businesses</p>
-            <p>industry leaders.</p>
-          </motion.div>
+          <div className={styles.aboutBlock}>
+            <AboutRevealLine
+              segments={aboutLines[0]}
+              progress={aboutLineOneProgress}
+              reducedMotion={Boolean(prefersReducedMotion)}
+            />
+            <AboutRevealLine
+              segments={aboutLines[1]}
+              progress={aboutLineTwoProgress}
+              reducedMotion={Boolean(prefersReducedMotion)}
+            />
+            <AboutRevealLine
+              segments={aboutLines[2]}
+              progress={aboutLineThreeProgress}
+              reducedMotion={Boolean(prefersReducedMotion)}
+            />
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       <motion.section
         className={styles.section}
@@ -785,7 +1096,7 @@ export default function Home() {
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
                     </div>
-                    <ArrowIcon className={styles.workArrow} variants={arrowHover} />
+                    <ArrowIcon className={styles.workArrow} variants={arrowHoverVariants} />
                   </motion.div>
                 </motion.article>
               ))}
@@ -841,10 +1152,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <motion.a className={styles.planButton} href="#contact" whileHover="hover">
-                  <span>{plan.cta}</span>
-                  <ArrowIcon className={styles.buttonArrow} variants={arrowHover} />
-                </motion.a>
+                <CTAAnchor
+                  className={styles.planButton}
+                  href="#contact"
+                  label={plan.cta}
+                  reducedMotion={Boolean(prefersReducedMotion)}
+                  showArrow
+                />
               </motion.article>
             ))}
           </motion.div>
@@ -942,7 +1256,7 @@ export default function Home() {
                 <h3>Email</h3>
                 <motion.a href="mailto:mail@nebula.com" whileHover="hover">
                   <span>mail@nebula.com</span>
-                  <ArrowIcon className={styles.inlineArrow} variants={arrowHover} />
+                  <ArrowIcon className={styles.inlineArrow} variants={arrowHoverVariants} />
                 </motion.a>
               </div>
               <div className={styles.contactLine} />
@@ -950,7 +1264,7 @@ export default function Home() {
                 <h3>Phone</h3>
                 <motion.a href="tel:+310203439223" whileHover="hover">
                   <span>+31 (0) 20 343 9223</span>
-                  <ArrowIcon className={styles.inlineArrow} variants={arrowHover} />
+                  <ArrowIcon className={styles.inlineArrow} variants={arrowHoverVariants} />
                 </motion.a>
               </div>
             </motion.div>
@@ -980,14 +1294,12 @@ export default function Home() {
                 <span>Message</span>
                 <textarea />
               </label>
-              <motion.button
+              <CTAButtonElement
                 className={styles.submitButton}
                 type="submit"
-                whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
-                transition={snappierTransition}
-              >
-                Submit
-              </motion.button>
+                label="Submit"
+                reducedMotion={Boolean(prefersReducedMotion)}
+              />
             </motion.form>
           </div>
         </div>
@@ -1053,17 +1365,13 @@ export default function Home() {
         </div>
       </footer>
 
-      <motion.a
+      <CTAAnchor
         className={styles.floatingBuy}
         href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6"
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-        animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-        transition={prefersReducedMotion ? undefined : { delay: 0.5, duration: 0.4 }}
-        whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
-      >
-        <span>Buy template</span>
-        <ArrowIcon className={styles.floatingArrow} variants={arrowHover} />
-      </motion.a>
+        label="Buy template"
+        reducedMotion={Boolean(prefersReducedMotion)}
+        showArrow
+      />
     </main>
   );
 }

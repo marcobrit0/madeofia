@@ -136,12 +136,7 @@
 .buyButton,
 .floatingBuy {
   backdrop-filter: blur(10px);
-  background: rgba(211, 255, 202, 0.22);
-  border: 1px solid var(--nebula-accent-weak);
   border-radius: 10px;
-  box-shadow:
-    inset 0 0 0 1px rgba(211, 255, 202, 0.06),
-    0 0 24px rgba(211, 255, 202, 0.18);
   color: #fff;
   font-family: var(--font-display), sans-serif;
   font-size: 12px;
@@ -219,7 +214,9 @@
 .primaryButton,
 .secondaryButton,
 .planButton,
-.submitButton {
+.submitButton,
+.buyButton,
+.floatingBuy {
   align-items: center;
   border-radius: 10px;
   display: inline-flex;
@@ -231,26 +228,143 @@
   line-height: 1;
   min-height: 40px;
   padding: 12px 18px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .primaryButton,
 .submitButton {
-  background: #102b1f;
-  border: 1px solid rgba(211, 255, 202, 0.22);
-  box-shadow:
-    inset 0 0 0 1px rgba(211, 255, 202, 0.04),
-    0 0 28px rgba(23, 196, 121, 0.32);
+  --cta-fill-color: rgba(17, 43, 31, 0.94);
+  --cta-fill-hover: linear-gradient(180deg, rgba(19, 66, 46, 0.98) 0%, rgba(16, 43, 31, 0.98) 100%);
 }
 
 .secondaryButton,
 .planButton {
-  background: rgba(15, 15, 15, 0.88);
-  border: 1px solid var(--nebula-border);
+  --cta-fill-color: rgba(15, 15, 15, 0.9);
+  --cta-fill-hover: linear-gradient(180deg, rgba(21, 64, 47, 0.94) 0%, rgba(15, 15, 15, 0.98) 100%);
+}
+
+.buyButton,
+.floatingBuy {
+  --cta-fill-color: rgba(18, 39, 30, 0.92);
+  --cta-fill-hover: linear-gradient(180deg, rgba(29, 92, 66, 0.96) 0%, rgba(18, 39, 30, 0.98) 100%);
+}
+
+.ctaButton {
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transform-origin: center;
+}
+
+.ctaGlow,
+.ctaBorder,
+.ctaFill {
+  border-radius: inherit;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.ctaGlow {
+  background: radial-gradient(circle, rgba(146, 255, 176, 0.42) 0%, rgba(146, 255, 176, 0.1) 38%, rgba(146, 255, 176, 0) 72%);
+  filter: blur(16px);
+  inset: -22px;
+  opacity: 0.16;
+  transform: scale(0.82);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  z-index: 0;
+}
+
+.ctaBorder {
+  animation: ctaSpin 6.2s linear infinite;
+  background: conic-gradient(
+    from 0deg,
+    rgba(211, 255, 202, 0.12) 0deg,
+    rgba(211, 255, 202, 0.18) 84deg,
+    rgba(211, 255, 202, 0.95) 130deg,
+    rgba(211, 255, 202, 0.18) 174deg,
+    rgba(211, 255, 202, 0.08) 230deg,
+    rgba(211, 255, 202, 0.4) 298deg,
+    rgba(211, 255, 202, 0.12) 360deg
+  );
+  opacity: 0.88;
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 1;
+}
+
+.ctaFill {
+  background: var(--cta-fill-color);
+  box-shadow:
+    inset 0 0 0 1px rgba(211, 255, 202, 0.05),
+    0 0 30px rgba(23, 196, 121, 0.16);
+  inset: 1px;
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+  z-index: 1;
+}
+
+.ctaButton:hover .ctaGlow {
+  opacity: 0.54;
+  transform: scale(1);
+}
+
+.ctaButton:hover .ctaFill {
+  background: var(--cta-fill-hover);
+  box-shadow:
+    inset 0 0 0 1px rgba(211, 255, 202, 0.16),
+    0 0 34px rgba(146, 255, 176, 0.26);
+}
+
+.ctaContent {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaLabelMask {
+  display: inline-flex;
+  overflow: hidden;
+  perspective: 500px;
+}
+
+.ctaLabel {
+  display: inline-block;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+.ctaIcon {
+  display: inline-flex;
+}
+
+@keyframes ctaSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .buttonArrow {
   height: 14px;
+  position: relative;
   width: 14px;
+  z-index: 2;
 }
 
 .heroGlowRed,
@@ -289,9 +403,8 @@
   background: rgba(255, 255, 255, 0.55);
   border-radius: 999px;
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.22);
-  height: 2px;
   position: absolute;
-  width: 2px;
+  will-change: transform, opacity;
 }
 
 .sectionShell {
@@ -306,17 +419,95 @@
 }
 
 .about .sectionShell {
-  display: grid;
-  gap: 35px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: block;
 }
 
-.aboutText {
-  color: rgba(255, 255, 255, 0.12);
+.aboutText,
+.aboutLineBase,
+.aboutLineReveal {
   font-family: var(--font-display), sans-serif;
   font-size: clamp(48px, 4.7vw, 76px);
   letter-spacing: -0.045em;
   line-height: 1.02;
+}
+
+.aboutBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aboutLine {
+  position: relative;
+}
+
+.aboutLineBase,
+.aboutLineReveal {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 400;
+  gap: 0.08em 0.14em;
+}
+
+.aboutLineReveal {
+  color: var(--nebula-copy);
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.aboutAccentBase {
+  color: rgba(211, 255, 202, 0.28);
+}
+
+.aboutAccentReveal {
+  background: linear-gradient(180deg, #f3ffe9 0%, #d3ffca 78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.aboutPill {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  height: 1.06em;
+  justify-content: center;
+  min-width: 2.06em;
+  padding: 0 0.42em;
+  position: relative;
+  vertical-align: middle;
+}
+
+.aboutPill::before {
+  background: radial-gradient(circle, rgba(0, 255, 184, 0.2) 0%, rgba(0, 255, 184, 0) 72%);
+  content: "";
+  inset: -18%;
+  opacity: 0.72;
+  position: absolute;
+}
+
+.aboutPillMuted {
+  background: radial-gradient(circle at 50% 50%, rgba(24, 92, 66, 0.36) 0%, rgba(15, 40, 30, 0.88) 58%, rgba(10, 18, 14, 0.92) 100%);
+  border: 1px solid rgba(211, 255, 202, 0.12);
+}
+
+.aboutPillBright {
+  background: radial-gradient(circle at 50% 50%, rgba(34, 126, 91, 0.54) 0%, rgba(18, 55, 40, 0.92) 56%, rgba(10, 18, 14, 0.96) 100%);
+  border: 1px solid rgba(211, 255, 202, 0.22);
+  box-shadow:
+    inset 0 0 0 1px rgba(211, 255, 202, 0.04),
+    0 0 30px rgba(0, 255, 184, 0.12);
+}
+
+.aboutPillEmoji {
+  filter: drop-shadow(0 0 12px rgba(255, 230, 107, 0.2));
+  font-size: 0.54em;
+  position: relative;
+  z-index: 1;
 }
 
 .section {
@@ -509,7 +700,8 @@
 
 .processRequest {
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
+  padding: 24px;
 }
 
 .requestArrow {
@@ -517,6 +709,67 @@
   border-radius: 999px;
   height: 28px;
   width: 1px;
+}
+
+.requestFrame {
+  border: 1px solid rgba(211, 255, 202, 0.08);
+  border-radius: 18px;
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+  width: min(100%, 320px);
+}
+
+.requestFrame::before {
+  background:
+    linear-gradient(180deg, rgba(8, 8, 7, 0.92) 0%, rgba(8, 8, 7, 0) 18%),
+    linear-gradient(0deg, rgba(8, 8, 7, 0.92) 0%, rgba(8, 8, 7, 0) 18%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.requestCardAnimated {
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 10px;
+  left: 50%;
+  padding: 13px 18px;
+  position: absolute;
+  top: 42px;
+  transform: translateX(-50%);
+  width: max-content;
+}
+
+.requestCardAnimatedMuted {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--nebula-border);
+  color: var(--nebula-muted);
+}
+
+.requestCardAnimatedStrong {
+  background: #102b1f;
+  border: 1px solid rgba(211, 255, 202, 0.18);
+  color: var(--nebula-accent);
+}
+
+.requestCardAnimated span:last-child {
+  font-family: var(--font-display), sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  line-height: 1;
+}
+
+.requestCardDot {
+  background: currentColor;
+  border-radius: 999px;
+  display: inline-block;
+  height: 6px;
+  width: 6px;
 }
 
 .processBuild {
@@ -607,6 +860,25 @@
   border-radius: 999px;
   height: 215px;
   width: 215px;
+}
+
+.globeOrbit {
+  align-items: flex-start;
+  display: flex;
+  height: 190px;
+  justify-content: center;
+  position: absolute;
+  width: 190px;
+}
+
+.globeNode {
+  background: radial-gradient(circle, rgba(211, 255, 202, 1) 0%, rgba(211, 255, 202, 0.26) 72%, rgba(211, 255, 202, 0) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(211, 255, 202, 0.22);
+  display: block;
+  height: 16px;
+  transform: translateY(-10px);
+  width: 16px;
 }
 
 .serviceGrid {
@@ -1354,11 +1626,22 @@
   }
 
   .about .sectionShell {
-    gap: 20px;
+    display: block;
   }
 
-  .aboutText {
+  .aboutText,
+  .aboutLineBase,
+  .aboutLineReveal {
     font-size: 57px;
+  }
+
+  .aboutBlock {
+    gap: 12px;
+  }
+
+  .aboutPill {
+    min-width: 1.7em;
+    padding: 0 0.32em;
   }
 
   .section,
