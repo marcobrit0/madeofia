@@ -1,76 +1,114 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
+
+const navLinks = [
+  { href: "#processo", label: "Processo" },
+  { href: "#servicos", label: "Serviços" },
+  { href: "#trabalhos", label: "Trabalhos" },
+  { href: "#planos", label: "Planos" },
+  { href: "#equipe", label: "Equipe" },
+  { href: "#contato", label: "Contato" },
+];
+
+function LocalTime() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      setTime(
+        new Date().toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          timeZone: "America/Sao_Paulo",
+        })
+      );
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return <span>{time}</span>;
+}
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-[#1a1a1a] bg-[#080808]">
+    <footer className="border-t border-white/8 bg-[#080807]">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="font-mono text-xl font-bold mb-4">
-              <span className="text-[#f0f0f0]">madeofIA</span>
-              <span className="text-[#00FF88] animate-[blink_1s_step-end_infinite]">_</span>
+        {/* Top grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          {/* Brand + contact */}
+          <div className="md:col-span-1">
+            <div className="font-mono text-base font-bold mb-6 flex items-center gap-0">
+              <span className="text-white">madeofIA</span>
+              <span className="text-[#4ade80] animate-[blink_1s_step-end_infinite]">_</span>
             </div>
-            <p className="text-[#555555] text-sm leading-relaxed max-w-xs">
-              Seu time de agentes de IA. CEO + CTO + CMO trabalhando para você.
-            </p>
-            <p className="text-[#333333] text-xs font-mono mt-4">
-              CNPJ 65.599.230/0001-64
-            </p>
+            <div className="space-y-3 text-sm text-white/45">
+              <div>
+                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">Email</p>
+                <a href="mailto:ola@madeofia.com" className="hover:text-white transition-colors">
+                  ola@madeofia.com ↗
+                </a>
+              </div>
+              <div>
+                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">CNPJ</p>
+                <p>65.599.230/0001-64</p>
+              </div>
+              <div>
+                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">Horário local</p>
+                <p className="font-mono">
+                  <LocalTime /> (BRT)
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Links */}
+          {/* Nav links */}
           <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-[#555555] mb-4">Navegação</p>
-            <ul className="space-y-2">
-              {[
-                { href: "/servicos", label: "Serviços" },
-                { href: "/portfolio", label: "Portfólio" },
-                { href: "/blog", label: "Blog" },
-                { href: "/contato", label: "Contato" },
-              ].map((l) => (
+            <p className="text-white/25 text-xs uppercase tracking-widest mb-4">Navegação</p>
+            <ul className="space-y-3">
+              {navLinks.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-[#555555] hover:text-[#00FF88] transition-colors font-mono"
-                  >
+                  <a href={l.href} className="text-sm text-white/45 hover:text-white transition-colors">
                     {l.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Social */}
           <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-[#555555] mb-4">Legal</p>
-            <ul className="space-y-2">
+            <p className="text-white/25 text-xs uppercase tracking-widest mb-4">Redes</p>
+            <ul className="space-y-3">
               {[
-                { href: "/privacidade", label: "Privacidade" },
-                { href: "/termos", label: "Termos de Uso" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-[#555555] hover:text-[#00FF88] transition-colors font-mono"
+                { label: "LinkedIn", href: "https://linkedin.com" },
+                { label: "Instagram", href: "https://instagram.com" },
+                { label: "Twitter / X", href: "https://x.com" },
+              ].map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/45 hover:text-white transition-colors"
                   >
-                    {l.label}
-                  </Link>
+                    {s.label} ↗
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-[#1a1a1a] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#333333] text-xs font-mono">
-            © {year} MadeofIA — CNPJ 65.599.230/0001-64
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/25 text-xs">
+            © {new Date().getFullYear()} MadeofIA — CNPJ 65.599.230/0001-64
           </p>
-          <p className="text-[#333333] text-xs font-mono">
-            Built with AI agents.
-          </p>
+          <p className="text-white/25 text-xs">Construído por agentes de IA.</p>
         </div>
       </div>
     </footer>
