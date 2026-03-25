@@ -312,6 +312,15 @@ function ArrowIcon({
   );
 }
 
+function BrandMark() {
+  return (
+    <span className={styles.brandMark}>
+      <span className={styles.brandWord}>madeofIA</span>
+      <span className={styles.brandCursor}>_</span>
+    </span>
+  );
+}
+
 function CTAInner({
   label,
   showArrow = false,
@@ -828,8 +837,7 @@ export default function Home() {
         transition={prefersReducedMotion ? undefined : snappierTransition}
       >
         <a className={styles.logo} href="/">
-          <span className={styles.logoDot} />
-          <span>madeofIA</span>
+          <BrandMark />
         </a>
 
         <div className={styles.navPill}>
@@ -855,8 +863,7 @@ export default function Home() {
       <details className={styles.mobileNav}>
         <summary className={styles.mobileSummary}>
           <span className={styles.logo}>
-            <span className={styles.logoDot} />
-            <span>madeofIA</span>
+            <BrandMark />
           </span>
           <span className={styles.burger}>
             <span />
@@ -1340,8 +1347,7 @@ export default function Home() {
         <div className={styles.footerGrid}>
           <div className={styles.footerBrand}>
             <a className={styles.logo} href="/">
-              <span className={styles.logoDot} />
-              <span>madeofIA</span>
+              <BrandMark />
             </a>
             <div className={styles.footerMeta}>
               <p>Office</p>
@@ -1375,13 +1381,6 @@ export default function Home() {
         </div>
       </footer>
 
-      <CTAAnchor
-        className={styles.floatingBuy}
-        href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6"
-        label="Buy template"
-        reducedMotion={Boolean(prefersReducedMotion)}
-        showArrow
-      />
     </main>
   );
 }
