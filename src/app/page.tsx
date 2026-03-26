@@ -945,7 +945,7 @@ export default function Home() {
                 : {
                     opacity: { delay: 0.2, duration: 0.5 },
                     scale: { delay: 0.2, duration: 0.5 },
-                    rotate: { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                    rotate: { duration: 11, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
                   }
             }
           />
@@ -956,8 +956,8 @@ export default function Home() {
               prefersReducedMotion
                 ? undefined
                 : {
-                    opacity: [0.66, 0.92, 0.66],
-                    scale: [0.96, 1.04, 0.96],
+                    opacity: [0.7, 1, 0.72],
+                    scale: [0.94, 1.1, 0.95],
                     rotate: 360,
                   }
             }
@@ -965,9 +965,9 @@ export default function Home() {
               prefersReducedMotion
                 ? undefined
                 : {
-                    opacity: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-                    scale: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-                    rotate: { duration: 24, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                    opacity: { duration: 5.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+                    scale: { duration: 5.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+                    rotate: { duration: 14, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
                   }
             }
           />
