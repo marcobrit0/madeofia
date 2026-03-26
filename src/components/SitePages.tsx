@@ -50,7 +50,7 @@ type BlogArticlePageProps = {
 export function PageIntro({ eyebrow, title, description, panel }: PageIntroProps) {
   return (
     <section className={styles.section}>
-      <div className={`${styles.shell} ${styles.heroGrid}`}>
+      <div className={`${styles.shell} ${styles.heroGrid} ${panel ? "" : styles.heroGridSolo}`}>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>{eyebrow}</p>
           <h1 className={styles.heroTitle}>{title}</h1>

@@ -1,10 +1,11 @@
 "use client";
 
 import homeStyles from "@/app/page.module.css";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import BrandMark from "./BrandMark";
-import { LinkButton } from "./SiteButton";
 
 const homeAnchors = [
   { href: "/#processo", label: "Processo" },
@@ -12,8 +13,22 @@ const homeAnchors = [
   { href: "/#portfolio", label: "Portfólio" },
   { href: "/#planos", label: "Planos" },
   { href: "/blog", label: "Blog" },
-  { href: "/contato", label: "Contato" },
 ];
+
+const ARROW_ICON = "https://framerusercontent.com/images/80ciNZpezWIjtjuOmGuff6aTdc.png";
+
+const arrowHoverVariants = {
+  rest: {
+    rotate: 0,
+    x: 0,
+    y: 0,
+  },
+  hover: {
+    rotate: 45,
+    x: 2,
+    y: -2,
+  },
+};
 
 function isActive(pathname: string, href: string) {
   if (href === "/") {
@@ -33,6 +48,7 @@ function isActive(pathname: string, href: string) {
 
 export default function Nav() {
   const pathname = usePathname() ?? "/";
+  const [contactHovered, setContactHovered] = useState(false);
 
   return (
     <>
@@ -57,7 +73,36 @@ export default function Nav() {
           ))}
         </div>
 
-        <LinkButton href="/contato" label="Começar projeto" variant="buy" />
+        <motion.div
+          onHoverStart={() => setContactHovered(true)}
+          onHoverEnd={() => setContactHovered(false)}
+          whileHover={{
+            scale: 1.015,
+            transition: {
+              duration: 0.18,
+            },
+          }}
+        >
+          <Link
+            href="/contato"
+            className={`${homeStyles.buyButton} ${homeStyles.ctaButton}`}
+          >
+            <span className={homeStyles.ctaGlow} aria-hidden="true" />
+            <span className={homeStyles.ctaBorder} aria-hidden="true" />
+            <span className={homeStyles.ctaFill} aria-hidden="true" />
+            <span className={homeStyles.ctaContent}>
+              <span className={homeStyles.ctaLabelText}>Contato</span>
+              <motion.span className={homeStyles.ctaIcon} animate={contactHovered ? "hover" : "rest"} variants={arrowHoverVariants}>
+                <motion.img
+                  src={ARROW_ICON}
+                  alt=""
+                  aria-hidden="true"
+                  className={homeStyles.buttonArrow}
+                />
+              </motion.span>
+            </span>
+          </Link>
+        </motion.div>
       </nav>
 
       <details className={homeStyles.mobileNav}>
@@ -77,6 +122,7 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
+          <Link href="/contato">Contato</Link>
         </div>
       </details>
     </>

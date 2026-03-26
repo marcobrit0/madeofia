@@ -1156,12 +1156,6 @@ export default function Home() {
             </motion.p>
             <motion.div className={styles.heroActions} variants={revealUp}>
               <CTAAnchor
-                className={styles.primaryButton}
-                href="#planos"
-                label="Ver planos"
-                reducedMotion={Boolean(prefersReducedMotion)}
-              />
-              <CTAAnchor
                 className={styles.secondaryButton}
                 href="#processo"
                 label="Como funciona"

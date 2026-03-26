@@ -1,6 +1,7 @@
+import homeStyles from "@/app/page.module.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ActionBanner, PageIntro, sitePageStyles as styles } from "@/components/SitePages";
+import { ActionBanner, sitePageStyles as styles } from "@/components/SitePages";
 import { LinkButton } from "@/components/SiteButton";
 import { createPageMetadata, siteConfig } from "@/lib/seo";
 import { serializeJsonLd } from "./seo";
@@ -67,28 +68,26 @@ export default function Blog() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(blogSchema) }}
       />
 
-      <PageIntro
-        eyebrow="// blog"
-        title={
-          <>
-            Insights que ajudam
-            <br />
-            seu site a
-            <br />
-            <span style={{ color: "#4ade80" }}>gerar negocio.</span>
-          </>
-        }
-        description="Conteudo editorial sobre web design, SEO e produto digital com foco em conversao, performance e clareza estrategica."
-        panel={
-          <>
-            <p className={styles.panelKicker}>Artigo em destaque</p>
-            <p className={styles.panelBody}>
-              Hub editorial pensado para captar busca organica de alta intencao e
-              conduzir o leitor para uma proxima acao clara.
-            </p>
-          </>
-        }
-      />
+      <section className={styles.section}>
+        <div className={styles.shell}>
+          <div className={styles.blogHeroWrap}>
+            <p className={styles.eyebrow}>// blog</p>
+            <div className={homeStyles.heroCopy} style={{ transform: "none" }}>
+              <h1 className={homeStyles.heroTitle}>
+                Insights que ajudam
+                <br />
+                seu site a
+                <br />
+                <span className={styles.heroAccent}>gerar negocio.</span>
+              </h1>
+              <p className={homeStyles.heroDescription} style={{ maxWidth: 780 }}>
+                Conteudo editorial sobre web design, SEO e produto digital com foco em
+                conversao, performance e clareza estrategica.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className={styles.section}>
         <div className={styles.shell}>
