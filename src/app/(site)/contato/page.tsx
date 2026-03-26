@@ -1,6 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import { PageIntro, sitePageStyles as styles } from "@/components/SitePages";
+import { LinkButton, SubmitButton } from "@/components/SiteButton";
 
 export default function Contato() {
   const [form, setForm] = useState({
@@ -13,179 +16,154 @@ export default function Contato() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     setLoading(true);
-    // Simulate form submission
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 900));
     setSent(true);
     setLoading(false);
   };
 
   return (
     <>
-      <section className="pt-40 pb-24 max-w-7xl mx-auto px-6">
-        <span className="font-mono text-xs text-[#00FF88] uppercase tracking-widest block mb-4">
-          // contato
-        </span>
-        <h1 className="font-mono text-5xl md:text-7xl font-bold text-[#f0f0f0] leading-tight mb-6">
-          Vamos construir<br />
-          <span className="text-[#00FF88]">algo juntos.</span>
-        </h1>
-        <p className="text-[#555555] text-xl max-w-xl">
-          Preencha o formulário. Respondemos em até 24h com uma proposta ou próximos passos.
-        </p>
-      </section>
+      <PageIntro
+        eyebrow="// contato"
+        title={
+          <>
+            Vamos estruturar
+            <br />
+            a proxima versao
+            <br />
+            <span style={{ color: "#d3ffca" }}>do seu projeto.</span>
+          </>
+        }
+        description="Preencha o briefing com o maximo de contexto util. A resposta vem com proximos passos claros, nao com um pitch generico."
+        panel={
+          <>
+            <p className={styles.panelKicker}>Janela de resposta</p>
+            <p className={styles.panelTitle}>Ate 24 horas uteis.</p>
+            <p className={styles.panelBody}>
+              Se fizer sentido para os dois lados, seguimos para escopo, cronograma e proposta.
+            </p>
+          </>
+        }
+      />
 
-      <section className="pb-32 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          {/* Left: form */}
-          <div className="lg:col-span-2">
+      <section className={styles.section}>
+        <div className={styles.shell}>
+          <div className={styles.formShell}>
             {sent ? (
-              <div className="border border-[#00FF88]/30 p-12 text-center" style={{ background: "rgba(0,255,136,0.02)" }}>
-                <p className="font-mono text-4xl text-[#00FF88] mb-4">✓</p>
-                <h2 className="font-mono text-2xl font-bold text-[#f0f0f0] mb-4">
-                  Mensagem recebida.
+              <div className={styles.successCard}>
+                <p className={styles.eyebrow}>Mensagem recebida</p>
+                <h2 className={styles.sectionTitle} style={{ marginBottom: 0 }}>
+                  Agora a proxima resposta e nossa.
                 </h2>
-                <p className="text-[#555555]">
-                  Respondemos em até 24h. Enquanto isso, dá uma olhada no nosso{" "}
-                  <a href="/portfolio" className="text-[#00FF88] hover:underline">portfólio</a>.
+                <p className={styles.bodyCopy}>
+                  Enquanto isso, voce pode revisar os cases do estudio e ter uma ideia melhor do nivel de profundidade que aplicamos nos projetos.
                 </p>
+                <LinkButton href="/portfolio" label="Ver portfolio" />
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="font-mono text-xs uppercase tracking-widest text-[#555555] block mb-2">
-                      Nome *
-                    </label>
+              <form onSubmit={handleSubmit} className={styles.formCard}>
+                <div className={styles.formGrid}>
+                  <div className={styles.field}>
+                    <label htmlFor="nome">Nome</label>
                     <input
+                      id="nome"
                       name="nome"
                       required
                       value={form.nome}
                       onChange={handleChange}
+                      className={styles.input}
                       placeholder="Seu nome completo"
-                      className="w-full bg-transparent border border-[#1a1a1a] px-4 py-3 font-mono text-sm text-[#f0f0f0] placeholder-[#333333] focus:outline-none focus:border-[#00FF88] transition-colors"
                     />
                   </div>
-                  <div>
-                    <label className="font-mono text-xs uppercase tracking-widest text-[#555555] block mb-2">
-                      Email *
-                    </label>
+
+                  <div className={styles.field}>
+                    <label htmlFor="email">Email</label>
                     <input
+                      id="email"
                       name="email"
                       type="email"
                       required
                       value={form.email}
                       onChange={handleChange}
+                      className={styles.input}
                       placeholder="seu@email.com"
-                      className="w-full bg-transparent border border-[#1a1a1a] px-4 py-3 font-mono text-sm text-[#f0f0f0] placeholder-[#333333] focus:outline-none focus:border-[#00FF88] transition-colors"
                     />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="font-mono text-xs uppercase tracking-widest text-[#555555] block mb-2">
-                      Empresa
-                    </label>
+                  <div className={styles.field}>
+                    <label htmlFor="empresa">Empresa</label>
                     <input
+                      id="empresa"
                       name="empresa"
                       value={form.empresa}
                       onChange={handleChange}
-                      placeholder="Nome da empresa (opcional)"
-                      className="w-full bg-transparent border border-[#1a1a1a] px-4 py-3 font-mono text-sm text-[#f0f0f0] placeholder-[#333333] focus:outline-none focus:border-[#00FF88] transition-colors"
+                      className={styles.input}
+                      placeholder="Nome da empresa"
                     />
                   </div>
-                  <div>
-                    <label className="font-mono text-xs uppercase tracking-widest text-[#555555] block mb-2">
-                      Plano de interesse
-                    </label>
+
+                  <div className={styles.field}>
+                    <label htmlFor="plano">Tipo de projeto</label>
                     <select
+                      id="plano"
                       name="plano"
                       value={form.plano}
                       onChange={handleChange}
-                      className="w-full bg-[#080808] border border-[#1a1a1a] px-4 py-3 font-mono text-sm text-[#f0f0f0] focus:outline-none focus:border-[#00FF88] transition-colors appearance-none"
+                      className={styles.select}
                     >
-                      <option value="">Selecione...</option>
-                      <option value="essencial">Essencial — R$15K</option>
-                      <option value="crescimento">Crescimento — R$25K</option>
-                      <option value="produto">Produto Digital — R$45K</option>
-                      <option value="parceiro">Parceiro Digital — R$7K/mês</option>
-                      <option value="nao-sei">Ainda não sei</option>
+                      <option value="">Selecione</option>
+                      <option value="essencial">Site institucional ou landing page</option>
+                      <option value="crescimento">Site + blog + captacao</option>
+                      <option value="produto">MVP ou web app</option>
+                      <option value="parceiro">Evolucao continua</option>
                     </select>
+                  </div>
+
+                  <div className={styles.fieldFull}>
+                    <label htmlFor="mensagem">Contexto do projeto</label>
+                    <textarea
+                      id="mensagem"
+                      name="mensagem"
+                      required
+                      value={form.mensagem}
+                      onChange={handleChange}
+                      className={styles.textarea}
+                      placeholder="Explique onde o negocio esta hoje, o que precisa mudar e qual decisao voce quer facilitar para o cliente."
+                    />
                   </div>
                 </div>
 
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#555555] block mb-2">
-                    Mensagem *
-                  </label>
-                  <textarea
-                    name="mensagem"
-                    required
-                    value={form.mensagem}
-                    onChange={handleChange}
-                    rows={6}
-                    placeholder="Conte um pouco sobre o projeto. Qual é a ideia? Onde você está hoje? O que precisa?"
-                    className="w-full bg-transparent border border-[#1a1a1a] px-4 py-3 font-mono text-sm text-[#f0f0f0] placeholder-[#333333] focus:outline-none focus:border-[#00FF88] transition-colors resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full font-mono text-sm uppercase tracking-widest py-4 bg-[#00FF88] text-[#080808] font-bold hover:bg-[#00FF88]/90 transition-colors disabled:opacity-50"
-                >
-                  {loading ? "Enviando..." : "Enviar mensagem →"}
-                </button>
+                <SubmitButton label={loading ? "Enviando" : "Enviar briefing"} disabled={loading} />
               </form>
             )}
-          </div>
 
-          {/* Right: info */}
-          <div className="space-y-8">
-            <div className="border border-[#1a1a1a] p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-[#555555] mb-4">
-                Tempo de resposta
-              </p>
-              <p className="font-mono text-3xl font-bold text-[#00FF88]">&lt; 24h</p>
-              <p className="text-[#555555] text-xs mt-2">dias úteis</p>
-            </div>
+            <div className={styles.infoRail}>
+              <div className={styles.surfaceCard}>
+                <p className={styles.panelKicker}>O que acontece depois</p>
+                <ul className={styles.list} style={{ marginTop: 16 }}>
+                  <li>Leitura do briefing e triagem do escopo.</li>
+                  <li>Resposta com perguntas adicionais ou direcao inicial.</li>
+                  <li>Call curta para alinhar contexto, prioridade e prazo.</li>
+                  <li>Proposta com escopo e proxima etapa objetiva.</li>
+                </ul>
+              </div>
 
-            <div className="border border-[#1a1a1a] p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-[#555555] mb-4">
-                O que acontece depois
-              </p>
-              <ol className="space-y-3">
-                {[
-                  "Respondemos com perguntas ou proposta",
-                  "Call de 30min para alinhar escopo",
-                  "Proposta formal em 48h",
-                  "Contrato e início do projeto",
-                ].map((step, i) => (
-                  <li key={i} className="flex gap-3 text-xs font-mono text-[#555555]">
-                    <span className="text-[#00FF88] shrink-0">{i + 1}.</span>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <div className="border border-[#1a1a1a] p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-[#555555] mb-4">
-                Email direto
-              </p>
-              <a
-                href="mailto:oi@madeofia.com.br"
-                className="font-mono text-sm text-[#00FF88] hover:underline"
-              >
-                oi@madeofia.com.br
-              </a>
+              <div className={styles.surfaceCard}>
+                <p className={styles.panelKicker}>Contato direto</p>
+                <p className={styles.panelTitle}>ola@madeofia.com</p>
+                <p className={styles.panelBody}>
+                  Se preferir, mande contexto por email. O importante e nao comecar o projeto com briefing raso.
+                </p>
+              </div>
             </div>
           </div>
         </div>

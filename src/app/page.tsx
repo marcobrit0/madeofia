@@ -11,6 +11,7 @@ import {
   type Variants,
 } from "framer-motion";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 import { useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -352,15 +353,6 @@ function ArrowIcon({
       aria-hidden="true"
       variants={variants}
     />
-  );
-}
-
-function BrandMark() {
-  return (
-    <span className={styles.brandMark}>
-      <span className={styles.brandWord}>madeofIA</span>
-      <span className={styles.brandCursor}>_</span>
-    </span>
   );
 }
 
@@ -1067,53 +1059,7 @@ export default function Home() {
       <div className={styles.backgroundGlowTop} />
       <div className={styles.backgroundGlowBottom} />
 
-      <motion.nav
-        className={styles.desktopNav}
-        initial={prefersReducedMotion ? false : { opacity: 0, y: -110 }}
-        animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-        transition={prefersReducedMotion ? undefined : snappierTransition}
-      >
-        <a className={styles.logo} href="/">
-          <BrandMark />
-        </a>
-
-        <div className={styles.navPill}>
-          <a href="#processo">Processo</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#portfolio">Portfólio</a>
-          <a href="#planos">Planos</a>
-          <motion.a className={styles.contactLink} href="#contato" whileHover="hover">
-            <span>Contato</span>
-            <ArrowIcon className={styles.navArrow} variants={arrowHoverVariants} />
-          </motion.a>
-        </div>
-
-        <CTAAnchor
-          className={styles.buyButton}
-          href="#contato"
-          label="Começar projeto"
-          reducedMotion={Boolean(prefersReducedMotion)}
-        />
-      </motion.nav>
-
-      <details className={styles.mobileNav}>
-        <summary className={styles.mobileSummary}>
-          <span className={styles.logo}>
-            <BrandMark />
-          </span>
-          <span className={styles.burger}>
-            <span />
-            <span />
-          </span>
-        </summary>
-        <div className={styles.mobileMenu}>
-          <a href="#processo">Processo</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#portfolio">Portfólio</a>
-          <a href="#planos">Planos</a>
-          <a href="#contato">Contato</a>
-        </div>
-      </details>
+      <Nav />
 
       <section className={styles.hero}>
         <div className={styles.starField} aria-hidden="true">

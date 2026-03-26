@@ -1,0 +1,567 @@
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 140px 0 70px;
+}
+
+.shell {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 40px;
+  width: 100%;
+}
+
+.heroGrid,
+.articleHero {
+  align-items: end;
+  display: grid;
+  gap: 10px;
+  padding-top: 0;
+}
+
+.heroGrid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.65fr);
+}
+
+.heroCopy,
+.articleHeroCopy {
+  max-width: 900px;
+}
+
+.eyebrow,
+.panelKicker,
+.asideTitle,
+.articleMetaRow,
+.tag,
+.statLabel,
+.stepIndex,
+.legalSection h2,
+.tableLabel {
+  color: #4ade80;
+  font-family: var(--font-accent), ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.heroTitle,
+.articleTitle,
+.ctaTitle {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.heroTitle {
+  font-size: clamp(3.8rem, 7vw, 7.4rem);
+  margin-top: 18px;
+}
+
+.articleTitle {
+  font-size: clamp(3.2rem, 6vw, 6.8rem);
+  margin-top: 20px;
+}
+
+.ctaTitle {
+  font-size: clamp(2.8rem, 4vw, 4.6rem);
+  margin-top: 18px;
+}
+
+.heroLead,
+.articleLead,
+.ctaCopy,
+.panelBody,
+.legalSection p,
+.asideBody,
+.metricCopy,
+.stepCopy,
+.bodyCopy,
+.tableValue {
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-display), sans-serif;
+  line-height: 1.7;
+}
+
+.heroLead,
+.articleLead {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  margin-top: 18px;
+  max-width: 52rem;
+}
+
+.heroLead {
+  max-width: 40rem;
+}
+
+.panel,
+.surfaceCard,
+.ctaCard,
+.legalCard,
+.asideCard,
+.formCard,
+.metricCard,
+.stepCard,
+.tableRow,
+.highlightCard,
+.successCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel,
+.surfaceCard,
+.metricCard,
+.stepCard,
+.highlightCard,
+.successCard,
+.asideCard,
+.ctaCard,
+.legalCard,
+.formCard,
+.tableRow {
+  padding: 35px;
+}
+
+.panelKicker {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.panelTitle {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  margin-top: 14px;
+}
+
+.panelBody {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  margin-top: 12px;
+}
+
+.contentGrid,
+.splitGrid,
+.metricGrid,
+.stepsGrid,
+.tableGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.contentGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.splitGrid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+}
+
+.metricGrid,
+.stepsGrid,
+.tableGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+}
+
+.sectionTitle {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(48px, 4.6vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  margin-bottom: 50px;
+}
+
+.bodyCopy {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.list,
+.checkList,
+.asideBody ul,
+.prose ul,
+.prose ol {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li,
+.checkList li,
+.asideBody li,
+.prose li {
+  color: rgba(255, 255, 255, 0.78);
+  display: flex;
+  gap: 12px;
+  line-height: 1.7;
+}
+
+.list li::before,
+.asideBody li::before,
+.prose ul li::before {
+  color: #4ade80;
+  content: "+";
+  flex: none;
+}
+
+.checkList li::before {
+  color: #d3ffca;
+  content: "01";
+  flex: none;
+  letter-spacing: 0.18em;
+}
+
+.metricValue {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.metricCopy {
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+.statLabel {
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.stepCard {
+  display: grid;
+  gap: 24px;
+  min-height: 280px;
+}
+
+.stepIndex {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.stepTitle {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.stepCopy {
+  font-size: 16px;
+}
+
+.tableRow {
+  display: grid;
+  gap: 12px;
+}
+
+.tableLabel {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.tableValue {
+  font-size: 1rem;
+}
+
+.ctaCard {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.articleMetaRow {
+  color: rgba(255, 255, 255, 0.38);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  letter-spacing: 0.12em;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.tag {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.18em;
+  padding: 10px 12px;
+}
+
+.articleGrid {
+  align-items: start;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+.article {
+  min-width: 0;
+}
+
+.quickSummary {
+  border-left: 1px solid rgba(74, 222, 128, 0.5);
+  margin-bottom: 34px;
+  padding-left: 20px;
+}
+
+.quickSummary p:last-child,
+.quickSummary div {
+  color: rgba(255, 255, 255, 0.84);
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+.articleAside {
+  display: grid;
+  gap: 10px;
+  position: sticky;
+  top: 128px;
+}
+
+.asideCard {
+  display: grid;
+  gap: 16px;
+}
+
+.asideTitle {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.asideBody {
+  font-size: 0.98rem;
+}
+
+.prose {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.prose > * + * {
+  margin-top: 16px;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.prose h2 {
+  font-size: clamp(2.1rem, 3.4vw, 3.3rem);
+  margin-top: 44px;
+}
+
+.prose h3 {
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  margin-top: 34px;
+}
+
+.prose p,
+.prose li {
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.prose a {
+  color: #d3ffca;
+  text-decoration: none;
+}
+
+.prose strong {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.proseGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 20px;
+}
+
+.highlightCard {
+  display: grid;
+  gap: 12px;
+}
+
+.highlightCard h4 {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.successCard {
+  display: grid;
+  gap: 12px;
+}
+
+.legalCard {
+  display: grid;
+  gap: 28px;
+  margin-bottom: 52px;
+  max-width: 920px;
+}
+
+.legalSection {
+  display: grid;
+  gap: 12px;
+}
+
+.legalSection h2 {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.legalSection a {
+  color: #d3ffca;
+  text-decoration: none;
+}
+
+.formShell {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1.15fr) 320px;
+}
+
+.formCard,
+.infoRail {
+  display: grid;
+  gap: 10px;
+}
+
+.formGrid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field,
+.fieldFull {
+  display: grid;
+  gap: 10px;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.field label,
+.fieldFull label {
+  color: rgba(255, 255, 255, 0.38);
+  font-family: var(--font-accent), ui-monospace, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.input,
+.textarea,
+.select {
+  background: transparent;
+  border: 1px solid #232323;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  outline: none;
+  padding: 18px 20px 18px 25px;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: rgba(211, 255, 202, 0.3);
+}
+
+.textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+@media (max-width: 1100px) {
+  .heroGrid,
+  .splitGrid,
+  .articleGrid,
+  .formShell,
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .articleAside {
+    position: static;
+    top: auto;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .shell {
+    padding: 0 15px;
+  }
+
+  .heroGrid,
+  .articleHero {
+    padding-top: 0;
+  }
+
+  .heroGrid,
+  .articleGrid,
+  .formShell,
+  .metricGrid,
+  .stepsGrid,
+  .tableGrid,
+  .proseGrid,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroLead,
+  .articleLead,
+  .quickSummary div,
+  .quickSummary p:last-child {
+    font-size: 16px;
+  }
+
+  .legalCard,
+  .ctaCard,
+  .panel,
+  .formCard {
+    padding: 35px;
+  }
+}

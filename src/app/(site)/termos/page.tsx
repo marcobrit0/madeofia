@@ -1,5 +1,6 @@
-import { createPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+import { LegalDocument } from "@/components/SitePages";
+import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Termos de Uso — MadeofIA",
@@ -11,66 +12,71 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function Termos() {
   return (
-    <>
-      <section className="pt-40 pb-32 max-w-3xl mx-auto px-6">
-        <span className="font-mono text-xs text-[#00FF88] uppercase tracking-widest block mb-4">
-          // legal
-        </span>
-        <h1 className="font-mono text-4xl font-bold text-[#f0f0f0] mb-12">
-          Termos de Uso
-        </h1>
-
-        <div className="space-y-8 text-[#555555] text-sm leading-relaxed">
-          <div>
-            <p className="font-mono text-xs text-[#f0f0f0] uppercase tracking-widest mb-3">Última atualização: Março 2025</p>
+    <LegalDocument
+      title="Termos de Uso"
+      updatedAt="Mar 2026"
+      description="Condicoes gerais para contratacao de servicos de design, desenvolvimento web, SEO e produto digital com a MadeofIA."
+      sections={[
+        {
+          title: "1. Escopo",
+          body: (
             <p>
-              Ao contratar os serviços da MadeofIA (CNPJ 65.599.230/0001-64), você concorda com os termos abaixo.
+              Cada projeto e formalizado por proposta comercial com escopo,
+              cronograma, entregas e limites de revisao definidos antes do
+              inicio do trabalho.
             </p>
-          </div>
-
-          <div>
-            <h2 className="font-mono text-sm font-bold text-[#f0f0f0] mb-3">1. Serviços</h2>
+          ),
+        },
+        {
+          title: "2. Pagamento",
+          body: (
             <p>
-              A MadeofIA presta serviços de desenvolvimento web e criação de produtos digitais utilizando equipes de agentes de inteligência artificial. O escopo, prazo e valores são definidos em proposta comercial formal assinada pelas partes.
+              As condicoes financeiras sao combinadas em proposta. Projetos de
+              escopo fixo normalmente trabalham com entrada e saldo na entrega,
+              enquanto contratos recorrentes seguem cobranca mensal.
             </p>
-          </div>
-
-          <div>
-            <h2 className="font-mono text-sm font-bold text-[#f0f0f0] mb-3">2. Pagamento</h2>
+          ),
+        },
+        {
+          title: "3. Propriedade intelectual",
+          body: (
             <p>
-              O pagamento é realizado em duas parcelas: 50% no início do projeto e 50% na entrega final. O plano Parceiro Digital é cobrado mensalmente via boleto ou cartão de crédito.
+              Apos quitacao integral, o cliente recebe acesso ao material
+              entregue, incluindo implementacao, ativos previstos no escopo e
+              configuracoes acordadas para o projeto.
             </p>
-          </div>
-
-          <div>
-            <h2 className="font-mono text-sm font-bold text-[#f0f0f0] mb-3">3. Propriedade intelectual</h2>
+          ),
+        },
+        {
+          title: "4. Prazos e feedback",
+          body: (
             <p>
-              Após o pagamento integral, o cliente recebe todos os direitos sobre o produto entregue. O código-fonte, designs e ativos digitais são transferidos integralmente ao cliente.
+              Os prazos pressupõem retorno dentro das janelas combinadas. Atrasos
+              causados por falta de validacao ou envio de material pelo cliente
+              impactam o cronograma.
             </p>
-          </div>
-
-          <div>
-            <h2 className="font-mono text-sm font-bold text-[#f0f0f0] mb-3">4. Prazo e revisões</h2>
+          ),
+        },
+        {
+          title: "5. Cancelamento",
+          body: (
             <p>
-              Os prazos estimados pressupõem feedback do cliente em até 48h após cada entrega parcial. Atrasos causados por demora nas respostas do cliente não são de responsabilidade da MadeofIA. O número de rodadas de revisão está definido em contrato.
+              O cancelamento segue o que estiver previsto na proposta e no
+              contrato do projeto. Entregas ja executadas e horas ja consumidas
+              nao sao automaticamente reembolsaveis.
             </p>
-          </div>
-
-          <div>
-            <h2 className="font-mono text-sm font-bold text-[#f0f0f0] mb-3">5. Cancelamento</h2>
+          ),
+        },
+        {
+          title: "6. Contato",
+          body: (
             <p>
-              O cancelamento do plano Parceiro Digital pode ser feito com 30 dias de aviso prévio. Projetos com escopo fixo não são reembolsáveis após o início do desenvolvimento.
+              Duvidas operacionais ou juridicas podem ser enviadas para{" "}
+              <a href="mailto:ola@madeofia.com">ola@madeofia.com</a>.
             </p>
-          </div>
-
-          <div>
-            <h2 className="font-mono text-sm font-bold text-[#f0f0f0] mb-3">6. Contato</h2>
-            <p>
-              Dúvidas: <a href="mailto:oi@madeofia.com.br" className="text-[#00FF88] hover:underline">oi@madeofia.com.br</a>
-            </p>
-          </div>
-        </div>
-      </section>
-    </>
+          ),
+        },
+      ]}
+    />
   );
 }

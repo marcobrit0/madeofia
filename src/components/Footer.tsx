@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandMark from "./BrandMark";
 import styles from "./site-chrome.module.css";
 
 const companyLinks = [
@@ -6,6 +7,7 @@ const companyLinks = [
   { href: "/#servicos", label: "Serviços" },
   { href: "/#portfolio", label: "Portfólio" },
   { href: "/#planos", label: "Planos" },
+  { href: "/blog", label: "Blog" },
   { href: "/contato", label: "Contato" },
 ];
 
@@ -23,8 +25,7 @@ export default function Footer() {
       <div className={styles.footerGrid}>
         <div className={styles.footerBrand}>
           <Link href="/" aria-label="MadeofIA home" className={styles.brandMark}>
-            <span className={styles.brandWord}>madeofIA</span>
-            <span className={styles.brandCursor}>_</span>
+            <BrandMark />
           </Link>
           <div className={styles.footerMeta}>
             <p>MadeofIA</p>
