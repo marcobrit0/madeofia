@@ -1,18 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
-  { href: "#processo", label: "Processo" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#portfolio", label: "Portfólio" },
-  { href: "#planos", label: "Planos" },
-  { href: "#contato", label: "Contato" },
+  { href: "/#processo", label: "Processo" },
+  { href: "/#servicos", label: "Serviços" },
+  { href: "/#portfolio", label: "Portfólio" },
+  { href: "/#planos", label: "Planos" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contato", label: "Contato" },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -33,25 +36,29 @@ export default function Nav() {
 
         {/* Nav links */}
         {links.map((l) => (
-          <a
+          <Link
             key={l.href}
             href={l.href}
-            className="text-xs text-white/45 hover:text-white transition-colors duration-200 px-3 py-1.5 rounded-full hover:bg-white/5"
+            className={`text-xs transition-colors duration-200 px-3 py-1.5 rounded-full hover:bg-white/5 ${
+              pathname === l.href || (l.href === "/blog" && pathname?.startsWith("/blog"))
+                ? "text-white"
+                : "text-white/45 hover:text-white"
+            }`}
           >
             {l.label}
-          </a>
+          </Link>
         ))}
 
         {/* Divider */}
         <div className="w-px h-4 bg-white/10 mx-1" />
 
         {/* CTA */}
-        <a
-          href="#contato"
+        <Link
+          href="/contato"
           className="text-xs px-4 py-2 rounded-full bg-[#4ade80] text-[#080807] font-semibold hover:bg-[#4ade80]/85 transition-all duration-200"
         >
           Começar projeto
-        </a>
+        </Link>
       </nav>
 
       {/* ── Mobile: top glass bar ── */}
@@ -80,22 +87,22 @@ export default function Nav() {
         <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="bg-[#080807]/95 backdrop-blur-xl border-b border-white/5 px-5 pb-5 pt-2 flex flex-col gap-1">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="block py-3 text-sm text-white/50 hover:text-white transition-colors border-b border-white/5 last:border-0"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contato"
+            <Link
+              href="/contato"
               onClick={() => setOpen(false)}
               className="mt-3 block text-center text-sm px-5 py-3 rounded-full bg-[#4ade80] text-[#080807] font-semibold"
             >
               Começar projeto
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

@@ -1,12 +1,16 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Portfólio — MadeofIA",
-  description: "Cases reais construídos por agentes de IA: CriarRecibo, TextoIA, Bizu.",
-};
+  description:
+    "Cases reais construídos por agentes de IA: CriarRecibo, TextoIA e Bizu.",
+  path: "/portfolio",
+  keywords: ["portfólio", "cases de produto digital", "sites em Next.js"],
+});
 
 const cases = [
   {

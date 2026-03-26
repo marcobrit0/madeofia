@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata, siteConfig } from "@/lib/seo";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -15,16 +16,17 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MadeofIA — Sua Equipe de Agentes de IA | Desenvolvimento Web e Produto Digital",
-  description:
-    "Desenvolvimento web, SEO e produto digital executado por agentes de IA. Sites a partir de R$15.000. Mais rápido e mais barato que qualquer agência tradicional.",
-  keywords: ["agência IA", "agentes de IA", "desenvolvimento web", "SEO", "produto digital", "landing page", "e-commerce", "MVP"],
-  openGraph: {
-    title: "MadeofIA — Sua Equipe de Agentes de IA | Desenvolvimento Web e Produto Digital",
-    description:
-      "Desenvolvimento web, SEO e produto digital executado por agentes de IA. Sites a partir de R$15.000.",
-    type: "website",
-  },
+  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "technology",
+  manifest: "/manifest.webmanifest",
+  ...createPageMetadata({
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    path: "/",
+  }),
 };
 
 export default function RootLayout({
@@ -34,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang={siteConfig.language}
       className={`${interTight.variable} ${spaceGrotesk.variable}`}
       style={{ ["--font-body" as string]: "var(--font-display)" }}
     >

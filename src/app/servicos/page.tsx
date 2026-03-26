@@ -1,12 +1,21 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Serviços — MadeofIA",
-  description: "Times de agentes de IA para cada etapa do seu produto digital. Planos a partir de R$15K.",
-};
+  description:
+    "Times de agentes de IA para cada etapa do seu produto digital. Planos a partir de R$15K.",
+  path: "/servicos",
+  keywords: [
+    "desenvolvimento web",
+    "SEO técnico",
+    "produto digital",
+    "criação de sites",
+  ],
+});
 
 const tiers = [
   {

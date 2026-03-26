@@ -1,10 +1,15 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { createPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Política de Privacidade — MadeofIA",
-};
+  description:
+    "Política de privacidade da MadeofIA com detalhes sobre coleta, uso e proteção de dados em conformidade com a LGPD.",
+  path: "/privacidade",
+  keywords: ["política de privacidade", "LGPD", "privacidade de dados"],
+});
 
 export default function Privacidade() {
   return (

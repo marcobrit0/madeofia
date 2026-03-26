@@ -1,13 +1,16 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "#processo", label: "Processo" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#portfolio", label: "Portfólio" },
-  { href: "#planos", label: "Planos" },
-  { href: "#contato", label: "Contato" },
+  { href: "/#processo", label: "Processo" },
+  { href: "/#servicos", label: "Serviços" },
+  { href: "/#portfolio", label: "Portfólio" },
+  { href: "/#planos", label: "Planos" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contato", label: "Contato" },
   { href: "/privacidade", label: "Privacidade" },
   { href: "/termos", label: "Termos" },
 ];
@@ -35,6 +38,8 @@ function LocalTime() {
 }
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="border-t border-white/8 bg-[#080807]">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -72,9 +77,16 @@ export default function Footer() {
             <ul className="space-y-3">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-sm text-white/45 hover:text-white transition-colors">
+                  <Link
+                    href={l.href}
+                    className={`text-sm transition-colors ${
+                      pathname === l.href || (l.href === "/blog" && pathname?.startsWith("/blog"))
+                        ? "text-white"
+                        : "text-white/45 hover:text-white"
+                    }`}
+                  >
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

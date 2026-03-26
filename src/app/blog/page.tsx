@@ -1,13 +1,15 @@
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import { createPageMetadata, siteConfig } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts, firstBlogPost } from "./posts";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Blog — MadeofIA",
   description:
-    "Artigos da MadeofIA sobre web design, SEO, produto digital e crescimento organico.",
+    "Artigos da MadeofIA sobre web design, SEO, produto digital e crescimento orgânico.",
+  path: "/blog",
   keywords: [
     "blog de web design",
     "seo",
@@ -15,13 +17,7 @@ export const metadata: Metadata = {
     "produto digital",
     "madeofia blog",
   ],
-  openGraph: {
-    title: "Blog — MadeofIA",
-    description:
-      "Artigos da MadeofIA sobre web design, SEO, produto digital e crescimento organico.",
-    type: "website",
-  },
-};
+});
 
 export default function Blog() {
   const blogSchema = {
@@ -29,14 +25,16 @@ export default function Blog() {
     "@type": "Blog",
     name: "Blog MadeofIA",
     description:
-      "Artigos da MadeofIA sobre web design, SEO, produto digital e crescimento organico.",
+      "Artigos da MadeofIA sobre web design, SEO, produto digital e crescimento orgânico.",
     inLanguage: "pt-BR",
+    url: `${siteConfig.url}/blog`,
     blogPost: blogPosts.map((post) => ({
       "@type": "BlogPosting",
       headline: post.seoTitle,
       datePublished: post.publishedAt,
       dateModified: post.publishedAt,
       keywords: [post.primaryKeyword, ...post.secondaryKeywords],
+      url: `${siteConfig.url}/blog/${post.slug}`,
     })),
   };
 
@@ -48,7 +46,7 @@ export default function Blog() {
       />
       <Nav />
 
-      <section className="pt-40 pb-18 max-w-7xl mx-auto px-6">
+      <section className="pt-40 pb-20 max-w-7xl mx-auto px-6">
         <span className="font-mono text-xs text-[#4ade80] uppercase tracking-[0.32em] block mb-4">
           // blog
         </span>
@@ -57,24 +55,24 @@ export default function Blog() {
             <h1 className="font-mono text-5xl md:text-7xl font-bold text-white leading-[0.95] mb-6">
               Insights que ajudam seu
               <br />
-              <span className="text-[#4ade80]">site a gerar negocio.</span>
+              <span className="text-[#4ade80]">site a gerar negócio.</span>
             </h1>
             <p className="text-white/58 text-lg md:text-xl max-w-2xl leading-relaxed">
-              Conteudo editorial sobre web design, SEO e produto digital com foco
-              em conversao, performance e clareza estrategica.
+              Conteúdo editorial sobre web design, SEO e produto digital com foco
+              em conversão, performance e clareza estratégica.
             </p>
           </div>
 
           <div className="border border-white/10 bg-white/[0.03] p-6">
             <p className="font-mono text-xs uppercase tracking-[0.28em] text-white/32 mb-3">
-              Publicado em 26 Mar 2026
+              Publicado em {firstBlogPost.publishedLabel}
             </p>
             <p className="font-mono text-2xl text-white leading-tight mb-3">
               {firstBlogPost.primaryKeyword}
             </p>
             <p className="text-sm leading-6 text-white/52">
               Primeiro artigo do hub editorial da MadeofIA, desenhado para captar
-              buscas de alta intencao e encaminhar leitores para servicos e
+              buscas de alta intenção e encaminhar leitores para serviços e
               contato.
             </p>
           </div>
@@ -91,7 +89,9 @@ export default function Blog() {
               <span className="font-mono text-xs uppercase tracking-[0.28em] text-[#4ade80]">
                 Artigo em destaque
               </span>
-              <span className="text-sm text-white/35">26 Mar 2026</span>
+              <span className="text-sm text-white/35">
+                {firstBlogPost.publishedLabel}
+              </span>
               <span className="text-sm text-white/35">
                 {firstBlogPost.readingTime}
               </span>
@@ -124,7 +124,7 @@ export default function Blog() {
           <div className="space-y-6">
             <div className="border border-white/10 p-6">
               <p className="font-mono text-xs uppercase tracking-[0.28em] text-white/32 mb-4">
-                O que voce encontra aqui
+                O que você encontra aqui
               </p>
               <ul className="space-y-4">
                 {firstBlogPost.summary.map((item) => (
@@ -138,12 +138,12 @@ export default function Blog() {
 
             <div className="border border-white/10 p-6">
               <p className="font-mono text-xs uppercase tracking-[0.28em] text-white/32 mb-4">
-                Proxima acao
+                Próxima ação
               </p>
               <p className="text-sm leading-6 text-white/55 mb-6">
-                Se o seu site atual nao comunica valor, nao ranqueia e nao
-                converte, a proxima etapa nao e trocar cor de botao. E repensar
-                a estrategia.
+                Se o seu site atual não comunica valor, não ranqueia e não
+                converte, a próxima etapa não é trocar cor de botão. É repensar
+                a estratégia.
               </p>
               <Link
                 href="/contato"
@@ -179,7 +179,9 @@ export default function Blog() {
                   <span className="font-mono text-xs uppercase tracking-[0.28em] text-[#4ade80]">
                     {post.category}
                   </span>
-                  <span className="text-xs text-white/35">26 Mar 2026</span>
+                  <span className="text-xs text-white/35">
+                    {post.publishedLabel}
+                  </span>
                 </div>
                 <h3 className="font-mono text-xl text-white leading-snug mb-4">
                   {post.seoTitle}
@@ -202,20 +204,20 @@ export default function Blog() {
             // seo-driven
           </p>
           <h2 className="font-mono text-4xl md:text-5xl text-white leading-tight mb-6">
-            Conteudo pensado para ranquear
+            Conteúdo pensado para ranquear
             <br />
             e para converter.
           </h2>
           <p className="text-white/58 leading-8 max-w-2xl mx-auto mb-8">
-            Cada artigo conecta intencao de busca, estrutura semantica,
-            distribuicao interna de links e CTA claro para gerar demanda de forma
+            Cada artigo conecta intenção de busca, estrutura semântica,
+            distribuição interna de links e CTA claro para gerar demanda de forma
             consistente.
           </p>
           <Link
             href="/servicos"
             className="inline-flex items-center justify-center font-mono text-sm uppercase tracking-[0.18em] px-8 py-4 border border-white/10 text-white hover:border-[#4ade80] hover:text-[#4ade80] transition-colors"
           >
-            Ver servicos de SEO e web design
+            Ver serviços de SEO e web design
           </Link>
         </div>
       </section>

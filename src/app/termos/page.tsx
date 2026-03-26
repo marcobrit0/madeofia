@@ -1,10 +1,15 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { createPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Termos de Uso — MadeofIA",
-};
+  description:
+    "Termos de uso da MadeofIA para contratação de serviços de desenvolvimento web e produto digital.",
+  path: "/termos",
+  keywords: ["termos de uso", "contrato de serviços", "desenvolvimento web"],
+});
 
 export default function Termos() {
   return (
