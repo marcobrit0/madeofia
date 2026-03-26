@@ -41,4 +41,70 @@ export const firstBlogPost: BlogPost = {
   ],
 };
 
-export const blogPosts = [firstBlogPost];
+export const secondBlogPost: BlogPost = {
+  slug: "landing-page-exemplos-7-modelos-que-convertem",
+  title:
+    "Landing Page: Exemplos, Estrutura e o Que Faz Uma Página Converter de Verdade",
+  seoTitle: "Landing Page Exemplos: 7 Modelos que Convertem em 2026",
+  description:
+    "Veja exemplos reais de landing pages, entenda a estrutura ideal e aprenda o que faz uma página transformar clique em lead ou venda.",
+  metaDescription:
+    "Veja exemplos reais de landing pages que convertem, entenda a estrutura ideal e aprenda a criar páginas que transformam visitantes em clientes.",
+  primaryKeyword: "landing page exemplos",
+  secondaryKeywords: [
+    "landing page",
+    "exemplos de landing page",
+    "página de captura",
+    "landing page que converte",
+  ],
+  publishedAt: "2026-03-26",
+  publishedLabel: "26 Mar 2026",
+  readingTime: "10 min de leitura",
+  category: "Landing Pages",
+  tags: [
+    "landing page",
+    "conversão",
+    "página de captura",
+    "copywriting",
+  ],
+  summary: [
+    "A estrutura base que aparece nas landing pages de alta conversão.",
+    "Sete modelos por tipo de negócio para adaptar ao seu funil.",
+    "Os erros mais comuns que destroem performance em tráfego pago.",
+  ],
+};
+
+export const thirdBlogPost: BlogPost = {
+  slug: "desenvolvimento-web-guia-completo-para-iniciantes",
+  title:
+    "Desenvolvimento Web: O Guia Sem Enrolação pra Entender o Que Você Está Contratando",
+  seoTitle: "Desenvolvimento Web: Guia Completo para Iniciantes [2026]",
+  description:
+    "Entenda desenvolvimento web sem jargão: front-end, back-end, tipos de projeto, custos e como avaliar propostas sem cair em armadilha.",
+  metaDescription:
+    "Desenvolvimento web explicado sem jargão. Entenda front-end, back-end, tecnologias, custos e como escolher o parceiro certo pro seu projeto.",
+  primaryKeyword: "desenvolvimento web",
+  secondaryKeywords: [
+    "desenvolvimento de sites",
+    "programação web",
+    "criar site profissional",
+    "desenvolvimento de aplicações web",
+  ],
+  publishedAt: "2026-03-26",
+  publishedLabel: "26 Mar 2026",
+  readingTime: "11 min de leitura",
+  category: "Desenvolvimento Web",
+  tags: [
+    "desenvolvimento web",
+    "next.js",
+    "produto digital",
+    "sites profissionais",
+  ],
+  summary: [
+    "A diferença prática entre front-end, back-end e full-stack.",
+    "Os tipos de projeto que mudam prazo, stack e orçamento.",
+    "Como ler propostas técnicas sem ser soterrado por jargão.",
+  ],
+};
+
+export const blogPosts = [firstBlogPost, secondBlogPost, thirdBlogPost];

@@ -1,83 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  createBlogPostMetadata,
+  createBlogPostSchemas,
+  serializeJsonLd,
+} from "../seo";
 import { firstBlogPost } from "../posts";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-const blogUrl = siteUrl ? `${siteUrl}/blog` : undefined;
-const articleUrl = siteUrl
-  ? `${siteUrl}/blog/${firstBlogPost.slug}`
-  : undefined;
+export const metadata: Metadata = createBlogPostMetadata(firstBlogPost);
 
-export const metadata: Metadata = {
-  title: firstBlogPost.seoTitle,
-  description: firstBlogPost.metaDescription,
-  keywords: [
-    firstBlogPost.primaryKeyword,
-    ...firstBlogPost.secondaryKeywords,
-    ...firstBlogPost.tags,
-  ],
-  openGraph: {
-    title: firstBlogPost.seoTitle,
-    description: firstBlogPost.metaDescription,
-    type: "article",
-    publishedTime: firstBlogPost.publishedAt,
-    authors: ["MadeofIA"],
-    ...(articleUrl ? { url: articleUrl } : {}),
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: firstBlogPost.seoTitle,
-    description: firstBlogPost.metaDescription,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: firstBlogPost.seoTitle,
-  description: firstBlogPost.metaDescription,
-  datePublished: firstBlogPost.publishedAt,
-  dateModified: firstBlogPost.publishedAt,
-  inLanguage: "pt-BR",
-  author: {
-    "@type": "Organization",
-    name: "MadeofIA",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "MadeofIA",
-  },
-  keywords: [firstBlogPost.primaryKeyword, ...firstBlogPost.secondaryKeywords],
-  ...(articleUrl
-    ? {
-        mainEntityOfPage: articleUrl,
-        url: articleUrl,
-      }
-    : {}),
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Blog",
-      ...(blogUrl ? { item: blogUrl } : {}),
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: firstBlogPost.seoTitle,
-      ...(articleUrl ? { item: articleUrl } : {}),
-    },
-  ],
-};
+const structuredData = createBlogPostSchemas(firstBlogPost);
 
 const sectionTitleClassName =
   "font-mono text-3xl md:text-4xl text-white leading-tight mt-16 mb-6";
@@ -91,7 +23,7 @@ export default function WebDesignGuidePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([articleSchema, breadcrumbSchema]),
+          __html: serializeJsonLd(structuredData),
         }}
       />
 

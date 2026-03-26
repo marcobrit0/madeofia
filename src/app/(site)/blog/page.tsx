@@ -1,9 +1,12 @@
 import { createPageMetadata, siteConfig } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { blogPosts, firstBlogPost } from "./posts";
+import { serializeJsonLd } from "./seo";
+import { blogPosts } from "./posts";
 
-export const metadata: Metadata = createPageMetadata({
+const featuredBlogPost = blogPosts[0];
+
+const baseMetadata = createPageMetadata({
   title: "Blog — MadeofIA",
   description:
     "Artigos da MadeofIA sobre web design, SEO, produto digital e crescimento orgânico.",
@@ -16,6 +19,25 @@ export const metadata: Metadata = createPageMetadata({
     "madeofia blog",
   ],
 });
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  openGraph: {
+    ...baseMetadata.openGraph,
+    images: [
+      {
+        url: "/blog/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Blog MadeofIA",
+      },
+    ],
+  },
+  twitter: {
+    ...baseMetadata.twitter,
+    images: ["/blog/opengraph-image"],
+  },
+};
 
 export default function Blog() {
   const blogSchema = {
@@ -40,7 +62,7 @@ export default function Blog() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(blogSchema) }}
       />
 
       <section className="pt-40 pb-20 max-w-7xl mx-auto px-6">
@@ -62,15 +84,15 @@ export default function Blog() {
 
           <div className="border border-white/10 bg-white/[0.03] p-6">
             <p className="font-mono text-xs uppercase tracking-[0.28em] text-white/32 mb-3">
-              Publicado em {firstBlogPost.publishedLabel}
+              Artigo em destaque • {featuredBlogPost.publishedLabel}
             </p>
             <p className="font-mono text-2xl text-white leading-tight mb-3">
-              {firstBlogPost.primaryKeyword}
+              {featuredBlogPost.primaryKeyword}
             </p>
             <p className="text-sm leading-6 text-white/52">
-              Primeiro artigo do hub editorial da MadeofIA, desenhado para captar
-              buscas de alta intenção e encaminhar leitores para serviços e
-              contato.
+              Hub editorial da MadeofIA com artigos desenhados para captar busca
+              orgânica de alta intenção e conduzir o leitor para uma próxima ação
+              clara.
             </p>
           </div>
         </div>
@@ -79,7 +101,7 @@ export default function Blog() {
       <section className="pb-12 max-w-7xl mx-auto px-6">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)]">
           <Link
-            href={`/blog/${firstBlogPost.slug}`}
+            href={`/blog/${featuredBlogPost.slug}`}
             className="group border border-white/10 bg-white/[0.02] p-8 md:p-10 transition-colors hover:border-[#4ade80]/40 hover:bg-white/[0.04]"
           >
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
@@ -87,23 +109,23 @@ export default function Blog() {
                 Artigo em destaque
               </span>
               <span className="text-sm text-white/35">
-                {firstBlogPost.publishedLabel}
+                {featuredBlogPost.publishedLabel}
               </span>
               <span className="text-sm text-white/35">
-                {firstBlogPost.readingTime}
+                {featuredBlogPost.readingTime}
               </span>
             </div>
 
             <h2 className="font-mono text-3xl md:text-5xl text-white leading-tight mb-4">
-              {firstBlogPost.title}
+              {featuredBlogPost.title}
             </h2>
 
             <p className="text-base md:text-lg leading-8 text-white/60 max-w-3xl mb-8">
-              {firstBlogPost.metaDescription}
+              {featuredBlogPost.metaDescription}
             </p>
 
             <div className="flex flex-wrap gap-3 mb-8">
-              {firstBlogPost.tags.map((tag) => (
+              {featuredBlogPost.tags.map((tag) => (
                 <span
                   key={tag}
                   className="border border-white/10 px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-white/52"
@@ -124,7 +146,7 @@ export default function Blog() {
                 O que você encontra aqui
               </p>
               <ul className="space-y-4">
-                {firstBlogPost.summary.map((item) => (
+                {featuredBlogPost.summary.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-6 text-white/60">
                     <span className="text-[#4ade80] shrink-0">+</span>
                     <span>{item}</span>
@@ -162,7 +184,9 @@ export default function Blog() {
               </p>
               <h2 className="font-mono text-3xl text-white">Todos os artigos</h2>
             </div>
-            <p className="text-sm text-white/35">{blogPosts.length} publicado</p>
+            <p className="text-sm text-white/35">
+              {blogPosts.length} {blogPosts.length === 1 ? "publicado" : "publicados"}
+            </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
