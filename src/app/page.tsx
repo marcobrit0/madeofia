@@ -23,35 +23,35 @@ const processSteps = [
     title: "Escolha seu plano",
     description:
       "Selecione o pacote ideal para o seu projeto. Sem surpresas, sem custos ocultos.",
-    visual: "plans",
+    visual: "planSelection",
   },
   {
     number: "02.",
     title: "Envie o briefing",
     description:
       "Descreva seu projeto. Quanto mais contexto, melhor. Nossa CEO analisa e estrutura tudo.",
-    visual: "request",
+    visual: "briefing",
   },
   {
     number: "03.",
     title: "Construção",
     description:
       "Nosso CTO e time de agentes constroem seu projeto com código limpo e deploy contínuo.",
-    visual: "build",
+    visual: "construction",
   },
   {
     number: "04.",
     title: "Revisão",
     description:
       "Você revisa, comenta, e iteramos. Sem limite de ajustes dentro do escopo.",
-    visual: "metrics",
+    visual: "review",
   },
   {
     number: "05.",
     title: "Deploy + Escala",
     description:
       "Colocamos no ar e configuramos analytics, SEO e monitoramento. Depois, é só crescer.",
-    visual: "globe",
+    visual: "launch",
   },
 ];
 
@@ -540,151 +540,307 @@ function AboutRevealLine({
 }
 
 function ProcessVisual({ type, reducedMotion }: { type: string; reducedMotion: boolean }) {
-  if (type === "plans") {
-    return (
-      <motion.div
-        className={`${styles.processVisual} ${styles.processSubscription}`}
-        animate={reducedMotion ? undefined : { y: [0, -6, 0] }}
-        transition={reducedMotion ? undefined : { duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      >
-        <div className={styles.subscriptionToggle}>
-          <span className={styles.subscriptionOff}>Off</span>
-          <span className={styles.subscriptionChip}>Basic</span>
-          <span className={styles.subscriptionChipMuted}>Pro</span>
-        </div>
-        <div className={styles.subscriptionLabel}>Subscription</div>
-      </motion.div>
-    );
-  }
-
-  if (type === "request") {
-    const requestCards = [
-      "Lead capture automation",
-      "Sales follow-up bot",
-      "Internal ops workflow",
+  if (type === "planSelection") {
+    const planOptions = [
+      { name: "Essencial", price: "R$15K", scope: "site institucional" },
+      { name: "Crescimento", price: "R$25K", scope: "site + SEO" },
+      { name: "Produto", price: "R$45K", scope: "app web" },
     ];
 
     return (
-      <div className={`${styles.processVisual} ${styles.processRequest}`}>
-        <div className={styles.requestFrame}>
-          {requestCards.map((card, index) => (
+      <div className={`${styles.processVisual} ${styles.processPlanSelection}`}>
+        <div className={styles.planSelectionGrid}>
+          {planOptions.map((plan, index) => (
             <motion.div
-              key={card}
-              className={`${styles.requestCardAnimated} ${
-                index === 1 ? styles.requestCardAnimatedStrong : styles.requestCardAnimatedMuted
-              }`}
+              key={plan.name}
+              className={`${styles.planSelectionCard} ${index === 1 ? styles.planSelectionCardActive : ""}`}
               animate={
                 reducedMotion
                   ? undefined
                   : {
-                      y: [56, 12, -32],
-                      opacity: [0, 1, 0],
-                      scale: [0.94, 1, 0.96],
+                      y: index === 1 ? [0, -6, 0] : [0, 4, 0],
+                      scale: index === 1 ? [1, 1.02, 1] : [0.985, 1, 0.985],
+                      opacity: [0.86, 1, 0.86],
                     }
               }
               transition={
                 reducedMotion
                   ? undefined
                   : {
-                      duration: 5.8,
+                      duration: 5.4,
                       repeat: Number.POSITIVE_INFINITY,
                       ease: "easeInOut",
-                      delay: index * 0.95,
+                      delay: index * 0.16,
                     }
               }
             >
-              <span className={styles.requestCardDot} />
-              <span>{card}</span>
+              <span className={styles.planSelectionName}>{plan.name}</span>
+              <strong className={styles.planSelectionPrice}>{plan.price}</strong>
+              <span className={styles.planSelectionScope}>{plan.scope}</span>
             </motion.div>
           ))}
         </div>
         <motion.div
-          className={styles.requestBubble}
-          animate={reducedMotion ? undefined : { opacity: [0.4, 1, 0.4] }}
-          transition={reducedMotion ? undefined : { duration: 2.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          className={styles.planSelectionSummary}
+          animate={reducedMotion ? undefined : { opacity: [0.62, 1, 0.62] }}
+          transition={reducedMotion ? undefined : { duration: 3.4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         >
-          New contact form entry
+          Escopo claro • sem custos ocultos
         </motion.div>
       </div>
     );
   }
 
-  if (type === "build") {
+  if (type === "briefing") {
+    const briefingRows = [
+      { label: "Objetivo", value: "gerar leads" },
+      { label: "Prazo", value: "4 semanas" },
+      { label: "Escopo", value: "landing + CRM" },
+    ];
+
     return (
-      <motion.div
-        className={`${styles.processVisual} ${styles.processBuild}`}
-        animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
-        transition={reducedMotion ? undefined : { duration: 4.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      >
-        <div className={styles.buildBars}>
-          <span />
-          <span />
-          <span />
+      <div className={`${styles.processVisual} ${styles.processBriefing}`}>
+        <div className={styles.briefingComposer}>
+          <span className={styles.briefingComposerLabel}>Briefing</span>
+          <strong className={styles.briefingComposerTitle}>Projeto SaaS para vendas B2B</strong>
+          <div className={styles.briefingComposerLines}>
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
-        <div className={styles.buildCode}>
-          <span />
-          <span />
-          <span />
-          <span />
+        <motion.div
+          className={styles.briefingConnector}
+          animate={reducedMotion ? undefined : { opacity: [0.3, 1, 0.3], scaleY: [0.94, 1.04, 0.94] }}
+          transition={reducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        />
+        <div className={styles.briefingBoard}>
+          <motion.div
+            className={styles.briefingBoardBadge}
+            animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
+            transition={reducedMotion ? undefined : { duration: 3.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          >
+            CEO analisa
+          </motion.div>
+          {briefingRows.map((row, index) => (
+            <motion.div
+              key={row.label}
+              className={styles.briefingRow}
+              animate={
+                reducedMotion
+                  ? undefined
+                  : {
+                      x: [0, 6, 0],
+                      opacity: [0.58, 1, 0.58],
+                    }
+              }
+              transition={
+                reducedMotion
+                  ? undefined
+                  : {
+                      duration: 4.8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                      delay: index * 0.22,
+                    }
+              }
+            >
+              <span>{row.label}</span>
+              <strong>{row.value}</strong>
+            </motion.div>
+          ))}
         </div>
-      </motion.div>
+      </div>
     );
   }
 
-  if (type === "metrics") {
+  if (type === "construction") {
+    const buildAgents = ["CTO", "Agente UI", "Agente Backend"];
+    const buildStages = ["Build", "Testes", "Deploy"];
+
     return (
-      <div className={`${styles.processVisual} ${styles.processMetrics}`}>
-        {["Speed", "Accuracy", "Security"].map((label, index) => (
+      <div className={`${styles.processVisual} ${styles.processConstruction}`}>
+        <div className={styles.constructionAgents}>
+          {buildAgents.map((agent, index) => (
+            <motion.span
+              key={agent}
+              className={`${styles.constructionAgent} ${index === 0 ? styles.constructionAgentLead : ""}`}
+              animate={reducedMotion ? undefined : { y: [0, index === 0 ? -5 : 4, 0] }}
+              transition={
+                reducedMotion
+                  ? undefined
+                  : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.16 }
+              }
+            >
+              {agent}
+            </motion.span>
+          ))}
+        </div>
+        <div className={styles.constructionWorkspace}>
+          <div className={styles.constructionEditor}>
+            <div className={styles.constructionEditorTop}>
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className={styles.constructionCodeLines}>
+              {[0, 1, 2, 3].map((line) => (
+                <motion.span
+                  key={line}
+                  animate={reducedMotion ? undefined : { scaleX: [0.86, 1, 0.86] }}
+                  transition={
+                    reducedMotion
+                      ? undefined
+                      : {
+                          duration: 3.6,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "easeInOut",
+                          delay: line * 0.2,
+                        }
+                  }
+                />
+              ))}
+            </div>
+          </div>
+          <div className={styles.constructionPipeline}>
+            {buildStages.map((stage, index) => (
+              <motion.div
+                key={stage}
+                className={styles.constructionStage}
+                animate={reducedMotion ? undefined : { opacity: [0.42, 1, 0.42] }}
+                transition={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        duration: 3.8,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: index * 0.35,
+                      }
+                }
+              >
+                <span className={styles.constructionStageDot} />
+                <span>{stage}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "review") {
+    const reviewComments = ["Ajustar título", "Trocar CTA", "Aprovado"];
+
+    return (
+      <div className={`${styles.processVisual} ${styles.processReview}`}>
+        <div className={styles.reviewCanvas}>
+          <div className={styles.reviewMockup}>
+            <span className={styles.reviewMockupHeader} />
+            <span className={styles.reviewMockupHero} />
+            <span className={styles.reviewMockupLine} />
+            <span className={styles.reviewMockupLineShort} />
+          </div>
+          {reviewComments.map((comment, index) => (
+            <motion.div
+              key={comment}
+              className={`${styles.reviewComment} ${index === 2 ? styles.reviewCommentApproved : ""}`}
+              style={{
+                top: index === 0 ? "18%" : index === 1 ? "58%" : "72%",
+                left: index === 1 ? "58%" : index === 2 ? "16%" : "12%",
+              }}
+              animate={reducedMotion ? undefined : { y: [0, index === 1 ? 7 : -7, 0] }}
+              transition={
+                reducedMotion
+                  ? undefined
+                  : { duration: 4.4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.24 }
+              }
+            >
+              {comment}
+            </motion.div>
+          ))}
+        </div>
+        <div className={styles.reviewVersions}>
+          <span>v1</span>
           <motion.div
-            key={label}
-            className={styles.metricPill}
-            animate={reducedMotion ? undefined : { y: [0, index % 2 === 0 ? -6 : 6, 0] }}
+            className={styles.reviewVersionsTrack}
+            animate={reducedMotion ? undefined : { scaleX: [0.2, 1, 0.2], opacity: [0.38, 1, 0.38] }}
+            transition={reducedMotion ? undefined : { duration: 3.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          />
+          <span>v2</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "launch") {
+    const growthBars = [46, 68, 84, 110, 138];
+
+    return (
+      <div className={`${styles.processVisual} ${styles.processLaunch}`}>
+        <div className={styles.launchStatus}>
+          <motion.span
+            className={styles.launchStatusDot}
+            animate={reducedMotion ? undefined : { scale: [1, 1.25, 1], opacity: [0.6, 1, 0.6] }}
+            transition={reducedMotion ? undefined : { duration: 2.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          />
+          <div>
+            <strong className={styles.launchStatusTitle}>Site no ar</strong>
+            <span className={styles.launchStatusMeta}>analytics, SEO e monitoramento ativos</span>
+          </div>
+        </div>
+        <div className={styles.launchGrowth}>
+          <div className={styles.launchGrowthHeader}>
+            <span>Tráfego</span>
+            <strong>+42%</strong>
+          </div>
+          <div className={styles.launchBars}>
+            {growthBars.map((height, index) => (
+              <motion.span
+                key={height}
+                style={{ height }}
+                animate={reducedMotion ? undefined : { opacity: [0.54, 1, 0.54], scaleY: [0.88, 1, 0.88] }}
+                transition={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        duration: 3.6,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: index * 0.12,
+                      }
+                }
+              />
+            ))}
+          </div>
+        </div>
+        <div className={styles.launchPanels}>
+          <motion.div
+            className={styles.launchPanel}
+            animate={reducedMotion ? undefined : { x: [0, 4, 0] }}
             transition={
               reducedMotion
                 ? undefined
-                : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.2 }
+                : { duration: 4.4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }
             }
           >
-            {label}
+            <span>SEO</span>
+            <strong>páginas indexadas</strong>
           </motion.div>
-        ))}
+          <motion.div
+            className={styles.launchPanel}
+            animate={reducedMotion ? undefined : { x: [0, -4, 0] }}
+            transition={reducedMotion ? undefined : { duration: 4.4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.2 }}
+          >
+            <span>Uptime</span>
+            <strong>99.9%</strong>
+          </motion.div>
+        </div>
       </div>
     );
   }
 
-  return (
-    <div className={`${styles.processVisual} ${styles.processGlobe}`}>
-      <motion.div
-        className={styles.globeOrb}
-        animate={reducedMotion ? undefined : { scale: [1, 1.06, 1], opacity: [0.9, 1, 0.9] }}
-        transition={reducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-      <motion.div
-        className={styles.globeRing}
-        animate={reducedMotion ? undefined : { rotate: 360 }}
-        transition={reducedMotion ? undefined : { duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      />
-      {[0, 1, 2].map((index) => (
-        <motion.div
-          key={index}
-          className={styles.globeOrbit}
-          style={{ rotate: index * 120 }}
-          animate={reducedMotion ? undefined : { rotate: index * 120 + (index % 2 === 0 ? 360 : -360) }}
-          transition={
-            reducedMotion
-              ? undefined
-              : {
-                  duration: 10 + index * 2.5,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                }
-          }
-        >
-          <span className={styles.globeNode} />
-        </motion.div>
-      ))}
-    </div>
-  );
+  return null;
 }
 
 function ServiceVisual({ type, reducedMotion }: { type: string; reducedMotion: boolean }) {
