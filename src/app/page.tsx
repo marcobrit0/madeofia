@@ -80,18 +80,21 @@ const workItems = [
   {
     year: "2024",
     title: "CriarRecibo",
+    href: "https://criarrecibo.com.br",
     description:
       "Gerador de recibos online para MEIs brasileiros. 10 landing pages otimizadas para SEO, geração de PDF no navegador, 180K+ buscas mensais no nicho.",
   },
   {
     year: "2024",
     title: "TextoIA",
+    href: "https://textoia.com.br",
     description:
       "Ferramenta de escrita com IA para o mercado brasileiro. Corretor, gerador e aprimorador de texto com SEO orgânico como motor de crescimento.",
   },
   {
     year: "2024",
     title: "Bizu",
+    href: "https://bizu.chat",
     description:
       "Plataforma de chat com IA para o Brasil. Interface em português, integração com modelos de linguagem e pagamento via PIX.",
   },
@@ -977,6 +980,9 @@ export default function Home() {
             initial={prefersReducedMotion ? false : "hidden"}
             animate={prefersReducedMotion ? undefined : "show"}
           >
+            <motion.div className={styles.heroPill} variants={revealUp}>
+              Agência de Desenvolvimento de Produtos Digitais
+            </motion.div>
             <motion.h1 className={styles.heroTitle} variants={revealUp}>
               Sua equipe de{" "}
               <span className={styles.heroAccent}>agentes de IA</span>.
@@ -1110,25 +1116,29 @@ export default function Home() {
           <div className={styles.workLayout}>
             <motion.div className={styles.workList} variants={staggerChildren}>
               {workItems.map((item, index) => (
-                <motion.article
+                <motion.a
                   key={item.title}
                   className={`${styles.workItem} ${activeWork === index ? styles.workItemActive : ""}`}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
                   variants={revealUp}
                   initial={prefersReducedMotion ? false : "hidden"}
                   whileInView={prefersReducedMotion ? undefined : "show"}
                   viewport={{ once: true, amount: 0.6 }}
                   onHoverStart={() => setActiveWork(index)}
-                  whileHover={prefersReducedMotion ? undefined : { borderColor: "rgba(211,255,202,0.16)" }}
+                  onFocus={() => setActiveWork(index)}
+                  whileHover={prefersReducedMotion ? undefined : "hover"}
                 >
                   <div className={styles.workMeta}>{item.year}</div>
-                  <motion.div className={styles.workRow} whileHover="hover">
+                  <motion.div className={styles.workRow}>
                     <div>
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
                     </div>
                     <ArrowIcon className={styles.workArrow} variants={arrowHoverVariants} />
                   </motion.div>
-                </motion.article>
+                </motion.a>
               ))}
             </motion.div>
             <motion.div className={styles.workPreview} variants={revealUp}>
@@ -1171,7 +1181,7 @@ export default function Home() {
                     <div className={styles.planPrice}>{plan.price}</div>
                     <div className={styles.planPeriod}>{plan.period}</div>
                   </div>
-                  {plan.popular ? <span className={styles.planBadge}>Most Popular</span> : null}
+                  {plan.popular ? <span className={styles.planBadge}>Popular</span> : null}
                 </div>
                 <div className={styles.planDivider} />
                 <ul className={styles.planFeatures}>
