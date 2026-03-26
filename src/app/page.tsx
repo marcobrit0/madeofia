@@ -1264,7 +1264,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            <span>MadeofIA</span> vs agência
+            <span>MadeofIA</span> vs agência tradicional
           </motion.h2>
           <motion.p className={styles.sectionLead} variants={revealUp}>
             Mesmo objetivo. Estruturas completamente diferentes.
