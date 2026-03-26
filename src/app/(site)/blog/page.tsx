@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
 import { createPageMetadata, siteConfig } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -44,7 +42,6 @@ export default function Blog() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
-      <Nav />
 
       <section className="pt-40 pb-20 max-w-7xl mx-auto px-6">
         <span className="font-mono text-xs text-[#4ade80] uppercase tracking-[0.32em] block mb-4">
@@ -221,8 +218,6 @@ export default function Blog() {
           </Link>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

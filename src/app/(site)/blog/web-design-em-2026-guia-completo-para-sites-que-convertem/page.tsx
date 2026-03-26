@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { firstBlogPost } from "../posts";
@@ -96,7 +94,6 @@ export default function WebDesignGuidePage() {
           __html: JSON.stringify([articleSchema, breadcrumbSchema]),
         }}
       />
-      <Nav />
 
       <section className="pt-40 pb-14 max-w-7xl mx-auto px-6">
         <div className="max-w-5xl">
@@ -503,8 +500,6 @@ export default function WebDesignGuidePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

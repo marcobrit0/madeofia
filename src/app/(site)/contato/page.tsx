@@ -1,7 +1,5 @@
 "use client";
 
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { useState } from "react";
 
 export default function Contato() {
@@ -30,8 +28,6 @@ export default function Contato() {
 
   return (
     <>
-      <Nav />
-
       <section className="pt-40 pb-24 max-w-7xl mx-auto px-6">
         <span className="font-mono text-xs text-[#00FF88] uppercase tracking-widest block mb-4">
           // contato
@@ -194,8 +190,6 @@ export default function Contato() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

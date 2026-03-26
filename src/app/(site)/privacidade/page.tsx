@@ -1,5 +1,3 @@
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { createPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -14,7 +12,6 @@ export const metadata: Metadata = createPageMetadata({
 export default function Privacidade() {
   return (
     <>
-      <Nav />
       <section className="pt-40 pb-32 max-w-3xl mx-auto px-6">
         <span className="font-mono text-xs text-[#00FF88] uppercase tracking-widest block mb-4">
           // legal
@@ -67,7 +64,6 @@ export default function Privacidade() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

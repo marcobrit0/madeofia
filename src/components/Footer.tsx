@@ -1,127 +1,64 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import styles from "./site-chrome.module.css";
 
-const navLinks = [
+const companyLinks = [
   { href: "/#processo", label: "Processo" },
   { href: "/#servicos", label: "Serviços" },
   { href: "/#portfolio", label: "Portfólio" },
   { href: "/#planos", label: "Planos" },
-  { href: "/blog", label: "Blog" },
   { href: "/contato", label: "Contato" },
-  { href: "/privacidade", label: "Privacidade" },
-  { href: "/termos", label: "Termos" },
 ];
 
-function LocalTime() {
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const update = () => {
-      setTime(
-        new Date().toLocaleTimeString("pt-BR", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          timeZone: "America/Sao_Paulo",
-        })
-      );
-    };
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  return <span>{time}</span>;
-}
+const resourceLinks = [
+  { href: "/privacidade", label: "Privacidade" },
+  { href: "/termos", label: "Termos" },
+  { href: "https://www.linkedin.com/", label: "LinkedIn", external: true },
+  { href: "https://www.instagram.com/", label: "Instagram", external: true },
+];
 
 export default function Footer() {
-  const pathname = usePathname();
-
   return (
-    <footer className="border-t border-white/8 bg-[#080807]">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Top grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-          {/* Brand + contact */}
-          <div className="md:col-span-1">
-            <div className="font-mono text-base font-bold mb-6 flex items-center gap-0">
-              <span className="text-white">madeofIA</span>
-              <span className="text-[#4ade80] animate-[blink_1s_step-end_infinite]">_</span>
-            </div>
-            <div className="space-y-3 text-sm text-white/45">
-              <div>
-                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">Email</p>
-                <a href="mailto:ola@madeofia.com" className="hover:text-white transition-colors">
-                  ola@madeofia.com ↗
-                </a>
-              </div>
-              <div>
-                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">CNPJ</p>
-                <p>65.599.230/0001-64</p>
-              </div>
-              <div>
-                <p className="text-white/25 text-xs uppercase tracking-widest mb-1">Horário local</p>
-                <p className="font-mono">
-                  <LocalTime /> (BRT)
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Nav links */}
-          <div>
-            <p className="text-white/25 text-xs uppercase tracking-widest mb-4">Navegação</p>
-            <ul className="space-y-3">
-              {navLinks.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className={`text-sm transition-colors ${
-                      pathname === l.href || (l.href === "/blog" && pathname?.startsWith("/blog"))
-                        ? "text-white"
-                        : "text-white/45 hover:text-white"
-                    }`}
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <p className="text-white/25 text-xs uppercase tracking-widest mb-4">Redes</p>
-            <ul className="space-y-3">
-              {[
-                { label: "LinkedIn", href: "https://linkedin.com" },
-                { label: "Instagram", href: "https://instagram.com" },
-                { label: "Twitter / X", href: "https://x.com" },
-              ].map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/45 hover:text-white transition-colors"
-                  >
-                    {s.label} ↗
-                  </a>
-                </li>
-              ))}
-            </ul>
+    <footer className={styles.footer}>
+      <div className={styles.footerLine} />
+      <div className={styles.footerGrid}>
+        <div className={styles.footerBrand}>
+          <Link href="/" aria-label="MadeofIA home" className={styles.brandMark}>
+            <span className={styles.brandWord}>madeofIA</span>
+            <span className={styles.brandCursor}>_</span>
+          </Link>
+          <div className={styles.footerMeta}>
+            <p>MadeofIA</p>
+            <p>CNPJ 65.599.230/0001-64</p>
+            <p>Brasil - 100% remoto</p>
+            <a href="mailto:ola@madeofia.com">ola@madeofia.com</a>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/25 text-xs">
-            © 2026 MadeofIA. Todos os direitos reservados.
-          </p>
-          <p className="text-white/25 text-xs">CNPJ 65.599.230/0001-64</p>
+        <div className={styles.footerLinks}>
+          {companyLinks.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className={styles.footerLinks}>
+          {resourceLinks.map((link) =>
+            link.external ? (
+              <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            )
+          )}
+        </div>
+
+        <div className={styles.footerMeta}>
+          <p>© 2026 MadeofIA.</p>
+          <p>Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

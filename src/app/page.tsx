@@ -10,6 +10,7 @@ import {
   type MotionValue,
   type Variants,
 } from "framer-motion";
+import Footer from "@/components/Footer";
 import { useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -1635,42 +1636,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerLine} />
-        <div className={styles.footerGrid}>
-          <div className={styles.footerBrand}>
-            <a className={styles.logo} href="/">
-              <BrandMark />
-            </a>
-            <div className={styles.footerMeta}>
-              <p>MadeofIA</p>
-              <p>CNPJ 65.599.230/0001-64</p>
-              <p>Brasil — 100% remoto</p>
-              <p>ola@madeofia.com</p>
-            </div>
-          </div>
-
-          <div className={styles.footerLinks}>
-            <a href="#processo">Processo</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#planos">Planos</a>
-            <a href="#contato">Contato</a>
-          </div>
-
-          <div className={styles.footerLinks}>
-            <a href="/privacidade">Privacidade</a>
-            <a href="/termos">Termos</a>
-            <a href="https://www.linkedin.com/">LinkedIn</a>
-            <a href="https://www.instagram.com/">Instagram</a>
-          </div>
-
-          <div className={styles.footerMeta}>
-            <p>© 2026 MadeofIA.</p>
-            <p>Todos os direitos reservados.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </main>
   );

@@ -1,5 +1,3 @@
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -122,9 +120,6 @@ const faq = [
 export default function Servicos() {
   return (
     <>
-      <Nav />
-
-      {/* Header */}
       <section className="pt-40 pb-24 max-w-7xl mx-auto px-6">
         <span className="font-mono text-xs text-[#00FF88] uppercase tracking-widest block mb-4">
           // serviços
@@ -228,8 +223,6 @@ export default function Servicos() {
           Agendar conversa →
         </Link>
       </section>
-
-      <Footer />
     </>
   );
 }

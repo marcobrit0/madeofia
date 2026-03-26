@@ -50,8 +50,7 @@
 .hero,
 .about,
 .section,
-.faqSection,
-.footer {
+.faqSection {
   position: relative;
   z-index: 1;
 }
@@ -826,9 +825,6 @@
 .contactBlock p,
 .contactForm span,
 .faqItem p,
-.footerMeta p,
-.footerMeta a,
-.footerLinks a,
 .teamInfo span {
   color: #ffffff;
   font-family: var(--font-display), sans-serif;
@@ -1894,8 +1890,7 @@
 }
 
 .planDivider,
-.contactLine,
-.footerLine {
+.contactLine {
   background: var(--nebula-border);
   height: 1px;
 }
@@ -2149,50 +2144,6 @@
   padding: 0 16px 18px 42px;
 }
 
-.footer {
-  background: var(--nebula-bg);
-  padding: 50px 0 40px;
-}
-
-.footerLine {
-  margin: 0 auto 40px;
-  max-width: 1440px;
-  width: calc(100% - 80px);
-}
-
-.footerGrid {
-  display: grid;
-  gap: 25px;
-  grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
-  margin: 0 auto;
-  max-width: 1440px;
-  padding: 0 40px;
-}
-
-.footerBrand,
-.footerLinks,
-.footerMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.footerMeta p:first-child,
-.footerMeta a:first-child {
-  color: var(--nebula-copy);
-}
-
-.footerLinks a,
-.footerMeta a,
-.footerMeta p {
-  color: var(--nebula-copy);
-  font-size: 14px;
-}
-
-.footerBrand .footerMeta {
-  margin-top: 16px;
-}
-
 @media (max-width: 1199.98px) {
   .comparisonGrid,
   .processGrid,
@@ -2213,8 +2164,7 @@
 
   .about .sectionShell,
   .workLayout,
-  .contactLayout,
-  .footerGrid {
+  .contactLayout {
     grid-template-columns: 1fr;
   }
 
@@ -2336,8 +2286,7 @@
     width: 360px;
   }
 
-  .sectionShell,
-  .footerGrid {
+  .sectionShell {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -2366,8 +2315,7 @@
   }
 
   .section,
-  .faqSection,
-  .footer {
+  .faqSection {
     padding-top: 60px;
   }
 
@@ -2485,10 +2433,6 @@
 
   .formRow {
     grid-template-columns: 1fr;
-  }
-
-  .footerLine {
-    width: calc(100% - 30px);
   }
 
 }
