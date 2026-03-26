@@ -580,6 +580,25 @@
   color: var(--nebula-accent);
 }
 
+.comparisonSection {
+  padding-top: 110px;
+  padding-bottom: 32px;
+}
+
+.comparisonSectionFollowup {
+  padding-top: 32px;
+}
+
+.sectionLead {
+  color: var(--nebula-muted);
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  margin: -22px 0 34px;
+  max-width: 520px;
+}
+
 .processGrid,
 .serviceGrid,
 .planGrid,
@@ -587,6 +606,169 @@
 .teamGrid {
   display: grid;
   gap: 10px;
+}
+
+.comparisonGrid,
+.valueStackGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.comparisonCard,
+.valueStackCard {
+  background: var(--nebula-surface);
+  border: 1px solid var(--nebula-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 32px;
+  position: relative;
+}
+
+.comparisonCardTraditional,
+.valueStackCardTraditional {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(15, 15, 15, 0.96) 30%),
+    var(--nebula-surface);
+}
+
+.comparisonCardMadeofia,
+.valueStackCardMadeofia {
+  background:
+    linear-gradient(180deg, rgba(211, 255, 202, 0.08) 0%, rgba(15, 15, 15, 0.96) 28%),
+    var(--nebula-surface);
+}
+
+.comparisonCardTop,
+.valueStackIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.comparisonEyebrow {
+  align-items: center;
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(211, 255, 202, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.8);
+  display: inline-flex;
+  font-family: var(--font-display), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  min-height: 30px;
+  padding: 0 12px;
+}
+
+.comparisonCardTop strong,
+.valueStackIntro h3 {
+  color: var(--nebula-copy);
+  font-family: var(--font-display), sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  margin: 0;
+  max-width: 12ch;
+}
+
+.comparisonRows,
+.valueStackList {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.comparisonRow,
+.valueStackItem,
+.valueStackSummary {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+.comparisonRow {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 116px minmax(0, 1fr);
+  padding: 18px 20px;
+}
+
+.comparisonRow span,
+.valueStackItem strong {
+  color: var(--nebula-copy);
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 1.3;
+}
+
+.comparisonCardMadeofia .comparisonRow span,
+.valueStackCardMadeofia .valueStackItem strong {
+  color: var(--nebula-accent);
+}
+
+.comparisonRow p,
+.valueStackItem p,
+.valueStackSummary {
+  color: var(--nebula-muted);
+  font-family: var(--font-display), sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.45px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.comparisonFoot {
+  align-items: flex-start;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.comparisonFoot span {
+  color: var(--nebula-muted);
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.45px;
+  line-height: 1.1;
+}
+
+.comparisonFoot strong {
+  color: var(--nebula-copy);
+  font-family: var(--font-display), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.valueStackCard {
+  min-height: 540px;
+}
+
+.valueStackList {
+  flex: 1 1 auto;
+}
+
+.valueStackItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+}
+
+.valueStackSummary {
+  margin-top: 18px;
+  padding: 20px 22px;
 }
 
 .processGrid {
@@ -2020,6 +2202,8 @@
 }
 
 @media (max-width: 1199.98px) {
+  .comparisonGrid,
+  .valueStackGrid,
   .processGrid,
   .serviceGrid,
   .planGrid,
@@ -2196,17 +2380,42 @@
     padding-top: 60px;
   }
 
+  .comparisonSection {
+    padding-top: 50px;
+    padding-bottom: 24px;
+  }
+
+  .comparisonSectionFollowup {
+    padding-top: 24px;
+  }
+
   .sectionTitle,
   .faqTitle {
     margin-bottom: 35px;
+  }
+
+  .sectionLead {
+    margin: -16px 0 28px;
   }
 
   .processCard,
   .serviceCard,
   .planCard,
   .testimonialCard,
-  .teamCard {
+  .teamCard,
+  .comparisonCard,
+  .valueStackCard {
     padding: 35px;
+  }
+
+  .comparisonCardTop strong,
+  .valueStackIntro h3 {
+    font-size: 29px;
+    max-width: 100%;
+  }
+
+  .comparisonRow {
+    grid-template-columns: 1fr;
   }
 
   .processVisual,

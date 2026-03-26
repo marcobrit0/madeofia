@@ -270,6 +270,60 @@ const aboutLines = [
   ],
 ] as const;
 
+const comparisonRows = [
+  {
+    label: "Equipe",
+    traditional: "Você é alocado entre vários perfis, handoffs e camadas de aprovação.",
+    madeofia: "Você acessa uma estrutura de agentes especializados operando em paralelo.",
+  },
+  {
+    label: "Cobrança",
+    traditional: "A conta cresce com horas, coordenação interna e tempo improdutivo.",
+    madeofia: "O investimento vai para escopo, execução e entrega real.",
+  },
+  {
+    label: "Velocidade",
+    traditional: "Sprints longos, espera entre áreas e retrabalho custoso.",
+    madeofia: "Briefing, build e revisão acontecem com muito menos atrito.",
+  },
+  {
+    label: "Resultado",
+    traditional: "Mais gente no projeto costuma significar uma fatura maior.",
+    madeofia: "Mais automação e foco significam mais produto entregue por menos.",
+  },
+] as const;
+
+const costBreakdown = {
+  traditional: [
+    {
+      title: "Camadas de time",
+      description: "Atendimento, gerente, designer, dev, revisão e repasses entre pessoas.",
+    },
+    {
+      title: "Horas de coordenação",
+      description: "Reuniões, alinhamentos, follow-ups e aprovações internas que entram na conta.",
+    },
+    {
+      title: "Estrutura da agência",
+      description: "Você também financia overhead, ociosidade e a margem da operação.",
+    },
+  ],
+  madeofia: [
+    {
+      title: "Execução direta",
+      description: "Agentes construindo design, código, SEO e deploy com fluxo enxuto.",
+    },
+    {
+      title: "Iteração rápida",
+      description: "Menos fila, menos atrito e mais ciclos curtos de melhoria dentro do escopo.",
+    },
+    {
+      title: "Valor no produto",
+      description: "O investimento fica concentrado no que vai para o ar e gera resultado.",
+    },
+  ],
+} as const;
+
 const revealTransition = {
   type: "spring",
   damping: 60,
@@ -1231,6 +1285,130 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <motion.section
+        className={`${styles.section} ${styles.comparisonSection}`}
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
+        <div className={styles.sectionShell}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
+            <span>MadeofIA</span> vs agência
+          </motion.h2>
+          <motion.p className={styles.sectionLead} variants={revealUp}>
+            Mesmo objetivo. Estruturas completamente diferentes.
+          </motion.p>
+          <motion.div className={styles.comparisonGrid} variants={staggerChildren}>
+            <motion.article
+              className={`${styles.comparisonCard} ${styles.comparisonCardTraditional}`}
+              variants={revealUp}
+              whileHover={interactiveCardHover}
+            >
+              <div className={styles.comparisonCardTop}>
+                <span className={styles.comparisonEyebrow}>Agência tradicional</span>
+                <strong>Muitas pessoas, mais repasse, fatura maior.</strong>
+              </div>
+              <div className={styles.comparisonRows}>
+                {comparisonRows.map((row) => (
+                  <div key={row.label} className={styles.comparisonRow}>
+                    <span>{row.label}</span>
+                    <p>{row.traditional}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.comparisonFoot}>
+                <span>Cenário comum</span>
+                <strong>Você paga por estrutura + tempo</strong>
+              </div>
+            </motion.article>
+            <motion.article
+              className={`${styles.comparisonCard} ${styles.comparisonCardMadeofia}`}
+              variants={revealUp}
+              whileHover={interactiveCardHover}
+            >
+              <div className={styles.comparisonCardTop}>
+                <span className={styles.comparisonEyebrow}>MadeofIA</span>
+                <strong>Menos overhead, mais execução, entrega mais enxuta.</strong>
+              </div>
+              <div className={styles.comparisonRows}>
+                {comparisonRows.map((row) => (
+                  <div key={row.label} className={styles.comparisonRow}>
+                    <span>{row.label}</span>
+                    <p>{row.madeofia}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.comparisonFoot}>
+                <span>Nosso modelo</span>
+                <strong>Você paga por produto + resultado</strong>
+              </div>
+            </motion.article>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        className={`${styles.section} ${styles.comparisonSectionFollowup}`}
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
+        <div className={styles.sectionShell}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
+            O que entra na <span>conta</span>
+          </motion.h2>
+          <motion.p className={styles.sectionLead} variants={revealUp}>
+            Duas formas de montar um projeto. Dois destinos para o mesmo orçamento.
+          </motion.p>
+          <motion.div className={styles.valueStackGrid} variants={staggerChildren}>
+            <motion.article
+              className={`${styles.valueStackCard} ${styles.valueStackCardTraditional}`}
+              variants={revealUp}
+              whileHover={interactiveCardHover}
+            >
+              <div className={styles.valueStackIntro}>
+                <span className={styles.comparisonEyebrow}>Agência tradicional</span>
+                <h3>Boa parte do valor vai para gerir o próprio time.</h3>
+              </div>
+              <div className={styles.valueStackList}>
+                {costBreakdown.traditional.map((item) => (
+                  <div key={item.title} className={styles.valueStackItem}>
+                    <strong>{item.title}</strong>
+                    <p>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.valueStackSummary}>
+                Resultado: mais complexidade operacional, prazo mais longo e conta mais pesada.
+              </div>
+            </motion.article>
+            <motion.article
+              className={`${styles.valueStackCard} ${styles.valueStackCardMadeofia}`}
+              variants={revealUp}
+              whileHover={interactiveCardHover}
+            >
+              <div className={styles.valueStackIntro}>
+                <span className={styles.comparisonEyebrow}>MadeofIA</span>
+                <h3>O valor fica concentrado no que move o projeto para frente.</h3>
+              </div>
+              <div className={styles.valueStackList}>
+                {costBreakdown.madeofia.map((item) => (
+                  <div key={item.title} className={styles.valueStackItem}>
+                    <strong>{item.title}</strong>
+                    <p>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.valueStackSummary}>
+                Resultado: escopo mais claro, entrega mais rápida e investimento mais eficiente.
+              </div>
+            </motion.article>
+          </motion.div>
+        </div>
+      </motion.section>
 
       <motion.section
         className={styles.section}
