@@ -582,11 +582,7 @@
 
 .comparisonSection {
   padding-top: 110px;
-  padding-bottom: 32px;
-}
-
-.comparisonSectionFollowup {
-  padding-top: 32px;
+  padding-bottom: 70px;
 }
 
 .sectionLead {
@@ -608,15 +604,13 @@
   gap: 10px;
 }
 
-.comparisonGrid,
-.valueStackGrid {
+.comparisonGrid {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.comparisonCard,
-.valueStackCard {
+.comparisonCard {
   background: var(--nebula-surface);
   border: 1px solid var(--nebula-border);
   border-radius: 10px;
@@ -627,22 +621,48 @@
   position: relative;
 }
 
-.comparisonCardTraditional,
-.valueStackCardTraditional {
+.comparisonCardTraditional {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(15, 15, 15, 0.96) 30%),
     var(--nebula-surface);
 }
 
-.comparisonCardMadeofia,
-.valueStackCardMadeofia {
+.comparisonCardMadeofia {
   background:
     linear-gradient(180deg, rgba(211, 255, 202, 0.08) 0%, rgba(15, 15, 15, 0.96) 28%),
     var(--nebula-surface);
+  border-color: rgba(211, 255, 202, 0.18);
 }
 
-.comparisonCardTop,
-.valueStackIntro {
+.comparisonCardMadeofia::before {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(211, 255, 202, 0.18) 0%, rgba(211, 255, 202, 0.06) 28%, rgba(211, 255, 202, 0) 68%);
+  content: "";
+  inset: -80px -60px auto;
+  height: 220px;
+  opacity: 0.95;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.comparisonCardMadeofia::after {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(120, 255, 165, 0.12) 0%, rgba(120, 255, 165, 0) 72%);
+  content: "";
+  inset: auto -40px -90px;
+  height: 180px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.comparisonCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.comparisonCardTop {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -664,8 +684,7 @@
   padding: 0 12px;
 }
 
-.comparisonCardTop strong,
-.valueStackIntro h3 {
+.comparisonCardTop strong {
   color: var(--nebula-copy);
   font-family: var(--font-display), sans-serif;
   font-size: 34px;
@@ -676,16 +695,13 @@
   max-width: 12ch;
 }
 
-.comparisonRows,
-.valueStackList {
+.comparisonRows {
   display: grid;
   gap: 10px;
   margin-top: 28px;
 }
 
-.comparisonRow,
-.valueStackItem,
-.valueStackSummary {
+.comparisonRow {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 10px;
@@ -698,8 +714,7 @@
   padding: 18px 20px;
 }
 
-.comparisonRow span,
-.valueStackItem strong {
+.comparisonRow span {
   color: var(--nebula-copy);
   font-family: var(--font-display), sans-serif;
   font-size: 14px;
@@ -708,14 +723,11 @@
   line-height: 1.3;
 }
 
-.comparisonCardMadeofia .comparisonRow span,
-.valueStackCardMadeofia .valueStackItem strong {
+.comparisonCardMadeofia .comparisonRow span {
   color: var(--nebula-accent);
 }
 
-.comparisonRow p,
-.valueStackItem p,
-.valueStackSummary {
+.comparisonRow p {
   color: var(--nebula-muted);
   font-family: var(--font-display), sans-serif;
   font-size: 15px;
@@ -749,26 +761,6 @@
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.1;
-}
-
-.valueStackCard {
-  min-height: 540px;
-}
-
-.valueStackList {
-  flex: 1 1 auto;
-}
-
-.valueStackItem {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 22px;
-}
-
-.valueStackSummary {
-  margin-top: 18px;
-  padding: 20px 22px;
 }
 
 .processGrid {
@@ -2203,7 +2195,6 @@
 
 @media (max-width: 1199.98px) {
   .comparisonGrid,
-  .valueStackGrid,
   .processGrid,
   .serviceGrid,
   .planGrid,
@@ -2382,11 +2373,7 @@
 
   .comparisonSection {
     padding-top: 50px;
-    padding-bottom: 24px;
-  }
-
-  .comparisonSectionFollowup {
-    padding-top: 24px;
+    padding-bottom: 60px;
   }
 
   .sectionTitle,
@@ -2403,13 +2390,11 @@
   .planCard,
   .testimonialCard,
   .teamCard,
-  .comparisonCard,
-  .valueStackCard {
+  .comparisonCard {
     padding: 35px;
   }
 
-  .comparisonCardTop strong,
-  .valueStackIntro h3 {
+  .comparisonCardTop strong {
     font-size: 29px;
     max-width: 100%;
   }
