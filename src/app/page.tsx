@@ -60,19 +60,19 @@ const services = [
     title: "Desenvolvimento Web",
     description:
       "Sites institucionais, landing pages e e-commerces. Rápidos, responsivos e otimizados para conversão.",
-    visual: "workflow",
+    visual: "web",
   },
   {
     title: "SEO & Conteúdo",
     description:
       "Estratégia de palavras-chave, conteúdo otimizado e autoridade de domínio. Tráfego orgânico que cresce todo mês.",
-    visual: "chat",
+    visual: "seo",
   },
   {
     title: "Produto Digital",
     description:
       "MVPs, web apps e plataformas SaaS. Da ideia ao produto funcional com usuários pagantes.",
-    visual: "consulting",
+    visual: "product",
   },
 ];
 
@@ -844,118 +844,156 @@ function ProcessVisual({ type, reducedMotion }: { type: string; reducedMotion: b
 }
 
 function ServiceVisual({ type, reducedMotion }: { type: string; reducedMotion: boolean }) {
-  if (type === "workflow") {
+  if (type === "web") {
     return (
-      <div className={`${styles.serviceVisual} ${styles.workflowVisual}`}>
+      <div className={`${styles.serviceVisual} ${styles.serviceWeb}`}>
         <motion.div
-          className={styles.workflowNode}
-          animate={reducedMotion ? undefined : { y: [0, -7, 0] }}
-          transition={reducedMotion ? undefined : { duration: 5.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        >
-          <img
-            src="https://framerusercontent.com/images/FCIhg4w8Oic6PzzMBeFQQ09s200.png?width=600&height=600"
-            alt="OpenAI logo"
-          />
-          <span>OpenAI</span>
-        </motion.div>
-        <motion.div
-          className={styles.workflowNode}
-          animate={reducedMotion ? undefined : { y: [0, 7, 0] }}
-          transition={
-            reducedMotion
-              ? undefined
-              : { duration: 5.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.3 }
-          }
-        >
-          <img
-            src="https://framerusercontent.com/images/ElXA9BRDlk1EUYX76fVdPRGVs.png?width=512&height=512"
-            alt="Airtable logo"
-          />
-          <span>Airtable</span>
-        </motion.div>
-        <motion.div
-          className={styles.workflowNode}
+          className={styles.webDesktop}
           animate={reducedMotion ? undefined : { y: [0, -5, 0] }}
-          transition={
-            reducedMotion
-              ? undefined
-              : { duration: 5.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }
-          }
+          transition={reducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         >
-          <img
-            src="https://framerusercontent.com/images/jgI8KEzSaG810pJKQsKIMoGc.webp?width=512&height=512"
-            alt="Framer logo"
-          />
-          <span>Framer</span>
+          <div className={styles.webBrowserBar}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className={styles.webHeroSection}>
+            <span className={styles.webEyebrow}>Landing page</span>
+            <strong className={styles.webHeroTitle}>Converte visitantes em clientes</strong>
+            <div className={styles.webHeroMeta}>
+              <span>SEO</span>
+              <span>Checkout</span>
+            </div>
+          </div>
+          <div className={styles.webContentRows}>
+            <span />
+            <span />
+          </div>
         </motion.div>
         <motion.div
-          className={styles.workflowLines}
-          animate={reducedMotion ? undefined : { opacity: [0.28, 0.6, 0.28] }}
-          transition={reducedMotion ? undefined : { duration: 3.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
+          className={styles.webMobile}
+          animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
+          transition={reducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.2 }}
+        >
+          <span className={styles.webMobileHeader} />
+          <span className={styles.webMobileCard} />
+          <span className={styles.webMobileCta}>CTA</span>
+        </motion.div>
       </div>
     );
   }
 
-  if (type === "chat") {
+  if (type === "seo") {
+    const keywordRows = [
+      { label: "site para advogados", trend: "+18%" },
+      { label: "landing b2b", trend: "+24%" },
+      { label: "seo local", trend: "+31%" },
+    ];
+
     return (
-      <div className={`${styles.serviceVisual} ${styles.chatVisual}`}>
+      <div className={`${styles.serviceVisual} ${styles.serviceSeo}`}>
+        <div className={styles.seoKeywordPanel}>
+          <span className={styles.seoPanelLabel}>Palavras-chave</span>
+          {keywordRows.map((row, index) => (
+            <motion.div
+              key={row.label}
+              className={styles.seoKeywordRow}
+              animate={reducedMotion ? undefined : { x: [0, 5, 0], opacity: [0.55, 1, 0.55] }}
+              transition={
+                reducedMotion
+                  ? undefined
+                  : { duration: 4.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.18 }
+              }
+            >
+              <span>{row.label}</span>
+              <strong>{row.trend}</strong>
+            </motion.div>
+          ))}
+        </div>
         <motion.div
-          className={styles.chatPrompt}
-          animate={reducedMotion ? undefined : { x: [0, 8, 0] }}
-          transition={reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          className={styles.seoArticle}
+          animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
+          transition={reducedMotion ? undefined : { duration: 4.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.15 }}
         >
-          Summarize this report
+          <span className={styles.seoPanelLabel}>Conteúdo otimizado</span>
+          <strong className={styles.seoArticleTitle}>Guia completo para captar leads orgânicos</strong>
+          <div className={styles.seoArticleLines}>
+            <span />
+            <span />
+            <span />
+          </div>
         </motion.div>
-        <motion.div
-          className={styles.chatReply}
-          animate={reducedMotion ? undefined : { x: [0, -8, 0], y: [0, -4, 0] }}
-          transition={
-            reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.25 }
-          }
-        >
-          <div className={styles.chatBadge}>AI assistant</div>
-          <p>Sure, here&apos;s a summary:</p>
-          <p>
-            Quokka BV experienced a 15% increase in revenue to EUR120 million. Compared to the
-            previous year, this year was better, mostly due to the increase in...
-          </p>
-        </motion.div>
+        <div className={styles.seoGrowthPanel}>
+          <div className={styles.seoGrowthHeader}>
+            <span>Tráfego orgânico</span>
+            <strong>+32%</strong>
+          </div>
+          <div className={styles.seoGrowthBars}>
+            {[32, 54, 76, 102].map((height, index) => (
+              <motion.span
+                key={height}
+                style={{ height }}
+                animate={reducedMotion ? undefined : { opacity: [0.5, 1, 0.5], scaleY: [0.9, 1, 0.9] }}
+                transition={
+                  reducedMotion
+                    ? undefined
+                    : { duration: 3.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.16 }
+                }
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className={`${styles.serviceVisual} ${styles.consultingVisual}`}>
-      <motion.div
-        className={styles.consultingMetric}
-        animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
-        transition={reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      >
-        +15%
-      </motion.div>
-      <motion.div
-        className={styles.consultingMetricMuted}
-        animate={reducedMotion ? undefined : { y: [0, 4, 0] }}
-        transition={
-          reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.25 }
-        }
-      >
-        +32%
-      </motion.div>
-      <div className={styles.consultingChart}>
-        {[0, 1, 2].map((index) => (
-          <motion.span
-            key={index}
-            animate={reducedMotion ? undefined : { scaleX: [0.94, 1, 0.94] }}
+    <div className={`${styles.serviceVisual} ${styles.serviceProduct}`}>
+      <div className={styles.productRoadmap}>
+        {["Ideia", "MVP", "Usuários", "Receita"].map((stage, index) => (
+          <motion.div
+            key={stage}
+            className={`${styles.productStage} ${index === 1 ? styles.productStageActive : ""}`}
+            animate={reducedMotion ? undefined : { opacity: [0.48, 1, 0.48] }}
             transition={
               reducedMotion
                 ? undefined
-                : { duration: 3.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.2 }
+                : { duration: 4.4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: index * 0.2 }
             }
-          />
+          >
+            {stage}
+          </motion.div>
         ))}
       </div>
+      <motion.div
+        className={styles.productDashboard}
+        animate={reducedMotion ? undefined : { y: [0, -4, 0] }}
+        transition={reducedMotion ? undefined : { duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+      >
+        <div className={styles.productDashboardTop}>
+          <strong>Dashboard SaaS</strong>
+          <span>12 assinantes</span>
+        </div>
+        <div className={styles.productDashboardBody}>
+          <div className={styles.productMetricCard}>
+            <span>MRR</span>
+            <strong>R$4.8K</strong>
+          </div>
+          <div className={styles.productMetricCard}>
+            <span>Trials</span>
+            <strong>28</strong>
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        className={styles.productCheckout}
+        animate={reducedMotion ? undefined : { x: [0, -5, 0] }}
+        transition={reducedMotion ? undefined : { duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.2 }}
+      >
+        <span className={styles.productCheckoutLabel}>Checkout ativo</span>
+        <strong className={styles.productCheckoutPrice}>Plano Pro</strong>
+        <span className={styles.productCheckoutUsers}>usuários pagantes entrando</span>
+      </motion.div>
     </div>
   );
 }
