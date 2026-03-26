@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const DEFAULT_SITE_URL = "https://madeofia.com";
+const DEFAULT_SITE_URL = "https://madeof.ia.br";
 
 const resolvedSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "") ||
@@ -26,65 +26,6 @@ export const siteConfig = {
     "MVP",
   ],
 } as const;
-
-export type StaticRouteDefinition = {
-  path: string;
-  changeFrequency:
-    | "always"
-    | "hourly"
-    | "daily"
-    | "weekly"
-    | "monthly"
-    | "yearly"
-    | "never";
-  priority: number;
-  lastModified?: string;
-};
-
-export const staticSiteRoutes: StaticRouteDefinition[] = [
-  {
-    path: "/",
-    changeFrequency: "monthly",
-    priority: 1,
-    lastModified: "2026-03-26",
-  },
-  {
-    path: "/servicos",
-    changeFrequency: "monthly",
-    priority: 0.9,
-    lastModified: "2026-03-26",
-  },
-  {
-    path: "/portfolio",
-    changeFrequency: "monthly",
-    priority: 0.8,
-    lastModified: "2026-03-26",
-  },
-  {
-    path: "/blog",
-    changeFrequency: "weekly",
-    priority: 0.8,
-    lastModified: "2026-03-26",
-  },
-  {
-    path: "/contato",
-    changeFrequency: "monthly",
-    priority: 0.7,
-    lastModified: "2026-03-26",
-  },
-  {
-    path: "/privacidade",
-    changeFrequency: "yearly",
-    priority: 0.3,
-    lastModified: "2025-03-01",
-  },
-  {
-    path: "/termos",
-    changeFrequency: "yearly",
-    priority: 0.3,
-    lastModified: "2025-03-01",
-  },
-];
 
 export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString();
