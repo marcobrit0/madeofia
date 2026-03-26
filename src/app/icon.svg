@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="m/IA_">
+  <rect width="64" height="64" fill="#080807" />
+  <text
+    x="7"
+    y="39"
+    fill="#ffffff"
+    font-family="'Inter Tight', 'Helvetica Neue', Arial, sans-serif"
+    font-size="24"
+    font-weight="400"
+    letter-spacing="-1.8"
+  >
+    m/IA
+  </text>
+  <text
+    x="50"
+    y="39"
+    fill="#d3ffca"
+    font-family="'Inter Tight', 'Helvetica Neue', Arial, sans-serif"
+    font-size="24"
+    font-weight="400"
+    letter-spacing="-1.8"
+  >
+    _
+  </text>
+</svg>

@@ -681,11 +681,11 @@
   position: relative;
 }
 
-.processSubscription,
-.processRequest,
-.processBuild,
-.processMetrics,
-.processGlobe,
+.processPlanSelection,
+.processBriefing,
+.processConstruction,
+.processReview,
+.processLaunch,
 .workflowVisual,
 .chatVisual,
 .consultingVisual {
@@ -694,243 +694,500 @@
   justify-content: center;
 }
 
-.subscriptionToggle {
-  align-items: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--nebula-border);
-  border-radius: 999px;
-  display: inline-flex;
-  gap: 10px;
-  padding: 8px;
-}
-
-.subscriptionOff,
-.subscriptionLabel,
-.subscriptionChip,
-.subscriptionChipMuted,
-.requestBubble,
-.requestBubbleStrong,
-.metricPill {
+.planSelectionName,
+.planSelectionScope,
+.planSelectionSummary,
+.briefingComposerLabel,
+.briefingBoardBadge,
+.briefingRow span,
+.constructionAgent,
+.constructionStage > span:last-child,
+.reviewComment,
+.reviewVersions span,
+.launchGrowthHeader span,
+.launchPanel span,
+.launchStatusMeta {
   font-family: var(--font-display), sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  line-height: 1;
+  font-size: 12px;
+  letter-spacing: 0.45px;
+  line-height: 1.1;
 }
 
-.subscriptionOff,
-.subscriptionChipMuted,
-.subscriptionLabel,
-.requestBubble,
-.metricPill {
+.planSelectionName,
+.planSelectionScope,
+.planSelectionSummary,
+.briefingRow span,
+.constructionAgent,
+.constructionStage > span:last-child,
+.reviewVersions span,
+.launchGrowthHeader span,
+.launchPanel span,
+.launchStatusMeta {
   color: var(--nebula-muted);
 }
 
-.subscriptionChip,
-.requestBubbleStrong {
-  background: #102b1f;
-  border: 1px solid rgba(211, 255, 202, 0.18);
-  border-radius: 999px;
-  color: var(--nebula-accent);
-  padding: 10px 13px;
+.planSelectionPrice,
+.briefingComposerTitle,
+.briefingRow strong,
+.launchStatusTitle,
+.launchGrowthHeader strong,
+.launchPanel strong {
+  color: var(--nebula-copy);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-.subscriptionChipMuted,
-.requestBubble,
-.metricPill {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--nebula-border);
-  border-radius: 999px;
-  padding: 10px 13px;
-}
-
-.subscriptionLabel {
-  bottom: 22px;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-}
-
-.processRequest {
+.processPlanSelection,
+.processConstruction,
+.processReview {
   flex-direction: column;
-  gap: 20px;
+}
+
+.processPlanSelection,
+.processReview {
+  gap: 18px;
   padding: 24px;
 }
 
-.requestArrow {
-  background: linear-gradient(180deg, rgba(211, 255, 202, 0) 0%, rgba(211, 255, 202, 0.8) 100%);
-  border-radius: 999px;
-  height: 28px;
-  width: 1px;
+.planSelectionGrid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(100%, 360px);
 }
 
-.requestFrame {
-  border: 1px solid rgba(211, 255, 202, 0.08);
-  border-radius: 18px;
-  height: 140px;
-  overflow: hidden;
-  position: relative;
-  width: min(100%, 320px);
-}
-
-.requestFrame::before {
-  background:
-    linear-gradient(180deg, rgba(8, 8, 7, 0.92) 0%, rgba(8, 8, 7, 0) 18%),
-    linear-gradient(0deg, rgba(8, 8, 7, 0.92) 0%, rgba(8, 8, 7, 0) 18%);
-  content: "";
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  z-index: 2;
-}
-
-.requestCardAnimated {
-  align-items: center;
-  backdrop-filter: blur(10px);
-  border-radius: 999px;
-  display: inline-flex;
-  gap: 10px;
-  left: 50%;
-  padding: 13px 18px;
-  position: absolute;
-  top: 42px;
-  transform: translateX(-50%);
-  width: max-content;
-}
-
-.requestCardAnimatedMuted {
+.planSelectionCard {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--nebula-border);
-  color: var(--nebula-muted);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 110px;
+  padding: 14px;
 }
 
-.requestCardAnimatedStrong {
-  background: #102b1f;
-  border: 1px solid rgba(211, 255, 202, 0.18);
-  color: var(--nebula-accent);
+.planSelectionCardActive {
+  background: linear-gradient(180deg, rgba(17, 43, 31, 0.9) 0%, rgba(14, 24, 18, 0.88) 100%);
+  border-color: rgba(211, 255, 202, 0.26);
+  box-shadow: 0 0 32px rgba(211, 255, 202, 0.12);
 }
 
-.requestCardAnimated span:last-child {
-  font-family: var(--font-display), sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.4px;
-  line-height: 1;
+.planSelectionName {
+  color: var(--nebula-copy);
 }
 
-.requestCardDot {
-  background: currentColor;
+.planSelectionPrice {
+  font-size: 26px;
+}
+
+.planSelectionScope {
+  display: block;
+}
+
+.planSelectionSummary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(211, 255, 202, 0.12);
   border-radius: 999px;
-  display: inline-block;
-  height: 6px;
-  width: 6px;
+  padding: 11px 16px;
 }
 
-.processBuild {
+.processBriefing {
   gap: 14px;
   padding: 24px;
 }
 
-.buildBars,
-.buildCode {
+.briefingComposer,
+.briefingBoard,
+.constructionEditor,
+.constructionPipeline,
+.launchStatus,
+.launchGrowth,
+.launchPanel {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--nebula-border);
-  border-radius: 12px;
-  padding: 18px;
-  width: 44%;
+  border-radius: 18px;
 }
 
-.buildBars span,
-.buildCode span,
-.consultingChart span {
+.briefingComposer,
+.briefingBoard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 142px;
+  padding: 16px;
+}
+
+.briefingComposer {
+  gap: 14px;
+}
+
+.briefingComposerLabel,
+.briefingBoardBadge,
+.constructionAgentLead,
+.reviewCommentApproved {
+  background: #102b1f;
+  border: 1px solid rgba(211, 255, 202, 0.18);
+  border-radius: 999px;
+  color: var(--nebula-accent);
+}
+
+.briefingComposerLabel,
+.briefingBoardBadge {
+  align-self: flex-start;
+  padding: 8px 12px;
+}
+
+.briefingComposerTitle {
+  font-size: 21px;
+  line-height: 1.08;
+  max-width: 14ch;
+}
+
+.briefingComposerLines {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.briefingComposerLines span,
+.constructionCodeLines span,
+.consultingChart span,
+.reviewMockupHeader,
+.reviewMockupLine,
+.reviewMockupLineShort {
   background: linear-gradient(90deg, rgba(211, 255, 202, 0.82) 0%, rgba(211, 255, 202, 0.14) 100%);
   border-radius: 999px;
   display: block;
-  height: 10px;
-  margin-top: 10px;
   transform-origin: left center;
 }
 
-.buildBars span:first-child,
-.buildCode span:first-child,
-.consultingChart span:first-child {
-  margin-top: 0;
+.briefingComposerLines span {
+  height: 10px;
 }
 
-.buildCode span:nth-child(1) {
-  width: 92%;
-}
-
-.buildCode span:nth-child(2) {
-  width: 64%;
-}
-
-.buildCode span:nth-child(3) {
-  width: 76%;
-}
-
-.buildCode span:nth-child(4) {
-  width: 43%;
-}
-
-.buildBars span:nth-child(1) {
-  width: 70%;
-}
-
-.buildBars span:nth-child(2) {
+.briefingComposerLines span:nth-child(1) {
   width: 100%;
 }
 
-.buildBars span:nth-child(3) {
+.briefingComposerLines span:nth-child(2) {
+  width: 74%;
+}
+
+.briefingComposerLines span:nth-child(3) {
+  width: 58%;
+}
+
+.briefingConnector {
+  background: linear-gradient(90deg, rgba(211, 255, 202, 0.08) 0%, rgba(211, 255, 202, 0.88) 50%, rgba(211, 255, 202, 0.08) 100%);
+  border-radius: 999px;
+  flex: none;
+  height: 2px;
+  width: 36px;
+}
+
+.briefingBoard {
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.briefingRow {
+  align-items: center;
+  background: rgba(8, 8, 7, 0.42);
+  border: 1px solid rgba(211, 255, 202, 0.08);
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+
+.briefingRow strong {
+  font-size: 14px;
+}
+
+.processConstruction {
+  gap: 16px;
+  padding: 22px;
+}
+
+.constructionAgents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.constructionAgent {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--nebula-border);
+  border-radius: 999px;
+  padding: 9px 12px;
+}
+
+.constructionAgentLead {
+  padding: 9px 12px;
+}
+
+.constructionWorkspace {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  width: 100%;
+}
+
+.constructionEditor,
+.constructionPipeline {
+  min-height: 132px;
+  padding: 16px;
+}
+
+.constructionEditor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.constructionEditorTop {
+  display: flex;
+  gap: 7px;
+}
+
+.constructionEditorTop span {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  display: block;
+  height: 8px;
+  width: 8px;
+}
+
+.constructionEditorTop span:first-child {
+  background: rgba(255, 140, 113, 0.7);
+}
+
+.constructionEditorTop span:nth-child(2) {
+  background: rgba(255, 214, 102, 0.68);
+}
+
+.constructionEditorTop span:nth-child(3) {
+  background: rgba(211, 255, 202, 0.7);
+}
+
+.constructionCodeLines {
+  display: grid;
+  gap: 10px;
+}
+
+.constructionCodeLines span {
+  height: 10px;
+}
+
+.constructionCodeLines span:nth-child(1) {
+  width: 88%;
+}
+
+.constructionCodeLines span:nth-child(2) {
+  width: 62%;
+}
+
+.constructionCodeLines span:nth-child(3) {
+  width: 76%;
+}
+
+.constructionCodeLines span:nth-child(4) {
+  width: 48%;
+}
+
+.constructionPipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.constructionStage {
+  align-items: center;
+  background: rgba(8, 8, 7, 0.42);
+  border: 1px solid rgba(211, 255, 202, 0.08);
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.constructionStageDot {
+  background: radial-gradient(circle, rgba(211, 255, 202, 1) 0%, rgba(211, 255, 202, 0.32) 70%, rgba(211, 255, 202, 0) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(211, 255, 202, 0.18);
+  display: block;
+  flex: none;
+  height: 12px;
+  width: 12px;
+}
+
+.reviewCanvas {
+  height: 154px;
+  position: relative;
+  width: min(100%, 360px);
+}
+
+.reviewMockup {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(211, 255, 202, 0.08);
+  border-radius: 18px;
+  display: grid;
+  gap: 10px;
+  inset: 16px 56px 14px;
+  padding: 15px;
+  position: absolute;
+}
+
+.reviewMockupHero {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  display: block;
+  height: 48px;
+  width: 100%;
+}
+
+.reviewMockupHeader {
+  height: 9px;
   width: 54%;
 }
 
-.processMetrics {
-  flex-wrap: wrap;
-  gap: 14px;
-  padding: 30px;
+.reviewMockupLine,
+.reviewMockupLineShort {
+  height: 9px;
 }
 
-.metricPill {
-  min-width: 98px;
-  text-align: center;
+.reviewMockupLine {
+  width: 82%;
 }
 
-.processGlobe {
-  min-height: 260px;
+.reviewMockupLineShort {
+  width: 56%;
 }
 
-.globeOrb {
-  background: radial-gradient(circle at 40% 40%, rgba(211, 255, 202, 0.95) 0%, rgba(211, 255, 202, 0.22) 35%, rgba(211, 255, 202, 0) 68%);
+.reviewComment {
+  backdrop-filter: blur(10px);
+  background: rgba(19, 28, 21, 0.96);
+  border: 1px solid rgba(211, 255, 202, 0.16);
   border-radius: 999px;
-  filter: blur(6px);
-  height: 150px;
+  color: var(--nebula-copy);
+  padding: 10px 14px;
   position: absolute;
-  width: 150px;
+  white-space: nowrap;
 }
 
-.globeRing {
-  border: 1px solid rgba(211, 255, 202, 0.28);
-  border-radius: 999px;
-  height: 215px;
-  width: 215px;
+.reviewCommentApproved {
+  color: var(--nebula-accent);
 }
 
-.globeOrbit {
-  align-items: flex-start;
+.reviewVersions {
+  align-items: center;
   display: flex;
-  height: 190px;
-  justify-content: center;
-  position: absolute;
-  width: 190px;
+  gap: 12px;
 }
 
-.globeNode {
-  background: radial-gradient(circle, rgba(211, 255, 202, 1) 0%, rgba(211, 255, 202, 0.26) 72%, rgba(211, 255, 202, 0) 100%);
+.reviewVersionsTrack {
+  background: linear-gradient(90deg, rgba(211, 255, 202, 0.12) 0%, rgba(211, 255, 202, 0.9) 50%, rgba(211, 255, 202, 0.12) 100%);
   border-radius: 999px;
-  box-shadow: 0 0 18px rgba(211, 255, 202, 0.22);
+  flex: none;
+  height: 2px;
+  transform-origin: left center;
+  width: 72px;
+}
+
+.processLaunch {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 0.9fr);
+  padding: 24px 28px;
+}
+
+.launchStatus,
+.launchGrowth,
+.launchPanel {
+  padding: 16px;
+}
+
+.launchStatus {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.launchStatusDot {
+  background: radial-gradient(circle, rgba(211, 255, 202, 1) 0%, rgba(211, 255, 202, 0.3) 70%, rgba(211, 255, 202, 0) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 22px rgba(211, 255, 202, 0.24);
   display: block;
+  flex: none;
   height: 16px;
-  transform: translateY(-10px);
   width: 16px;
+}
+
+.launchStatusTitle {
+  display: block;
+  font-size: 24px;
+}
+
+.launchStatusMeta {
+  display: block;
+  margin-top: 6px;
+}
+
+.launchGrowth {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.launchGrowthHeader {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+}
+
+.launchGrowthHeader strong {
+  font-size: 26px;
+}
+
+.launchBars {
+  align-items: flex-end;
+  display: flex;
+  gap: 10px;
+  height: 140px;
+}
+
+.launchBars span {
+  background: linear-gradient(180deg, rgba(211, 255, 202, 0.92) 0%, rgba(211, 255, 202, 0.16) 100%);
+  border-radius: 12px 12px 0 0;
+  display: block;
+  flex: 1;
+  min-width: 14px;
+  transform-origin: center bottom;
+}
+
+.launchPanels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.launchPanel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.launchPanel strong {
+  font-size: 19px;
+  line-height: 1.1;
 }
 
 .serviceGrid {
@@ -1570,6 +1827,11 @@
   .contactLayout {
     gap: 35px;
   }
+
+  .processLaunch,
+  .constructionWorkspace {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 809.98px) {
@@ -1731,6 +1993,46 @@
   .processVisual,
   .serviceVisual {
     min-height: 220px;
+  }
+
+  .processBriefing,
+  .processLaunch {
+    padding: 22px;
+  }
+
+  .processBriefing {
+    flex-direction: column;
+  }
+
+  .briefingConnector {
+    width: 52px;
+  }
+
+  .planSelectionGrid {
+    gap: 8px;
+  }
+
+  .planSelectionCard {
+    gap: 14px;
+    min-height: 96px;
+    padding: 12px;
+  }
+
+  .planSelectionPrice,
+  .launchGrowthHeader strong {
+    font-size: 22px;
+  }
+
+  .reviewMockup {
+    inset: 16px 40px 14px;
+  }
+
+  .launchStatusTitle {
+    font-size: 21px;
+  }
+
+  .launchBars {
+    gap: 8px;
   }
 
   .serviceCard {

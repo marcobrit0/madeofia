@@ -611,7 +611,7 @@ function ProcessVisual({ type, reducedMotion }: { type: string; reducedMotion: b
         </div>
         <motion.div
           className={styles.briefingConnector}
-          animate={reducedMotion ? undefined : { opacity: [0.3, 1, 0.3], scaleY: [0.94, 1.04, 0.94] }}
+          animate={reducedMotion ? undefined : { opacity: [0.3, 1, 0.3], scaleX: [0.7, 1.08, 0.7] }}
           transition={reducedMotion ? undefined : { duration: 2.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
         />
         <div className={styles.briefingBoard}>
