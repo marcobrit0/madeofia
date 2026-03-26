@@ -20,190 +20,207 @@ const WORK_IMAGE =
 const processSteps = [
   {
     number: "01.",
-    title: "Subscribe",
+    title: "Escolha seu plano",
     description:
-      "Choose your preferred plan to start and cancel or pause at anytime you like. So you're as flexible as your business' needs.",
+      "Selecione o pacote ideal para o seu projeto. Sem surpresas, sem custos ocultos.",
     visual: "plans",
   },
   {
     number: "02.",
-    title: "Request",
+    title: "Envie o briefing",
     description:
-      "Start requesting the workflow-automations and AI applications you need, your developers are right there to transform your ideas into reality.",
+      "Descreva seu projeto. Quanto mais contexto, melhor. Nossa CEO analisa e estrutura tudo.",
     visual: "request",
   },
   {
     number: "03.",
-    title: "Build",
+    title: "Construção",
     description:
-      "Our developers swiftly begin building your custom solutions, prioritising speed without compromising on quality.",
+      "Nosso CTO e time de agentes constroem seu projeto com código limpo e deploy contínuo.",
     visual: "build",
   },
   {
     number: "04.",
-    title: "Test & optimise",
+    title: "Revisão",
     description:
-      "You either approve or request revisions - we're dedicated to refining our builds until you're fully satisfied.",
+      "Você revisa, comenta, e iteramos. Sem limite de ajustes dentro do escopo.",
     visual: "metrics",
   },
   {
     number: "05.",
-    title: "Become an industry leader",
+    title: "Deploy + Escala",
     description:
-      "Continue requesting as many workflow-automations and AI-applications as you wish, and transform your organisation into a worldwide industry leader.",
+      "Colocamos no ar e configuramos analytics, SEO e monitoramento. Depois, é só crescer.",
     visual: "globe",
   },
 ];
 
 const services = [
   {
-    title: "Workflow automations",
+    title: "Desenvolvimento Web",
     description:
-      "We automate your workflows by connecting your favourite applications. Boosting efficiency and enhancing productivity.",
+      "Sites institucionais, landing pages e e-commerces. Rápidos, responsivos e otimizados para conversão.",
     visual: "workflow",
   },
   {
-    title: "Chatbot development",
+    title: "SEO & Conteúdo",
     description:
-      "We develop advanced chatbots that are reactive, understand nuances, and are capable of to solving extremely complicated queries.",
+      "Estratégia de palavras-chave, conteúdo otimizado e autoridade de domínio. Tráfego orgânico que cresce todo mês.",
     visual: "chat",
   },
   {
-    title: "Business consulting",
+    title: "Produto Digital",
     description:
-      "Using our expertise, we delve deep into your organisation and consult you on how AI-driven automations could enhance your operations.",
+      "MVPs, web apps e plataformas SaaS. Da ideia ao produto funcional com usuários pagantes.",
     visual: "consulting",
   },
 ];
 
 const workItems = [
   {
-    year: "2023",
-    title: "Doodle - customer support chatbot",
+    year: "2024",
+    title: "CriarRecibo",
     description:
-      "We built an advanced customer support chatbot for Doodle. Our chatbot now handles 87% of Doodle's customer support inquiries, freeing up their team to focus on more complex issues.",
+      "Gerador de recibos online para MEIs brasileiros. 10 landing pages otimizadas para SEO, geração de PDF no navegador, 180K+ buscas mensais no nicho.",
   },
   {
     year: "2024",
-    title: "Dash - AI calling system",
+    title: "TextoIA",
     description:
-      "We've revolutionized Dash's customer service with our an AI calling system. The AI seamlessly handles 73% of incoming calls, providing quick resolutions and immediate support, even during the weekends.",
+      "Ferramenta de escrita com IA para o mercado brasileiro. Corretor, gerador e aprimorador de texto com SEO orgânico como motor de crescimento.",
   },
   {
     year: "2024",
-    title: "Atomic - AI driven outreach",
+    title: "Bizu",
     description:
-      "Atomic has supercharged their outreach efforts with our cutting-edge AI-driven system. Our system now handles all outbound communications, enabling Atomic to connect with more potential clients.",
+      "Plataforma de chat com IA para o Brasil. Interface em português, integração com modelos de linguagem e pagamento via PIX.",
   },
 ];
 
 const plans = [
   {
-    name: "Basic",
-    price: "EUR1.997",
-    period: "Per month",
+    name: "Essencial",
+    price: "R$15.000",
+    period: "projeto único",
     popular: false,
-    cta: "Get Started with Basic",
+    cta: "Começar projeto",
     features: [
-      "2 dedicated developers",
-      "Custom workflow automations",
-      "Unlimited requests",
-      "Unlimited revisions",
-      "Business consulting",
-      "Custom chatbots",
-      "Cancel & pause anytime",
+      "Design responsivo",
+      "Até 5 páginas",
+      "SEO básico on-page",
+      "Deploy + hospedagem",
+      "Suporte por 30 dias",
     ],
   },
   {
-    name: "Pro",
-    price: "EUR3.997",
-    period: "Per month",
+    name: "Crescimento",
+    price: "R$25.000",
+    period: "projeto único",
     popular: true,
-    cta: "Get Started with Pro",
+    cta: "Começar projeto",
     features: [
-      "2 dedicated developers",
-      "Custom workflow automations",
-      "Unlimited requests",
-      "Unlimited revisions",
-      "Business consulting",
-      "Custom chatbots",
-      "Cancel & pause anytime",
+      "Tudo do Essencial",
+      "Até 10 páginas",
+      "Blog com 5 artigos SEO",
+      "Google Search Console",
+      "Estratégia de palavras-chave",
+      "Analytics completo",
     ],
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    period: "Per month",
+    name: "Produto Digital",
+    price: "R$45.000",
+    period: "projeto único",
     popular: false,
-    cta: "Get Started with Enterprise",
+    cta: "Começar projeto",
     features: [
-      "X dedicated developers",
-      "Custom workflow automations",
-      "Unlimited requests",
-      "Unlimited revisions",
-      "Business consulting",
-      "Custom chatbots",
-      "Cancel & pause anytime",
+      "Tudo do Crescimento",
+      "App web completo",
+      "Autenticação + dashboard",
+      "Banco de dados",
+      "Integrações (pagamento, email, etc)",
+      "60 dias de suporte",
+    ],
+  },
+  {
+    name: "Parceiro Digital",
+    price: "R$7.000",
+    period: "por mês",
+    popular: false,
+    cta: "Começar projeto",
+    features: [
+      "Manutenção + updates",
+      "Novas features mensais",
+      "SEO contínuo",
+      "Suporte prioritário",
+      "Reunião mensal de alinhamento",
     ],
   },
 ];
 
 const testimonials = [
   {
-    quote: "\"Nebula's development has increased our productivity by 54%\"",
+    quote: "\"Agência tradicional: Designer + Dev + PM + Gerente de conta\"",
     description:
-      "Can't recommend Nebula enough, they absolutely transformed us into a productive machine!",
-    name: "John Fisher",
-    role: "CEO - TDB Real Estate",
+      "R$50.000–100.000 por mês para ter um time completo numa agência convencional. Sem garantia de prazo, sem transparência.",
+    name: "Agência tradicional",
+    role: "R$50–100K/mês",
     avatar: "https://framerusercontent.com/images/RqlD623htlZjBOW5TGIBeTCn9Rw.png?width=175&height=175",
   },
   {
-    quote: "\"Nebula's chatbot now handles 95% of our customer service\"",
+    quote: "\"MadeofIA: CEO + CTO + CMO + Designer + Assistente executivo\"",
     description:
-      "Nebula's chatbot is an absolute game-changer for our customer service, absolutely amazing!",
-    name: "Sarah Johnson",
-    role: "CXO - Doodle",
+      "Um time completo de agentes de IA especializados. Mais rápido, mais barato, com código limpo e entrega real.",
+    name: "MadeofIA",
+    role: "a partir de R$15K",
     avatar: "https://framerusercontent.com/images/3P7Md7lQyQJO1gN6t8zY0wCPhY.png?width=400&height=400",
-  },
-  {
-    quote: "\"We're delighted with our development subscription from Nebula\"",
-    description:
-      "Their flexible subscription based model is so innovative, we can just pause it whenever we want!",
-    name: "Peter Davis",
-    role: "Atomic",
-    avatar: "https://framerusercontent.com/images/4yXsZaaRWzlS3GdafPSIDX1EWDg.png?width=400&height=400",
   },
 ];
 
 const team = [
   {
-    name: "Liam Davis",
-    role: "CEO",
-    avatar: "https://framerusercontent.com/images/ynj5hVsbu5PyJc9zVxtWEiuCo.png?width=500&height=500",
+    name: "Valentina",
+    role: "CEO & CMO",
+    avatar: "https://framerusercontent.com/images/1rUvuM83ZrUmEUuX1PZNY7QChM.png?width=500&height=500",
   },
   {
-    name: "Elliot Jones",
-    role: "CCO",
-    avatar: "https://framerusercontent.com/images/0lkdtvFy8axO4Q8ncKI9S577HVE.png?width=500&height=500",
-  },
-  {
-    name: "Rob Smith",
+    name: "Thiago",
     role: "CTO",
     avatar: "https://framerusercontent.com/images/ynj5hVsbu5PyJc9zVxtWEiuCo.png?width=500&height=500",
   },
   {
-    name: "Bella Garcia",
-    role: "Head of content",
-    avatar: "https://framerusercontent.com/images/1rUvuM83ZrUmEUuX1PZNY7QChM.png?width=500&height=500",
+    name: "Clara",
+    role: "CMO",
+    avatar: "https://framerusercontent.com/images/0lkdtvFy8axO4Q8ncKI9S577HVE.png?width=500&height=500",
+  },
+  {
+    name: "André",
+    role: "Designer",
+    avatar: "https://framerusercontent.com/images/ynj5hVsbu5PyJc9zVxtWEiuCo.png?width=500&height=500",
   },
 ];
 
 const faqItems = [
-  "What's unique about Nebula?",
-  "How many builds can I request each month?",
-  "Can I cancel my subscription at any time?",
-  "How secure are your solutions?",
-  "Can your solutions scale with my business growth?",
+  {
+    q: "Quanto custa criar um site profissional?",
+    a: "Depende do escopo. Um site institucional começa em R$15.000 e um produto digital pode chegar a R$45.000. Comparado com agências tradicionais que cobram R$30-60K por um site similar, nossos preços são significativamente mais acessíveis — sem sacrificar qualidade.",
+  },
+  {
+    q: "Como funciona o processo com agentes de IA?",
+    a: "Nossos agentes de IA são especializados: uma CEO que analisa e estrutura seu projeto, um CTO que escreve código de produção, e uma CMO que cuida do SEO e conteúdo. Você conversa com a gente, e os agentes executam. Simples assim.",
+  },
+  {
+    q: "Quanto tempo leva para ficar pronto?",
+    a: "Um site institucional fica pronto em 2-3 semanas. Um produto digital (MVP) leva 4-6 semanas. Muito mais rápido que os 2-4 meses de uma agência tradicional.",
+  },
+  {
+    q: "Vocês usam templates prontos?",
+    a: "Não. Cada projeto é desenvolvido do zero com código limpo (Next.js, React, Tailwind). Nada de WordPress, Wix ou construtores visuais.",
+  },
+  {
+    q: "E se eu não gostar do resultado?",
+    a: "Iteramos até você aprovar. Dentro do escopo do projeto, não há limite de revisões. Nosso objetivo é entregar algo que você tenha orgulho de mostrar.",
+  },
 ];
 
 const stars = [
@@ -233,21 +250,20 @@ const stars = [
 
 const aboutLines = [
   [
-    { text: "We're a " },
-    { text: "full-service", accent: true },
-    { text: " AI Automation" },
+    { text: "Somos uma " },
+    { text: "equipe de agentes", accent: true },
+    { text: " de IA." },
   ],
   [
-    { text: "Agency " },
-    { pill: "👋", label: "Wave" },
-    { text: " We turn businesses" },
+    { text: "Desenvolvemos " },
+    { pill: "🚀", label: "Foguete" },
+    { text: " sites e produtos" },
   ],
   [
-    { text: "Into " },
-    { text: "AI-driven", accent: true },
+    { text: "digitais " },
+    { text: "para o Brasil.", accent: true },
     { text: " " },
-    { pill: "✨", label: "Sparkle" },
-    { text: " industry leaders." },
+    { pill: "🇧🇷", label: "Brasil" },
   ],
 ] as const;
 
@@ -841,21 +857,20 @@ export default function Home() {
         </a>
 
         <div className={styles.navPill}>
-          <a href="#our-process">Process</a>
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-          <a href="#plans">Plans</a>
-          <a href="#team">Team</a>
-          <motion.a className={styles.contactLink} href="#contact" whileHover="hover">
-            <span>Contact</span>
+          <a href="#processo">Processo</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#planos">Planos</a>
+          <motion.a className={styles.contactLink} href="#contato" whileHover="hover">
+            <span>Contato</span>
             <ArrowIcon className={styles.navArrow} variants={arrowHoverVariants} />
           </motion.a>
         </div>
 
         <CTAAnchor
           className={styles.buyButton}
-          href="https://buy.polar.sh/polar_cl_gC2ETbVeQkpIRc3ZqYsINeEM7JYppVT1hfBG82uJ6S6"
-          label="Buy this template"
+          href="#contato"
+          label="Começar projeto"
           reducedMotion={Boolean(prefersReducedMotion)}
         />
       </motion.nav>
@@ -871,12 +886,11 @@ export default function Home() {
           </span>
         </summary>
         <div className={styles.mobileMenu}>
-          <a href="#our-process">Process</a>
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-          <a href="#plans">Plans</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
+          <a href="#processo">Processo</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#planos">Planos</a>
+          <a href="#contato">Contato</a>
         </div>
       </details>
 
@@ -964,24 +978,23 @@ export default function Home() {
             animate={prefersReducedMotion ? undefined : "show"}
           >
             <motion.h1 className={styles.heroTitle} variants={revealUp}>
-              Driving <span className={styles.heroWarm}>growth</span> with{" "}
-              <span className={styles.heroAccent}>AI</span>.
+              Sua equipe de{" "}
+              <span className={styles.heroAccent}>agentes de IA</span>.
             </motion.h1>
             <motion.p className={styles.heroDescription} variants={revealUp}>
-              We craft workflow automations and bespoke AI solutions for forward-thinking
-              companies.
+              Desenvolvimento web, SEO e produto digital — executado por agentes de inteligência artificial. Mais rápido, mais barato e sem reuniões desnecessárias.
             </motion.p>
             <motion.div className={styles.heroActions} variants={revealUp}>
               <CTAAnchor
                 className={styles.primaryButton}
-                href="#services"
-                label="Our services"
+                href="#planos"
+                label="Ver planos"
                 reducedMotion={Boolean(prefersReducedMotion)}
               />
               <CTAAnchor
                 className={styles.secondaryButton}
-                href="#contact"
-                label="Get in touch"
+                href="#processo"
+                label="Como funciona"
                 reducedMotion={Boolean(prefersReducedMotion)}
                 showArrow
               />
@@ -1021,7 +1034,7 @@ export default function Home() {
 
       <motion.section
         className={styles.section}
-        id="our-process"
+        id="processo"
         initial={prefersReducedMotion ? false : "hidden"}
         whileInView={prefersReducedMotion ? undefined : "show"}
         viewport={{ once: true, amount: 0.2 }}
@@ -1029,7 +1042,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            Our <span>process</span>
+            <span>Processo</span>
           </motion.h2>
           <motion.div className={styles.processGrid} variants={staggerChildren}>
             {processSteps.map((step) => (
@@ -1055,7 +1068,7 @@ export default function Home() {
 
       <motion.section
         className={styles.section}
-        id="services"
+        id="servicos"
         initial={prefersReducedMotion ? false : "hidden"}
         whileInView={prefersReducedMotion ? undefined : "show"}
         viewport={{ once: true, amount: 0.2 }}
@@ -1063,7 +1076,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            Our <span>services</span>
+            <span>Serviços</span>
           </motion.h2>
           <motion.div className={styles.serviceGrid} variants={staggerChildren}>
             {services.map((service) => (
@@ -1084,7 +1097,7 @@ export default function Home() {
 
       <motion.section
         className={styles.section}
-        id="work"
+        id="portfolio"
         initial={prefersReducedMotion ? false : "hidden"}
         whileInView={prefersReducedMotion ? undefined : "show"}
         viewport={{ once: true, amount: 0.2 }}
@@ -1092,7 +1105,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            Our <span>Work</span>
+            <span>Portfólio</span>
           </motion.h2>
           <div className={styles.workLayout}>
             <motion.div className={styles.workList} variants={staggerChildren}>
@@ -1134,7 +1147,7 @@ export default function Home() {
 
       <motion.section
         className={styles.section}
-        id="plans"
+        id="planos"
         initial={prefersReducedMotion ? false : "hidden"}
         whileInView={prefersReducedMotion ? undefined : "show"}
         viewport={{ once: true, amount: 0.2 }}
@@ -1142,7 +1155,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            <span>Plans</span> to suit your needs
+            <span>Planos</span>
           </motion.h2>
           <motion.div className={styles.planGrid} variants={staggerChildren}>
             {plans.map((plan) => (
@@ -1192,7 +1205,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            What our <span>clients</span> say
+            Por que <span>MadeofIA</span>?
           </motion.h2>
           <motion.div className={styles.testimonialGrid} variants={staggerChildren}>
             {testimonials.map((testimonial) => (
@@ -1227,7 +1240,7 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            Meet the <span>team</span>
+            <span>Time</span>
           </motion.h2>
           <motion.div className={styles.teamGrid} variants={staggerChildren}>
             {team.map((member) => (
@@ -1250,7 +1263,7 @@ export default function Home() {
 
       <motion.section
         className={styles.section}
-        id="contact"
+        id="contato"
         initial={prefersReducedMotion ? false : "hidden"}
         whileInView={prefersReducedMotion ? undefined : "show"}
         viewport={{ once: true, amount: 0.2 }}
@@ -1258,63 +1271,56 @@ export default function Home() {
       >
         <div className={styles.sectionShell}>
           <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            Get in <span>touch</span>
+            Vamos <span>conversar</span>.
           </motion.h2>
           <div className={styles.contactLayout}>
             <motion.div className={styles.contactDetails} variants={revealUp}>
               <div className={styles.contactBlock}>
-                <h3>Office</h3>
-                <p>Keizersgracht 520, 1017EK</p>
-                <p>Amsterdam</p>
-                <p>The Netherlands</p>
+                <h3>Onde estamos</h3>
+                <p>Brasil — 100% remoto</p>
+                <p>Atendemos todo o país</p>
               </div>
               <div className={styles.contactLine} />
               <div className={styles.contactBlock}>
                 <h3>Email</h3>
-                <motion.a href="mailto:mail@nebula.com" whileHover="hover">
-                  <span>mail@nebula.com</span>
+                <motion.a href="mailto:ola@madeofia.com" whileHover="hover">
+                  <span>ola@madeofia.com</span>
                   <ArrowIcon className={styles.inlineArrow} variants={arrowHoverVariants} />
                 </motion.a>
               </div>
               <div className={styles.contactLine} />
               <div className={styles.contactBlock}>
-                <h3>Phone</h3>
-                <motion.a href="tel:+310203439223" whileHover="hover">
-                  <span>+31 (0) 20 343 9223</span>
-                  <ArrowIcon className={styles.inlineArrow} variants={arrowHoverVariants} />
-                </motion.a>
+                <h3>Resposta</h3>
+                <p>Em até 24 horas</p>
+                <p>nos dias úteis</p>
               </div>
             </motion.div>
 
             <motion.form className={styles.contactForm} variants={revealUp}>
               <div className={styles.formRow}>
                 <label>
-                  <span>First Name</span>
-                  <input placeholder="John" type="text" />
+                  <span>Nome</span>
+                  <input placeholder="Seu nome completo" type="text" />
                 </label>
                 <label>
-                  <span>Last Name</span>
-                  <input placeholder="Doe" type="text" />
+                  <span>Email</span>
+                  <input placeholder="seu@email.com" type="email" />
                 </label>
               </div>
               <div className={styles.formRow}>
                 <label>
-                  <span>Email</span>
-                  <input placeholder="john@example.com" type="email" />
-                </label>
-                <label>
-                  <span>Phone</span>
-                  <input placeholder="+31 (0) 20 343 9223" type="tel" />
+                  <span>WhatsApp</span>
+                  <input placeholder="+55 (11) 9 0000-0000" type="tel" />
                 </label>
               </div>
               <label className={styles.formStack}>
-                <span>Message</span>
+                <span>Mensagem</span>
                 <textarea />
               </label>
               <CTAButtonElement
                 className={styles.submitButton}
                 type="submit"
-                label="Submit"
+                label="Enviar mensagem"
                 reducedMotion={Boolean(prefersReducedMotion)}
               />
             </motion.form>
@@ -1324,18 +1330,15 @@ export default function Home() {
 
       <section className={styles.faqSection} id="faq">
         <div className={styles.sectionShell}>
-          <h2 className={styles.faqTitle}>FAQ</h2>
+          <h2 className={styles.faqTitle}>Perguntas frequentes</h2>
           <div className={styles.faqBox}>
-            {faqItems.map((question) => (
-              <details key={question} className={styles.faqItem}>
+            {faqItems.map((item) => (
+              <details key={item.q} className={styles.faqItem}>
                 <summary>
                   <span className={styles.faqIcon}>+</span>
-                  <span>{question}</span>
+                  <span>{item.q}</span>
                 </summary>
-                <p>
-                  We tailor every engagement to your team&apos;s pace, security requirements, and
-                  operating model while keeping delivery fast and flexible.
-                </p>
+                <p>{item.a}</p>
               </details>
             ))}
           </div>
@@ -1350,33 +1353,31 @@ export default function Home() {
               <BrandMark />
             </a>
             <div className={styles.footerMeta}>
-              <p>Office</p>
-              <p>Amsterdam, The Netherlands</p>
-              <p>Local time</p>
-              <p>08:10:19 (CET)</p>
+              <p>MadeofIA</p>
+              <p>CNPJ 65.599.230/0001-64</p>
+              <p>Brasil — 100% remoto</p>
+              <p>ola@madeofia.com</p>
             </div>
           </div>
 
           <div className={styles.footerLinks}>
-            <a href="#our-process">Process</a>
-            <a href="#services">Services</a>
-            <a href="#work">Work</a>
-            <a href="#plans">Plans</a>
-            <a href="#team">Team</a>
-            <a href="#contact">Contact</a>
+            <a href="#processo">Processo</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#planos">Planos</a>
+            <a href="#contato">Contato</a>
           </div>
 
           <div className={styles.footerLinks}>
+            <a href="/privacidade">Privacidade</a>
+            <a href="/termos">Termos</a>
             <a href="https://www.linkedin.com/">LinkedIn</a>
-            <a href="https://www.x.com/">Twitter</a>
             <a href="https://www.instagram.com/">Instagram</a>
-            <a href="https://www.dribbble.com/">Dribbble</a>
           </div>
 
           <div className={styles.footerMeta}>
-            <p>Template by</p>
-            <a href="https://twitter.com/BregmanTibor">Tibor Bregman</a>
-            <a href="https://bluestar.supply/">BlueStar Supply</a>
+            <p>© 2026 MadeofIA.</p>
+            <p>Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>

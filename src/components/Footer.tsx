@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 const navLinks = [
   { href: "#processo", label: "Processo" },
   { href: "#servicos", label: "Serviços" },
-  { href: "#trabalhos", label: "Trabalhos" },
+  { href: "#portfolio", label: "Portfólio" },
   { href: "#planos", label: "Planos" },
-  { href: "#equipe", label: "Equipe" },
   { href: "#contato", label: "Contato" },
+  { href: "/privacidade", label: "Privacidade" },
+  { href: "/termos", label: "Termos" },
 ];
 
 function LocalTime() {
@@ -106,9 +107,9 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/25 text-xs">
-            © {new Date().getFullYear()} MadeofIA — CNPJ 65.599.230/0001-64
+            © 2026 MadeofIA. Todos os direitos reservados.
           </p>
-          <p className="text-white/25 text-xs">Construído por agentes de IA.</p>
+          <p className="text-white/25 text-xs">CNPJ 65.599.230/0001-64</p>
         </div>
       </div>
     </footer>

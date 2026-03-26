@@ -4,24 +4,24 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "O que diferencia a MadeofIA de uma agência tradicional?",
-    a: "Usamos times de agentes de IA especializados para entregar projetos até 3× mais rápido e 70% mais barato que agências tradicionais, sem abrir mão da qualidade.",
+    q: "Quanto custa criar um site profissional?",
+    a: "Depende do escopo. Um site institucional começa em R$15.000 e um produto digital pode chegar a R$45.000. Comparado com agências tradicionais que cobram R$30-60K por um site similar, nossos preços são significativamente mais acessíveis — sem sacrificar qualidade.",
   },
   {
-    q: "Quantas revisões posso solicitar?",
-    a: "Revisões ilimitadas até você aprovar. Trabalhamos em ciclos rápidos de feedback para garantir que o resultado seja exatamente o que você precisa.",
+    q: "Como funciona o processo com agentes de IA?",
+    a: "Nossos agentes de IA são especializados: uma CEO que analisa e estrutura seu projeto, um CTO que escreve código de produção, e uma CMO que cuida do SEO e conteúdo. Você conversa com a gente, e os agentes executam. Simples assim.",
   },
   {
-    q: "Posso cancelar ou pausar minha assinatura?",
-    a: "Sim, no plano Parceiro Digital você pode pausar ou cancelar a qualquer momento, sem multas ou burocracia.",
+    q: "Quanto tempo leva para ficar pronto?",
+    a: "Um site institucional fica pronto em 2-3 semanas. Um produto digital (MVP) leva 4-6 semanas. Muito mais rápido que os 2-4 meses de uma agência tradicional.",
   },
   {
-    q: "As soluções são seguras e escaláveis?",
-    a: "Utilizamos as melhores práticas de segurança e infraestrutura em nuvem (Vercel, AWS, Supabase) para garantir segurança e escalabilidade.",
+    q: "Vocês usam templates prontos?",
+    a: "Não. Cada projeto é desenvolvido do zero com código limpo (Next.js, React, Tailwind). Nada de WordPress, Wix ou construtores visuais.",
   },
   {
-    q: "Em quanto tempo vocês entregam?",
-    a: "O plano Essencial é entregue em 2 semanas. Crescimento em 4 semanas. Produto Digital em 8 semanas. Datas cumpridas ou trabalhamos de graça.",
+    q: "E se eu não gostar do resultado?",
+    a: "Iteramos até você aprovar. Dentro do escopo do projeto, não há limite de revisões. Nosso objetivo é entregar algo que você tenha orgulho de mostrar.",
   },
 ];
 

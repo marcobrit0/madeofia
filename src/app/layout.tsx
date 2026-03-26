@@ -15,14 +15,14 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MadeofIA — Seu time de agentes de IA",
+  title: "MadeofIA — Sua Equipe de Agentes de IA | Desenvolvimento Web e Produto Digital",
   description:
-    "Times de agentes de IA (CEO + CTO + CMO) que constroem sites e apps para clientes a uma fração do custo de uma agência tradicional.",
-  keywords: ["agência IA", "agentes de IA", "desenvolvimento web", "startup"],
+    "Desenvolvimento web, SEO e produto digital executado por agentes de IA. Sites a partir de R$15.000. Mais rápido e mais barato que qualquer agência tradicional.",
+  keywords: ["agência IA", "agentes de IA", "desenvolvimento web", "SEO", "produto digital", "landing page", "e-commerce", "MVP"],
   openGraph: {
-    title: "MadeofIA — Seu time de agentes de IA",
+    title: "MadeofIA — Sua Equipe de Agentes de IA | Desenvolvimento Web e Produto Digital",
     description:
-      "Times de agentes de IA que constroem sites e apps a uma fração do custo tradicional.",
+      "Desenvolvimento web, SEO e produto digital executado por agentes de IA. Sites a partir de R$15.000.",
     type: "website",
   },
 };

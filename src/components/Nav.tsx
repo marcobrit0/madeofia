@@ -6,9 +6,8 @@ import { useState } from "react";
 const links = [
   { href: "#processo", label: "Processo" },
   { href: "#servicos", label: "Serviços" },
-  { href: "#trabalhos", label: "Trabalhos" },
+  { href: "#portfolio", label: "Portfólio" },
   { href: "#planos", label: "Planos" },
-  { href: "#equipe", label: "Equipe" },
   { href: "#contato", label: "Contato" },
 ];
 
@@ -51,7 +50,7 @@ export default function Nav() {
           href="#contato"
           className="text-xs px-4 py-2 rounded-full bg-[#4ade80] text-[#080807] font-semibold hover:bg-[#4ade80]/85 transition-all duration-200"
         >
-          Fale conosco
+          Começar projeto
         </a>
       </nav>
 
@@ -95,7 +94,7 @@ export default function Nav() {
               onClick={() => setOpen(false)}
               className="mt-3 block text-center text-sm px-5 py-3 rounded-full bg-[#4ade80] text-[#080807] font-semibold"
             >
-              Fale conosco
+              Começar projeto
             </a>
           </div>
         </div>

@@ -7,28 +7,31 @@ const caseStudies = [
     year: "2024",
     name: "CriarRecibo",
     type: "SaaS · Fintech",
-    desc: "Plataforma de geração de recibos digitais para autônomos e MEIs. Zero a 3.000 usuários em 60 dias.",
-    metrics: ["3K usuários", "60 dias", "R$0 ad spend"],
+    desc: "Gerador de recibos online para MEIs brasileiros. 10 landing pages otimizadas para SEO, geração de PDF no navegador, 180K+ buscas mensais no nicho.",
+    metrics: ["180K+ buscas/mês", "10 landing pages SEO", "R$0 ad spend"],
     color: "#4ade80",
     initials: "CR",
+    url: "criarrecibo.com.br",
   },
   {
     year: "2024",
     name: "TextoIA",
     type: "SaaS · Copywriting",
-    desc: "Editor de textos com IA para criadores de conteúdo brasileiros. Integração com Claude e GPT-4.",
-    metrics: ["500+ assinantes", "4.8★ rating", "14-day trial"],
+    desc: "Ferramenta de escrita com IA para o mercado brasileiro. Corretor, gerador e aprimorador de texto com SEO orgânico como motor de crescimento.",
+    metrics: ["500+ assinantes", "4.8★ rating", "SEO orgânico"],
     color: "#22d3ee",
     initials: "TX",
+    url: "textoia.com.br",
   },
   {
     year: "2024",
     name: "Bizu",
-    type: "EdTech · Mobile",
-    desc: "App de flashcards com IA para estudantes de concursos. Personalização via machine learning.",
-    metrics: ["10K downloads", "App Store 4.9★", "Retenção 68%"],
+    type: "Chat · IA",
+    desc: "Plataforma de chat com IA para o Brasil. Interface em português, integração com modelos de linguagem e pagamento via PIX.",
+    metrics: ["Chat em português", "Pagamento PIX", "LLM integrado"],
     color: "#a78bfa",
     initials: "BZ",
+    url: "bizu.chat",
   },
 ];
 
@@ -94,7 +97,7 @@ export function PortfolioSection() {
           </div>
           <div className="flex-1 bg-white/[0.04] rounded-md px-3 py-1 mx-4">
             <span className="text-white/20 text-xs font-mono">
-              {cs.name.toLowerCase().replace(/\s/g, "")}.com.br
+              {cs.url}
             </span>
           </div>
         </div>
