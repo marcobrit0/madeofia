@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: "Como funciona o processo com agentes de IA?",
-    a: "Nossos agentes de IA são especializados: uma CEO que analisa e estrutura seu projeto, um CTO que escreve código de produção, e uma CMO que cuida do SEO e conteúdo. Você conversa com a gente, e os agentes executam. Simples assim.",
+    a: "Nossos agentes de IA são especializados: uma CEO que analisa e estrutura seu projeto, um CTO que escreve código de produção e uma CMO que cuida do SEO e conteúdo. Você conversa com a gente, e os agentes executam. Simples assim.",
   },
   {
     q: "Quanto tempo leva para ficar pronto?",

@@ -16,12 +16,12 @@ export const metadata: Metadata = createBlogPostMetadata(secondBlogPost);
 const structuredData = createBlogPostSchemas(secondBlogPost);
 
 const landingPageModels = [
-  "Captacao de lead para servicos",
-  "Pagina de espera para produto",
-  "Lancamento de curso ou oferta",
-  "Pagina de diagnostico ou auditoria",
-  "Pagina de agendamento comercial",
-  "Comparativo de solucao",
+  "Captação de lead para serviços",
+  "Página de espera para produto",
+  "Lançamento de curso ou oferta",
+  "Página de diagnóstico ou auditoria",
+  "Página de agendamento comercial",
+  "Comparativo de solução",
   "Oferta com prova social forte",
 ];
 
@@ -35,7 +35,7 @@ export default function LandingPageExamplesPage() {
 
       <BlogArticlePage
         post={secondBlogPost}
-        quickSummary="Landing page nao e pagina bonita com formulario. E uma interface desenhada para uma unica decisao, com friccao baixa e argumento forte."
+        quickSummary="Landing page não é página bonita com formulário. É uma interface desenhada para uma única decisão, com fricção baixa e argumento forte."
         asideSections={[
           {
             title: "Neste artigo",
@@ -51,8 +51,8 @@ export default function LandingPageExamplesPage() {
             title: "Quer revisar a sua?",
             content: (
               <p>
-                Se a pagina atual recebe clique mas nao gera conversa, o problema
-                costuma estar na estrutura, nao no volume de trafego.
+                Se a página atual recebe clique, mas não gera conversa, o problema
+                costuma estar na estrutura, não no volume de tráfego.
               </p>
             ),
             action: {
@@ -63,13 +63,13 @@ export default function LandingPageExamplesPage() {
         ]}
       >
         <p>
-          Landing page nao e home de site. Ela existe para uma unica promessa,
-          uma unica acao e uma unica decisao. Quanto mais disputa de foco, pior
+          Landing page não é home de site. Ela existe para uma única promessa,
+          uma única ação e uma única decisão. Quanto mais disputa de foco, pior
           a performance.
         </p>
         <p>
-          Por isso a pergunta certa nao e "como deixar a pagina bonita?", mas
-          sim "qual decisao ela precisa facilitar sem desviar o usuario do
+          Por isso, a pergunta certa não é "como deixar a página bonita?", mas
+          sim "qual decisão ela precisa facilitar sem desviar o usuário do
           caminho?".
         </p>
 
@@ -77,7 +77,7 @@ export default function LandingPageExamplesPage() {
         <div className={styles.proseGrid}>
           <section className={styles.highlightCard}>
             <h4>Headline</h4>
-            <p>A promessa principal precisa ser especifica e rapida de ler.</p>
+            <p>A promessa principal precisa ser específica e rápida de ler.</p>
           </section>
           <section className={styles.highlightCard}>
             <h4>Subheadline</h4>
@@ -85,26 +85,26 @@ export default function LandingPageExamplesPage() {
           </section>
           <section className={styles.highlightCard}>
             <h4>Hero visual</h4>
-            <p>Mostra a oferta em uso, nao uma imagem generica de banco.</p>
+            <p>Mostra a oferta em uso, não uma imagem genérica de banco.</p>
           </section>
           <section className={styles.highlightCard}>
             <h4>CTA repetido</h4>
-            <p>O proximo passo aparece sempre que a atencao e recuperada.</p>
+            <p>O próximo passo aparece sempre que a atenção é recuperada.</p>
           </section>
         </div>
 
-        <h3>Beneficios vem antes de detalhes tecnicos</h3>
+        <h3>Benefícios vêm antes de detalhes técnicos</h3>
         <p>
-          A maioria das paginas fala demais sobre feature e pouco sobre impacto.
-          O visitante quer saber o que muda para ele, quanto esforco sera
+          A maioria das páginas fala demais sobre feature e pouco sobre impacto.
+          O visitante quer saber o que muda para ele, quanto esforço será
           economizado e por que vale clicar agora.
         </p>
 
-        <h3>Tratamento de objecoes e obrigatorio</h3>
+        <h3>Tratamento de objeções é obrigatório</h3>
         <p>
-          Preco, confianca, prazo, risco e dificuldade de implantacao precisam
-          aparecer de forma direta. Se a pagina ignora objecao, o usuario leva a
-          duvida embora.
+          Preço, confiança, prazo, risco e dificuldade de implantação precisam
+          aparecer de forma direta. Se a página ignora a objeção, o usuário leva a
+          dúvida embora.
         </p>
 
         <h2>Sete modelos para adaptar ao seu funil</h2>
@@ -116,32 +116,32 @@ export default function LandingPageExamplesPage() {
 
         <h2>Os erros que mais derrubam performance</h2>
         <p>
-          Os problemas mais comuns sao excesso de navegacao, CTA ambiguo,
-          formulario cedo demais, prova social fraca e layout que obriga o
-          usuario a "descobrir" a proposta por conta propria.
+          Os problemas mais comuns são excesso de navegação, CTA ambíguo,
+          formulário cedo demais, prova social fraca e layout que obriga o
+          usuário a "descobrir" a proposta por conta própria.
         </p>
         <p>
-          Em campanhas pagas, isso custa caro rapidamente. Em busca organica,
-          isso transforma trafego qualificado em visita improdutiva.
+          Em campanhas pagas, isso custa caro rapidamente. Em busca orgânica,
+          isso transforma tráfego qualificado em visita improdutiva.
         </p>
 
-        <h2>Como avaliar se a pagina esta pronta</h2>
+        <h2>Como avaliar se a página está pronta</h2>
         <ul>
           <li>A promessa cabe em uma leitura de poucos segundos.</li>
           <li>O CTA deixa claro o que acontece depois do clique.</li>
           <li>Existe prova suficiente para reduzir risco percebido.</li>
-          <li>A pagina continua clara e convincente no mobile.</li>
+          <li>A página continua clara e convincente no mobile.</li>
         </ul>
 
-        <h2>Conclusao</h2>
+        <h2>Conclusão</h2>
         <p>
-          Landing page boa nao depende de truque. Depende de oferta clara,
-          narrativa focada e interface disciplinada. O objetivo e reduzir
-          dispersao e aumentar confianca.
+          Landing page boa não depende de truque. Depende de oferta clara,
+          narrativa focada e interface disciplinada. O objetivo é reduzir
+          dispersão e aumentar confiança.
         </p>
         <p>
-          Se voce quiser alinhar pagina, mensagem e conversao no mesmo projeto,
-          veja os <Link href="/servicos">servicos</Link> ou fale conosco pelo{" "}
+          Se você quiser alinhar página, mensagem e conversão no mesmo projeto,
+          veja os <Link href="/servicos">serviços</Link> ou fale conosco pelo{" "}
           <Link href="/contato">contato</Link>.
         </p>
       </BlogArticlePage>

@@ -15,15 +15,15 @@ export default function Termos() {
     <LegalDocument
       title="Termos de Uso"
       updatedAt="Mar 2026"
-      description="Condicoes gerais para contratacao de servicos de design, desenvolvimento web, SEO e produto digital com a MadeofIA."
+      description="Condições gerais para contratação de serviços de design, desenvolvimento web, SEO e produto digital com a MadeofIA."
       sections={[
         {
           title: "1. Escopo",
           body: (
             <p>
-              Cada projeto e formalizado por proposta comercial com escopo,
-              cronograma, entregas e limites de revisao definidos antes do
-              inicio do trabalho.
+              Cada projeto é formalizado por proposta comercial com escopo,
+              cronograma, entregas e limites de revisão definidos antes do
+              início do trabalho.
             </p>
           ),
         },
@@ -31,9 +31,9 @@ export default function Termos() {
           title: "2. Pagamento",
           body: (
             <p>
-              As condicoes financeiras sao combinadas em proposta. Projetos de
+              As condições financeiras são combinadas em proposta. Projetos de
               escopo fixo normalmente trabalham com entrada e saldo na entrega,
-              enquanto contratos recorrentes seguem cobranca mensal.
+              enquanto contratos recorrentes seguem cobrança mensal.
             </p>
           ),
         },
@@ -41,9 +41,9 @@ export default function Termos() {
           title: "3. Propriedade intelectual",
           body: (
             <p>
-              Apos quitacao integral, o cliente recebe acesso ao material
-              entregue, incluindo implementacao, ativos previstos no escopo e
-              configuracoes acordadas para o projeto.
+              Após a quitação integral, o cliente recebe acesso ao material
+              entregue, incluindo implementação, ativos previstos no escopo e
+              configurações acordadas para o projeto.
             </p>
           ),
         },
@@ -52,7 +52,7 @@ export default function Termos() {
           body: (
             <p>
               Os prazos pressupõem retorno dentro das janelas combinadas. Atrasos
-              causados por falta de validacao ou envio de material pelo cliente
+              causados por falta de validação ou envio de material pelo cliente
               impactam o cronograma.
             </p>
           ),
@@ -62,8 +62,8 @@ export default function Termos() {
           body: (
             <p>
               O cancelamento segue o que estiver previsto na proposta e no
-              contrato do projeto. Entregas ja executadas e horas ja consumidas
-              nao sao automaticamente reembolsaveis.
+              contrato do projeto. Entregas já executadas e horas já consumidas
+              não são automaticamente reembolsáveis.
             </p>
           ),
         },
@@ -71,7 +71,7 @@ export default function Termos() {
           title: "6. Contato",
           body: (
             <p>
-              Duvidas operacionais ou juridicas podem ser enviadas para{" "}
+              Dúvidas operacionais ou jurídicas podem ser enviadas para{" "}
               <a href="mailto:ola@madeofia.com">ola@madeofia.com</a>.
             </p>
           ),

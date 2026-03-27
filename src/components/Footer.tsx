@@ -24,7 +24,7 @@ export default function Footer() {
       <div className={styles.footerLine} />
       <div className={styles.footerGrid}>
         <div className={styles.footerBrand}>
-          <Link href="/" aria-label="MadeofIA home" className={styles.brandMark}>
+          <Link href="/" aria-label="Início da MadeofIA" className={styles.brandMark}>
             <BrandMark />
           </Link>
           <div className={styles.footerMeta}>

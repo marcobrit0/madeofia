@@ -10,16 +10,16 @@ export default function Contato() {
           <>
             Vamos estruturar
             <br />
-            a proxima versao
+            a próxima versão
             <br />
             <span style={{ color: "#d3ffca" }}>do seu projeto.</span>
           </>
         }
-        description="Preencha o briefing com o maximo de contexto util. A resposta vem com proximos passos claros, nao com um pitch generico."
+        description="Preencha o briefing com o máximo de contexto útil. A resposta vem com próximos passos claros, não com um pitch genérico."
         panel={
           <>
             <p className={styles.panelKicker}>Janela de resposta</p>
-            <p className={styles.panelTitle}>Ate 24 horas uteis.</p>
+            <p className={styles.panelTitle}>Até 24 horas úteis.</p>
             <p className={styles.panelBody}>
               Se fizer sentido para os dois lados, seguimos para escopo, cronograma e proposta.
             </p>
@@ -37,9 +37,9 @@ export default function Contato() {
                 <p className={styles.panelKicker}>O que acontece depois</p>
                 <ul className={styles.list} style={{ marginTop: 16 }}>
                   <li>Leitura do briefing e triagem do escopo.</li>
-                  <li>Resposta com perguntas adicionais ou direcao inicial.</li>
+                  <li>Resposta com perguntas adicionais ou direção inicial.</li>
                   <li>Call curta para alinhar contexto, prioridade e prazo.</li>
-                  <li>Proposta com escopo e proxima etapa objetiva.</li>
+                  <li>Proposta com escopo e próxima etapa objetiva.</li>
                 </ul>
               </div>
 
@@ -47,7 +47,7 @@ export default function Contato() {
                 <p className={styles.panelKicker}>Contato direto</p>
                 <p className={styles.panelTitle}>ola@madeofia.com</p>
                 <p className={styles.panelBody}>
-                  Se preferir, mande contexto por email. O importante e nao comecar o projeto com briefing raso.
+                  Se preferir, mande contexto por e-mail. O importante é não começar o projeto com um briefing raso.
                 </p>
               </div>
             </div>

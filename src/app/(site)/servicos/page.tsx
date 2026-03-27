@@ -54,7 +54,7 @@ const tiers = [
     items: [
       "Tudo do Crescimento",
       "Auth, dashboard e banco de dados",
-      "Integrações com pagamento e email",
+      "Integrações com pagamento e e-mail",
       "Painel administrativo",
       "Infraestrutura pronta para escala",
     ],
@@ -62,35 +62,35 @@ const tiers = [
   {
     tier: "Parceiro Digital",
     price: "R$7K",
-    period: "por mes",
-    tagline: "Time recorrente, foco continuo.",
-    desc: "Squad enxuto para evolucao constante do produto com prioridades mensais, manutencao, novas entregas e acompanhamento.",
+    period: "por mês",
+    tagline: "Time recorrente, foco contínuo.",
+    desc: "Squad enxuto para evolução constante do produto, com prioridades mensais, manutenção, novas entregas e acompanhamento.",
     items: [
       "Roadmap mensal priorizado",
       "Melhorias de UX e CRO",
-      "Conteudo e SEO continuo",
-      "Correcao de bugs e manutencao",
-      "Ritmo de entrega previsivel",
+      "Conteúdo e SEO contínuos",
+      "Correção de bugs e manutenção",
+      "Ritmo de entrega previsível",
     ],
   },
 ];
 
 const faq = [
   {
-    title: "Como o projeto comeca",
-    copy: "Primeiro alinhamos contexto, objetivo e restricoes. Depois disso fechamos escopo, cronograma e criterios de aprovacao para evitar surpresa no meio do caminho.",
+    title: "Como o projeto começa",
+    copy: "Primeiro alinhamos contexto, objetivo e restrições. Depois disso, fechamos escopo, cronograma e critérios de aprovação para evitar surpresas no meio do caminho.",
   },
   {
-    title: "Como funcionam as revisoes",
-    copy: "Cada plano ja nasce com checkpoints claros. Em vez de uma entrega opaca no fim, trabalhamos por blocos e iteracoes curtas.",
+    title: "Como funcionam as revisões",
+    copy: "Cada plano já nasce com checkpoints claros. Em vez de uma entrega opaca no fim, trabalhamos por blocos e iterações curtas.",
   },
   {
     title: "Quando faz sentido um MVP",
-    copy: "Quando a prioridade e aprender rapido com usuarios reais. Se a demanda ja esta validada, pode fazer mais sentido comecar por um site comercial forte.",
+    copy: "Quando a prioridade é aprender rápido com usuários reais. Se a demanda já está validada, pode fazer mais sentido começar por um site comercial forte.",
   },
   {
     title: "O que fica com o cliente",
-    copy: "Codigo, design implementado, configuracoes do projeto, dominio, analytics e toda a base necessaria para continuar evoluindo sem dependencia artificial.",
+    copy: "Código, design implementado, configurações do projeto, domínio, analytics e toda a base necessária para continuar evoluindo sem dependência artificial.",
   },
 ];
 
@@ -98,24 +98,24 @@ export default function Servicos() {
   return (
     <>
       <PageIntro
-        eyebrow="// servicos"
+        eyebrow="// serviços"
         title={
           <>
             Escopo claro.
             <br />
-            Preco fixo.
+            Preço fixo.
             <br />
             <span style={{ color: "#d3ffca" }}>Entrega que faz sentido.</span>
           </>
         }
-        description="Os planos abaixo organizam a decisao certa para cada momento do negocio. Sem escopo nebuloso, sem equipe inchada e sem um site bonito que nao resolve nada."
+        description="Os planos abaixo organizam a decisão certa para cada momento do negócio. Sem escopo nebuloso, sem equipe inchada e sem um site bonito que não resolve nada."
         panel={
           <>
             <p className={styles.panelKicker}>Como pensamos</p>
-            <p className={styles.panelTitle}>Design, codigo e demanda no mesmo pacote.</p>
+            <p className={styles.panelTitle}>Design, código e demanda no mesmo pacote.</p>
             <p className={styles.panelBody}>
-              A proposta nao separa visual de performance nem SEO de produto.
-              Tudo entra junto para o site ja nascer funcional.
+              A proposta não separa visual de performance nem SEO de produto.
+              Tudo entra junto para o site já nascer funcional.
             </p>
           </>
         }
@@ -168,9 +168,9 @@ export default function Servicos() {
       </section>
 
       <ActionBanner
-        eyebrow="// proxima etapa"
+        eyebrow="// próxima etapa"
         title="Se o site precisa vender, o escopo precisa ser honesto."
-        description="A conversa certa nao comeca por cor de botao. Comeca por meta, oferta, estrutura e o que o projeto precisa entregar de verdade."
+        description="A conversa certa não começa pela cor do botão. Começa por meta, oferta, estrutura e pelo que o projeto precisa entregar de verdade."
         href="/contato"
         label="Agendar conversa"
       />

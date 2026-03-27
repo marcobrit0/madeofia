@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function Privacidade() {
   return (
     <LegalDocument
-      title="Politica de Privacidade"
+      title="Política de Privacidade"
       updatedAt="Mar 2026"
       description="Como a MadeofIA coleta, utiliza e protege os dados compartilhados por clientes, leads e visitantes do site."
       sections={[
@@ -21,9 +21,9 @@ export default function Privacidade() {
           title: "1. Dados coletados",
           body: (
             <p>
-              Coletamos apenas dados fornecidos voluntariamente em formularios,
-              como nome, email, empresa e contexto do projeto. Nao trabalhamos
-              com coleta de dados sensiveis neste site.
+              Coletamos apenas dados fornecidos voluntariamente em formulários,
+              como nome, e-mail, empresa e contexto do projeto. Não trabalhamos
+              com coleta de dados sensíveis neste site.
             </p>
           ),
         },
@@ -31,8 +31,8 @@ export default function Privacidade() {
           title: "2. Finalidade do uso",
           body: (
             <p>
-              Os dados sao utilizados para responder contatos, preparar
-              propostas, executar servicos contratados e manter comunicacao
+              Os dados são utilizados para responder contatos, preparar
+              propostas, executar serviços contratados e manter comunicação
               operacional diretamente relacionada ao projeto.
             </p>
           ),
@@ -41,9 +41,9 @@ export default function Privacidade() {
           title: "3. Compartilhamento",
           body: (
             <p>
-              Nao vendemos nem cedemos dados a terceiros. Eventual
-              compartilhamento ocorre apenas quando necessario para operacao do
-              servico ou por obrigacao legal.
+              Não vendemos nem cedemos dados a terceiros. Eventual
+              compartilhamento ocorre apenas quando necessário para a operação do
+              serviço ou por obrigação legal.
             </p>
           ),
         },
@@ -51,7 +51,7 @@ export default function Privacidade() {
           title: "4. Direitos do titular",
           body: (
             <p>
-              Voce pode solicitar acesso, correcao, exclusao ou revogacao de
+              Você pode solicitar acesso, correção, exclusão ou revogação de
               consentimento escrevendo para{" "}
               <a href="mailto:ola@madeofia.com">ola@madeofia.com</a>.
             </p>
@@ -61,7 +61,7 @@ export default function Privacidade() {
           title: "5. Contato",
           body: (
             <p>
-              Em caso de duvida sobre esta politica, escreva para{" "}
+              Em caso de dúvida sobre esta política, escreva para{" "}
               <a href="mailto:ola@madeofia.com">ola@madeofia.com</a>.
             </p>
           ),

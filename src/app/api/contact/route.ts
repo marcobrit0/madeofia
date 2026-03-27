@@ -23,7 +23,7 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   if (!resend) {
     return Response.json(
-      { error: "RESEND_API_KEY nao configurada no servidor." },
+      { error: "RESEND_API_KEY não configurada no servidor." },
       { status: 500 },
     );
   }
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   try {
     payload = (await request.json()) as ContactPayload;
   } catch {
-    return Response.json({ error: "Payload invalido." }, { status: 400 });
+    return Response.json({ error: "Payload inválido." }, { status: 400 });
   }
 
   const validationError = validatePayload(payload);
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     tipoProjeto: payload.tipoProjeto!.trim(),
     whatsapp: payload.whatsapp!.trim(),
     mensagem: payload.mensagem!.trim(),
-    origin: payload.origin?.trim() || "Origem nao informada",
+    origin: payload.origin?.trim() || "Origem não informada",
   };
 
   const { error } = await resend.emails.send({
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
 function validatePayload(payload: ContactPayload) {
   const requiredFields: Array<[keyof ContactPayload, string]> = [
     ["nomeCompleto", "Nome completo"],
-    ["email", "Email"],
+    ["email", "E-mail"],
     ["empresa", "Empresa"],
     ["website", "Website"],
     ["tipoProjeto", "Tipo de projeto"],
@@ -86,12 +86,12 @@ function validatePayload(payload: ContactPayload) {
   for (const [key, label] of requiredFields) {
     const value = payload[key];
     if (typeof value !== "string" || !value.trim()) {
-      return `${label} e obrigatorio.`;
+      return `${label} é obrigatório.`;
     }
   }
 
   if (!isValidEmail(payload.email!)) {
-    return "Email invalido.";
+    return "E-mail inválido.";
   }
 
   return null;
@@ -107,7 +107,7 @@ function renderTextEmail(payload: Required<ContactPayload>) {
     "",
     `Origem: ${payload.origin}`,
     `Nome completo: ${payload.nomeCompleto}`,
-    `Email: ${payload.email}`,
+    `E-mail: ${payload.email}`,
     `Empresa: ${payload.empresa}`,
     `Website: ${payload.website}`,
     `Tipo de projeto: ${payload.tipoProjeto}`,
@@ -122,7 +122,7 @@ function renderHtmlEmail(payload: Required<ContactPayload>) {
   const fields = [
     ["Origem", payload.origin],
     ["Nome completo", payload.nomeCompleto],
-    ["Email", payload.email],
+    ["E-mail", payload.email],
     ["Empresa", payload.empresa],
     ["Website", payload.website],
     ["Tipo de projeto", payload.tipoProjeto],

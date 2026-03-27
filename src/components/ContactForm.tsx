@@ -6,9 +6,9 @@ import { SubmitButton } from "@/components/SiteButton";
 
 const PROJECT_TYPE_OPTIONS = [
   "Site institucional ou landing page",
-  "Site + blog + captacao",
+  "Site + blog + captação",
   "MVP ou web app",
-  "Evolucao continua",
+  "Evolução contínua",
 ] as const;
 
 const INITIAL_FORM_STATE = {
@@ -57,7 +57,7 @@ export default function ContactForm({ originLabel }: ContactFormProps) {
       const payload = (await response.json()) as { error?: string };
 
       if (!response.ok) {
-        throw new Error(payload.error || "Nao foi possivel enviar sua mensagem.");
+        throw new Error(payload.error || "Não foi possível enviar sua mensagem.");
       }
 
       setStatus("success");
@@ -65,7 +65,7 @@ export default function ContactForm({ originLabel }: ContactFormProps) {
     } catch (error) {
       setStatus("error");
       setErrorMessage(
-        error instanceof Error ? error.message : "Nao foi possivel enviar sua mensagem.",
+        error instanceof Error ? error.message : "Não foi possível enviar sua mensagem.",
       );
     }
   };
@@ -144,7 +144,7 @@ export default function ContactForm({ originLabel }: ContactFormProps) {
           <p className={styles.eyebrow}>Mensagem enviada</p>
           <h2 className={styles.successHeading}>Recebemos seu contato.</h2>
           <p className={styles.successBody}>
-            Respondemos em ate 24 horas uteis com os proximos passos.
+            Respondemos em até 24 horas úteis com os próximos passos.
           </p>
         </div>
       </div>
@@ -168,7 +168,7 @@ export default function ContactForm({ originLabel }: ContactFormProps) {
         </div>
 
         <div className={styles.field}>
-          <label htmlFor={`${originLabel}-email`}>Email</label>
+          <label htmlFor={`${originLabel}-email`}>E-mail</label>
           <input
             id={`${originLabel}-email`}
             name="email"
@@ -209,7 +209,7 @@ export default function ContactForm({ originLabel }: ContactFormProps) {
         </div>
 
         <div className={styles.field}>
-          <label htmlFor={`${originLabel}-tipo-projeto`}>Tipo de Projeto</label>
+          <label htmlFor={`${originLabel}-tipo-projeto`}>Tipo de projeto</label>
           <select
             id={`${originLabel}-tipo-projeto`}
             name="tipoProjeto"

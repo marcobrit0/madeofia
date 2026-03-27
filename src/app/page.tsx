@@ -46,7 +46,7 @@ const processSteps = [
     number: "04.",
     title: "Revisão",
     description:
-      "Você revisa, comenta, e iteramos. Sem limite de ajustes dentro do escopo.",
+      "Você revisa, comenta e iteramos. Sem limite de ajustes dentro do escopo.",
     visual: "review",
   },
   {
@@ -144,7 +144,7 @@ const plans = [
       "App web completo",
       "Autenticação + dashboard",
       "Banco de dados",
-      "Integrações (pagamento, email, etc)",
+      "Integrações com pagamento e e-mail",
       "60 dias de suporte",
     ],
   },
@@ -213,7 +213,7 @@ const faqItems = [
   },
   {
     q: "Como funciona o processo com agentes de IA?",
-    a: "Nossos agentes de IA são especializados: uma CEO que analisa e estrutura seu projeto, um CTO que escreve código de produção, e uma CMO que cuida do SEO e conteúdo. Você conversa com a gente, e os agentes executam. Simples assim.",
+    a: "Nossos agentes de IA são especializados: uma CEO que analisa e estrutura seu projeto, um CTO que escreve código de produção e uma CMO que cuida do SEO e conteúdo. Você conversa com a gente, e os agentes executam. Simples assim.",
   },
   {
     q: "Quanto tempo leva para ficar pronto?",
@@ -1340,7 +1340,7 @@ export default function Home() {
               <motion.img
                 key={activeWork}
                 src={WORK_IMAGE}
-                alt="Green laptop mockup"
+                alt="Notebook verde exibindo o preview do projeto"
                 initial={prefersReducedMotion ? false : { opacity: 0.6, scale: 0.97 }}
                 animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
                 transition={snappierTransition}
@@ -1487,7 +1487,7 @@ export default function Home() {
               </div>
               <div className={styles.contactLine} />
               <div className={styles.contactBlock}>
-                <h3>Email</h3>
+                <h3>E-mail</h3>
                 <motion.a href="mailto:ola@madeofia.com" whileHover="hover">
                   <span>ola@madeofia.com</span>
                   <ArrowIcon className={styles.inlineArrow} variants={arrowHoverVariants} />

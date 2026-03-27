@@ -78,11 +78,11 @@ export default function Blog() {
                 <br />
                 seu site a
                 <br />
-                <span className={styles.heroAccent}>gerar negocio.</span>
+                <span className={styles.heroAccent}>gerar negócio.</span>
               </h1>
               <p className={homeStyles.heroDescription} style={{ maxWidth: 780 }}>
-                Conteudo editorial sobre web design, SEO e produto digital com foco em
-                conversao, performance e clareza estrategica.
+                Conteúdo editorial sobre web design, SEO e produto digital com foco em
+                conversão, performance e clareza estratégica.
               </p>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function Blog() {
 
             <div className={styles.stack}>
               <div className={styles.surfaceCard}>
-                <p className={styles.panelKicker}>O que voce encontra aqui</p>
+                <p className={styles.panelKicker}>O que você encontra aqui</p>
                 <ul className={styles.list} style={{ marginTop: 16 }}>
                   {featuredBlogPost.summary.map((item) => (
                     <li key={item}>{item}</li>
@@ -125,11 +125,11 @@ export default function Blog() {
               </div>
 
               <div className={styles.surfaceCard}>
-                <p className={styles.panelKicker}>Proxima acao</p>
+                <p className={styles.panelKicker}>Próxima ação</p>
                 <p className={styles.bodyCopy} style={{ marginTop: 16 }}>
-                  Se o seu site atual nao comunica valor, nao ranqueia e nao
-                  converte, a proxima etapa nao e trocar detalhe visual. E
-                  reorganizar estrategia, mensagem e estrutura.
+                  Se o seu site atual não comunica valor, não ranqueia e não
+                  converte, a próxima etapa não é trocar detalhe visual. É
+                  reorganizar estratégia, mensagem e estrutura.
                 </p>
                 <div style={{ marginTop: 20 }}>
                   <LinkButton href="/contato" label="Falar com a MadeofIA" />
@@ -184,10 +184,10 @@ export default function Blog() {
 
       <ActionBanner
         eyebrow="// seo-driven"
-        title="Conteudo pensado para ranquear e converter."
-        description="Cada artigo conecta intencao de busca, estrutura semantica e CTA claro para transformar leitura em demanda."
+        title="Conteúdo pensado para ranquear e converter."
+        description="Cada artigo conecta intenção de busca, estrutura semântica e CTA claro para transformar leitura em demanda."
         href="/servicos"
-        label="Ver servicos"
+        label="Ver serviços"
       />
     </>
   );

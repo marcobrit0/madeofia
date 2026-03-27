@@ -53,7 +53,7 @@ export default function Nav() {
   return (
     <>
       <nav className={homeStyles.desktopNav}>
-        <Link className={homeStyles.logo} href="/" aria-label="MadeofIA home">
+        <Link className={homeStyles.logo} href="/" aria-label="Início da MadeofIA">
           <BrandMark />
         </Link>
 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ActionBanner, PageIntro, sitePageStyles as styles } from "@/components/SitePages";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -16,29 +15,29 @@ const cases = [
     name: "CriarRecibo",
     tag: "SaaS · Fintech",
     year: "2024",
-    tagline: "Produto utilitario com distribuicao organica forte.",
-    desc: "Transformamos uma necessidade operacional em produto de uso recorrente, com fluxo direto, performance alta e paginas preparadas para busca.",
-    challenge: "A operacao dependia de processo improvisado e nao existia experiencia de produto consistente.",
-    solution: "Entregamos MVP com geracao de PDF, historico, autenticacao e arquitetura pronta para crescer sem travar o time.",
+    tagline: "Produto utilitário com distribuição orgânica forte.",
+    desc: "Transformamos uma necessidade operacional em produto de uso recorrente, com fluxo direto, performance alta e páginas preparadas para busca.",
+    challenge: "A operação dependia de um processo improvisado, e não existia uma experiência de produto consistente.",
+    solution: "Entregamos um MVP com geração de PDF, histórico, autenticação e arquitetura pronta para crescer sem travar o time.",
     results: [
-      ["3.000+", "usuarios ativos"],
-      ["60 dias", "ate ganhar tracao"],
-      ["R$0", "em midia paga"],
+      ["3.000+", "usuários ativos"],
+      ["60 dias", "até ganhar tração"],
+      ["R$0", "em mídia paga"],
       ["NPS 72", "com uso recorrente"],
     ],
   },
   {
     name: "TextoIA",
-    tag: "SaaS · Conteudo",
+    tag: "SaaS · Conteúdo",
     year: "2024",
     tagline: "Produto com oferta mais clara e onboarding mais direto.",
-    desc: "A plataforma precisava explicar valor rapido, simplificar a jornada e sustentar crescimento com conteudo e estrutura de funil.",
-    challenge: "Ferramenta boa com narrativa dispersa, proposta complexa e experiencia desalinhada com o publico.",
-    solution: "Reorganizarmos arquitetura de paginas, posicionamento, experiencia principal e base editorial para aquisicao continua.",
+    desc: "A plataforma precisava explicar valor rápido, simplificar a jornada e sustentar crescimento com conteúdo e estrutura de funil.",
+    challenge: "A ferramenta era boa, mas tinha narrativa dispersa, proposta complexa e experiência desalinhada com o público.",
+    solution: "Reorganizamos a arquitetura de páginas, o posicionamento, a experiência principal e a base editorial para aquisição contínua.",
     results: [
       ["500+", "assinantes pagantes"],
-      ["34%", "trial para pago"],
-      ["4.8", "avaliacao media"],
+      ["34%", "de trial para pago"],
+      ["4.8", "avaliação média"],
       ["3.2%", "churn mensal"],
     ],
   },
@@ -46,14 +45,14 @@ const cases = [
     name: "Bizu",
     tag: "EdTech · Mobile Web",
     year: "2024",
-    tagline: "Experiencia leve com comportamento de app.",
-    desc: "Projeto desenhado para uso frequente, navegacao rapida e clareza de proposta em ambiente mobile-first.",
+    tagline: "Experiência leve com comportamento de app.",
+    desc: "Projeto desenhado para uso frequente, navegação rápida e clareza de proposta em ambiente mobile-first.",
     challenge: "O produto precisava parecer simples sem perder profundidade funcional ou parecer improvisado.",
-    solution: "Construimos experiencia enxuta, ritmada e pronta para uso intenso com base de dados, autenticacao e trilhas personalizadas.",
+    solution: "Construímos uma experiência enxuta, ritmada e pronta para uso intenso, com base de dados, autenticação e trilhas personalizadas.",
     results: [
       ["10 mil", "downloads"],
-      ["68%", "retencao D30"],
-      ["18 min", "sessao media"],
+      ["68%", "retenção D30"],
+      ["18 min", "sessão média"],
       ["4.9", "nota em loja"],
     ],
   },
@@ -63,7 +62,7 @@ export default function Portfolio() {
   return (
     <>
       <PageIntro
-        eyebrow="// portfolio"
+        eyebrow="// portfólio"
         title={
           <>
             Produto no ar.
@@ -73,13 +72,13 @@ export default function Portfolio() {
             <span style={{ color: "#d3ffca" }}>Sem mockup de mentira.</span>
           </>
         }
-        description="Os cases abaixo mostram o tipo de projeto que preferimos: contexto claro, entregas objetivas e uma interface que ajuda o negocio a crescer em vez de enfeitar a tela."
+        description="Os cases abaixo mostram o tipo de projeto que preferimos: contexto claro, entregas objetivas e uma interface que ajuda o negócio a crescer em vez de enfeitar a tela."
         panel={
           <>
-            <p className={styles.panelKicker}>O que voce ve aqui</p>
-            <p className={styles.panelTitle}>Projetos construidos para uso, nao para portfolio vazio.</p>
+            <p className={styles.panelKicker}>O que você vê aqui</p>
+            <p className={styles.panelTitle}>Projetos construídos para uso, não para portfólio vazio.</p>
             <p className={styles.panelBody}>
-              Cada case combina narrativa, arquitetura, conversao e infraestrutura.
+              Cada case combina narrativa, arquitetura, conversão e infraestrutura.
             </p>
           </>
         }
@@ -110,7 +109,7 @@ export default function Portfolio() {
                         <p className={styles.tableValue}>{item.challenge}</p>
                       </div>
                       <div className={styles.tableRow}>
-                        <p className={styles.tableLabel}>Solucao</p>
+                        <p className={styles.tableLabel}>Solução</p>
                         <p className={styles.tableValue}>{item.solution}</p>
                       </div>
                     </div>
@@ -133,10 +132,10 @@ export default function Portfolio() {
 
       <ActionBanner
         eyebrow="// seu projeto"
-        title="O proximo case pode ser o seu."
-        description="Se voce precisa transformar uma ideia em produto ou reposicionar um site que hoje nao sustenta crescimento, essa conversa comeca aqui."
+        title="O próximo case pode ser o seu."
+        description="Se você precisa transformar uma ideia em produto ou reposicionar um site que hoje não sustenta crescimento, essa conversa começa aqui."
         href="/contato"
-        label="Comecar projeto"
+        label="Começar projeto"
       />
     </>
   );
