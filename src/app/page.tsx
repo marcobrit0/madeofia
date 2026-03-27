@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import ContactForm from "@/components/ContactForm";
 import { useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -404,33 +405,6 @@ function CTAAnchor({
     >
       <CTAInner label={label} showArrow={showArrow} />
     </motion.a>
-  );
-}
-
-function CTAButtonElement({
-  className,
-  type,
-  label,
-  reducedMotion,
-  showArrow = false,
-}: {
-  className: string;
-  type: "button" | "submit";
-  label: string;
-  reducedMotion: boolean;
-  showArrow?: boolean;
-}) {
-  return (
-    <motion.button
-      className={`${className} ${styles.ctaButton}`}
-      type={type}
-      initial={reducedMotion ? false : "rest"}
-      animate={reducedMotion ? undefined : "rest"}
-      whileHover={reducedMotion ? undefined : "hover"}
-      variants={reducedMotion ? undefined : ctaVariants}
-    >
-      <CTAInner label={label} showArrow={showArrow} />
-    </motion.button>
   );
 }
 
@@ -1527,34 +1501,9 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.form className={styles.contactForm} variants={revealUp}>
-              <div className={styles.formRow}>
-                <label>
-                  <span>Nome</span>
-                  <input placeholder="Seu nome completo" type="text" />
-                </label>
-                <label>
-                  <span>Email</span>
-                  <input placeholder="seu@email.com" type="email" />
-                </label>
-              </div>
-              <div className={styles.formRow}>
-                <label>
-                  <span>WhatsApp</span>
-                  <input placeholder="+55 (11) 9 0000-0000" type="tel" />
-                </label>
-              </div>
-              <label className={styles.formStack}>
-                <span>Mensagem</span>
-                <textarea />
-              </label>
-              <CTAButtonElement
-                className={styles.submitButton}
-                type="submit"
-                label="Enviar mensagem"
-                reducedMotion={Boolean(prefersReducedMotion)}
-              />
-            </motion.form>
+            <motion.div variants={revealUp}>
+              <ContactForm originLabel="Homepage" />
+            </motion.div>
           </div>
         </div>
       </motion.section>

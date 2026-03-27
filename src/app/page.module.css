@@ -373,6 +373,7 @@
 
 .ctaLabelText {
   display: inline-block;
+  font-weight: 700;
   white-space: nowrap;
 }
 

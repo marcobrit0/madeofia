@@ -1,35 +1,7 @@
-"use client";
-
-import Link from "next/link";
-import { useState } from "react";
 import { PageIntro, sitePageStyles as styles } from "@/components/SitePages";
-import { LinkButton, SubmitButton } from "@/components/SiteButton";
+import ContactForm from "@/components/ContactForm";
 
 export default function Contato() {
-  const [form, setForm] = useState({
-    nome: "",
-    email: "",
-    empresa: "",
-    plano: "",
-    mensagem: "",
-  });
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 900));
-    setSent(true);
-    setLoading(false);
-  };
-
   return (
     <>
       <PageIntro
@@ -58,93 +30,7 @@ export default function Contato() {
       <section className={styles.section}>
         <div className={styles.shell}>
           <div className={styles.formShell}>
-            {sent ? (
-              <div className={styles.successCard}>
-                <p className={styles.eyebrow}>Mensagem recebida</p>
-                <h2 className={styles.sectionTitle} style={{ marginBottom: 0 }}>
-                  Agora a proxima resposta e nossa.
-                </h2>
-                <p className={styles.bodyCopy}>
-                  Enquanto isso, voce pode revisar os cases do estudio e ter uma ideia melhor do nivel de profundidade que aplicamos nos projetos.
-                </p>
-                <LinkButton href="/portfolio" label="Ver portfolio" />
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className={styles.formCard}>
-                <div className={styles.formGrid}>
-                  <div className={styles.field}>
-                    <label htmlFor="nome">Nome</label>
-                    <input
-                      id="nome"
-                      name="nome"
-                      required
-                      value={form.nome}
-                      onChange={handleChange}
-                      className={styles.input}
-                      placeholder="Seu nome completo"
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      className={styles.input}
-                      placeholder="seu@email.com"
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label htmlFor="empresa">Empresa</label>
-                    <input
-                      id="empresa"
-                      name="empresa"
-                      value={form.empresa}
-                      onChange={handleChange}
-                      className={styles.input}
-                      placeholder="Nome da empresa"
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label htmlFor="plano">Tipo de projeto</label>
-                    <select
-                      id="plano"
-                      name="plano"
-                      value={form.plano}
-                      onChange={handleChange}
-                      className={styles.select}
-                    >
-                      <option value="">Selecione</option>
-                      <option value="essencial">Site institucional ou landing page</option>
-                      <option value="crescimento">Site + blog + captacao</option>
-                      <option value="produto">MVP ou web app</option>
-                      <option value="parceiro">Evolucao continua</option>
-                    </select>
-                  </div>
-
-                  <div className={styles.fieldFull}>
-                    <label htmlFor="mensagem">Contexto do projeto</label>
-                    <textarea
-                      id="mensagem"
-                      name="mensagem"
-                      required
-                      value={form.mensagem}
-                      onChange={handleChange}
-                      className={styles.textarea}
-                      placeholder="Explique onde o negocio esta hoje, o que precisa mudar e qual decisao voce quer facilitar para o cliente."
-                    />
-                  </div>
-                </div>
-
-                <SubmitButton label={loading ? "Enviando" : "Enviar briefing"} disabled={loading} />
-              </form>
-            )}
+            <ContactForm originLabel="/contato" />
 
             <div className={styles.infoRail}>
               <div className={styles.surfaceCard}>
