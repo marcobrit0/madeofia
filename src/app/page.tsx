@@ -13,7 +13,7 @@ import {
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import ContactForm from "@/components/ContactForm";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./page.module.css";
 
 const ARROW_ICON = "https://framerusercontent.com/images/80ciNZpezWIjtjuOmGuff6aTdc.png";
@@ -23,38 +23,24 @@ const WORK_IMAGE =
 const processSteps = [
   {
     number: "01.",
-    title: "Escolha seu plano",
+    title: "Você conta",
     description:
-      "Selecione o pacote ideal para o seu projeto. Sem surpresas, sem custos ocultos.",
-    visual: "planSelection",
-  },
-  {
-    number: "02.",
-    title: "Envie o briefing",
-    description:
-      "Descreva seu projeto. Quanto mais contexto, melhor. Nossa CEO analisa e estrutura tudo.",
+      "Descreva seu projeto em um briefing simples. Pode ser um parágrafo, um documento ou uma conversa de 15 minutos.",
     visual: "briefing",
   },
   {
-    number: "03.",
-    title: "Construção",
+    number: "02.",
+    title: "Agentes constroem",
     description:
-      "Nosso CTO e time de agentes constroem seu projeto com código limpo e deploy contínuo.",
+      "Nossa equipe de IA trabalha no seu projeto: código, design, conteúdo e SEO. Você acompanha o progresso em tempo real.",
     visual: "construction",
   },
   {
-    number: "04.",
-    title: "Revisão",
+    number: "03.",
+    title: "Marco entrega",
     description:
-      "Você revisa, comenta e iteramos. Sem limite de ajustes dentro do escopo.",
+      "Marco revisa tudo, garante a qualidade e entrega o projeto finalizado. Você conversa com um humano, não com um bot.",
     visual: "review",
-  },
-  {
-    number: "05.",
-    title: "Deploy + Escala",
-    description:
-      "Colocamos no ar e configuramos analytics, SEO e monitoramento. Depois, é só crescer.",
-    visual: "launch",
   },
 ];
 
@@ -187,21 +173,25 @@ const team = [
   {
     name: "Valentina",
     role: "CEO & CMO",
+    replaces: "Substitui: Gerente de Projeto + Diretor de Conta",
     avatar: "https://framerusercontent.com/images/1rUvuM83ZrUmEUuX1PZNY7QChM.png?width=500&height=500",
   },
   {
     name: "Thiago",
     role: "CTO",
+    replaces: "Substitui: Desenvolvedor Sênior + DevOps",
     avatar: "https://framerusercontent.com/images/ynj5hVsbu5PyJc9zVxtWEiuCo.png?width=500&height=500",
   },
   {
     name: "Clara",
     role: "CMO",
+    replaces: "Substitui: Especialista de SEO + Redator",
     avatar: "https://framerusercontent.com/images/0lkdtvFy8axO4Q8ncKI9S577HVE.png?width=500&height=500",
   },
   {
     name: "André",
     role: "Designer",
+    replaces: "Substitui: UI/UX Designer + Brand Designer",
     avatar: "https://framerusercontent.com/images/ynj5hVsbu5PyJc9zVxtWEiuCo.png?width=500&height=500",
   },
 ];
@@ -276,25 +266,39 @@ const aboutLines = [
 const comparisonRows = [
   {
     label: "Equipe",
-    traditional: "Você é alocado entre vários perfis, handoffs e camadas de aprovação.",
-    madeofia: "Você acessa uma estrutura de agentes especializados operando em paralelo.",
+    traditional: "Designer + Desenvolvedor + PM + Gerente de Conta",
+    madeofia: "CEO + CTO + CMO + Designer + Assistente Executivo",
   },
   {
-    label: "Cobrança",
-    traditional: "A conta cresce com horas, coordenação interna e tempo improdutivo.",
-    madeofia: "O investimento vai para escopo, execução e entrega real.",
+    label: "Custo",
+    traditional: "R$50–100K/mês",
+    madeofia: "A partir de R$15K por projeto",
   },
   {
-    label: "Velocidade",
-    traditional: "Sprints longos, espera entre áreas e retrabalho custoso.",
-    madeofia: "Briefing, build e revisão acontecem com muito menos atrito.",
+    label: "Prazo",
+    traditional: "2–4 meses",
+    madeofia: "2–3 semanas",
   },
   {
-    label: "Resultado",
-    traditional: "Mais gente no projeto costuma significar uma fatura maior.",
-    madeofia: "Mais automação e foco significam mais produto entregue por menos.",
+    label: "Reuniões",
+    traditional: "Reuniões infinitas de alinhamento",
+    madeofia: "Zero reuniões desnecessárias",
   },
 ] as const;
+
+const activityFeedLines = [
+  { time: "09:14", agent: "Valentina", action: "Analisando briefing do projeto #047..." },
+  { time: "09:15", agent: "Valentina", action: "Escopo definido: site institucional + blog + SEO" },
+  { time: "09:16", agent: "Valentina", action: "Atribuindo tarefas para Thiago e Clara" },
+  { time: "09:17", agent: "Thiago", action: "Criando estrutura do projeto (Next.js + Tailwind)" },
+  { time: "09:18", agent: "Thiago", action: "Homepage: hero section ✓" },
+  { time: "09:19", agent: "Thiago", action: "Homepage: seção de serviços ✓" },
+  { time: "09:21", agent: "Clara", action: "Pesquisa de palavras-chave concluída (47 termos)" },
+  { time: "09:23", agent: "Clara", action: "Primeiro artigo publicado: \"Como escolher...\"" },
+  { time: "09:25", agent: "Thiago", action: "Build passou. Deploy em produção ✓" },
+  { time: "09:26", agent: "Valentina", action: "QA completo. Site aprovado. Enviando para o cliente." },
+  { time: "09:27", agent: "Marco", action: "Revisado e aprovado. Entregando ao cliente." },
+];
 
 const revealTransition = {
   type: "spring",
@@ -988,6 +992,71 @@ function ServiceVisual({ type, reducedMotion }: { type: string; reducedMotion: b
   );
 }
 
+function ActivityFeed({ reducedMotion }: { reducedMotion: boolean }) {
+  const [visibleLines, setVisibleLines] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    if (reducedMotion) {
+      setVisibleLines(activityFeedLines.length);
+      return;
+    }
+    let current = 0;
+    const interval = setInterval(() => {
+      current += 1;
+      if (current > activityFeedLines.length) {
+        current = 0;
+        setVisibleLines(0);
+        setTimeout(() => {
+          setVisibleLines(1);
+        }, 800);
+        return;
+      }
+      setVisibleLines(current);
+    }, 1400);
+    setVisibleLines(1);
+    return () => clearInterval(interval);
+  }, [reducedMotion]);
+
+  React.useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [visibleLines]);
+
+  return (
+    <div className={styles.activityTerminal}>
+      <div className={styles.activityTerminalBar}>
+        <span /><span /><span />
+        <span className={styles.activityTerminalTitle}>madeofIA — terminal de agentes</span>
+      </div>
+      <div className={styles.activityTerminalBody} ref={containerRef}>
+        {activityFeedLines.slice(0, visibleLines).map((line, index) => (
+          <motion.div
+            key={`${line.time}-${line.agent}-${index}`}
+            className={styles.activityLine}
+            initial={reducedMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className={styles.activityTime}>[{line.time}]</span>
+            <span className={styles.activityAgent}>{line.agent}</span>
+            <span className={styles.activityArrow}>→</span>
+            <span className={styles.activityAction}>{line.action}</span>
+          </motion.div>
+        ))}
+        <motion.span
+          className={styles.activityCursor}
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+        >
+          █
+        </motion.span>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const prefersReducedMotion = useReducedMotion();
   const [activeWork, setActiveWork] = useState(0);
@@ -1122,11 +1191,11 @@ export default function Home() {
               Agência de Desenvolvimento de Produtos Digitais
             </motion.div>
             <motion.h1 className={styles.heroTitle} variants={revealUp}>
-              Sua equipe de{" "}
-              <span className={styles.heroAccent}>agentes de IA</span>.
+              Uma equipe completa de agência —{" "}
+              <span className={styles.heroAccent}>movida por IA</span>.
             </motion.h1>
             <motion.p className={styles.heroDescription} variants={revealUp}>
-              Desenvolvimento web, SEO e produto digital — executado por agentes de inteligência artificial. Mais rápido, mais barato e sem reuniões desnecessárias.
+              Design, código, SEO e conteúdo. Tudo que uma agência tradicional entrega, mas em semanas — não meses. E por uma fração do custo.
             </motion.p>
             <motion.div className={styles.heroActions} variants={revealUp}>
               <CTAAnchor
@@ -1169,6 +1238,26 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <motion.section
+        className={`${styles.section} ${styles.activitySection}`}
+        initial={prefersReducedMotion ? false : "hidden"}
+        whileInView={prefersReducedMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerChildren}
+      >
+        <div className={styles.sectionShell}>
+          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
+            Veja os <span>agentes</span> em ação
+          </motion.h2>
+          <motion.p className={styles.sectionLead} variants={revealUp}>
+            Em tempo real, nossa equipe de IA trabalha no seu projeto — código, conteúdo e deploy.
+          </motion.p>
+          <motion.div variants={revealUp}>
+            <ActivityFeed reducedMotion={Boolean(prefersReducedMotion)} />
+          </motion.div>
+        </div>
+      </motion.section>
 
       <motion.section
         className={`${styles.section} ${styles.comparisonSection}`}
@@ -1459,6 +1548,7 @@ export default function Home() {
                 <div className={styles.teamInfo}>
                   <strong>{member.name}</strong>
                   <span>{member.role}</span>
+                  <span className={styles.teamReplaces}>{member.replaces}</span>
                 </div>
               </motion.article>
             ))}

@@ -2436,4 +2436,115 @@
     grid-template-columns: 1fr;
   }
 
+  .activityTerminal {
+    max-height: 340px;
+  }
+
+}
+
+/* Team replaces line */
+.teamReplaces {
+  color: var(--nebula-accent) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.3px !important;
+  opacity: 0.7;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Activity Feed Terminal */
+.activitySection {
+  position: relative;
+}
+
+.activityTerminal {
+  background: #0a0a0a;
+  border: 1px solid var(--nebula-border);
+  border-radius: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.activityTerminalBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #111;
+  border-bottom: 1px solid var(--nebula-border);
+}
+
+.activityTerminalBar > span:nth-child(-n+3) {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--nebula-muted-2);
+}
+
+.activityTerminalBar > span:first-child {
+  background: #ff5f57;
+}
+
+.activityTerminalBar > span:nth-child(2) {
+  background: #febc2e;
+}
+
+.activityTerminalBar > span:nth-child(3) {
+  background: #28c840;
+}
+
+.activityTerminalTitle {
+  margin-left: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: var(--nebula-muted);
+  letter-spacing: 0.3px;
+}
+
+.activityTerminalBody {
+  padding: 16px 18px;
+  max-height: 380px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.activityTerminalBody::-webkit-scrollbar {
+  display: none;
+}
+
+.activityLine {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.activityTime {
+  color: #555;
+}
+
+.activityAgent {
+  color: #00ff88;
+  font-weight: 600;
+}
+
+.activityArrow {
+  color: #444;
+}
+
+.activityAction {
+  color: #ccc;
+}
+
+.activityCursor {
+  color: #00ff88;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.65;
 }
