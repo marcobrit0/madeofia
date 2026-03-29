@@ -2256,16 +2256,19 @@
   }
 
   .hero {
-    min-height: 720px;
+    min-height: 0;
   }
 
   .heroInner {
-    min-height: 720px;
-    padding: 132px 15px 24px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 0;
+    padding: 124px 15px 72px;
   }
 
   .heroCopy {
-    transform: translateY(-4px);
+    max-width: 100%;
+    transform: none;
   }
 
   .heroPill {
@@ -2277,26 +2280,39 @@
     white-space: normal;
   }
 
+  .heroTitle {
+    font-size: clamp(42px, 13vw, 64px);
+    line-height: 0.92;
+  }
+
   .heroDescription {
-    max-width: 310px;
+    font-size: 15px;
+    line-height: 1.45;
+    max-width: 32ch;
   }
 
   .heroActions {
+    width: 100%;
     flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .heroActions > * {
+    width: 100%;
   }
 
   .heroGlowWheel {
-    bottom: 112px;
-    height: 320px;
-    left: calc(50% - 132px);
-    width: 320px;
+    bottom: 0;
+    height: 260px;
+    left: calc(50% - 110px);
+    width: 260px;
   }
 
   .heroGlowAura {
-    bottom: 84px;
-    height: 360px;
-    left: calc(50% - 152px);
-    width: 360px;
+    bottom: -24px;
+    height: 300px;
+    left: calc(50% - 128px);
+    width: 300px;
   }
 
   .sectionShell {
@@ -2315,11 +2331,12 @@
   .aboutText,
   .aboutLineBase,
   .aboutLineReveal {
-    font-size: 64px;
+    font-size: clamp(38px, 12vw, 52px);
+    line-height: 0.98;
   }
 
   .aboutBlock {
-    gap: 12px;
+    gap: 10px;
   }
 
   .aboutPill {
@@ -2339,10 +2356,12 @@
 
   .sectionTitle,
   .faqTitle {
+    font-size: clamp(34px, 10vw, 46px);
     margin-bottom: 35px;
   }
 
   .sectionLead {
+    font-size: 15px;
     margin: -16px 0 28px;
   }
 
@@ -2352,12 +2371,16 @@
   .testimonialCard,
   .teamCard,
   .comparisonCard {
-    padding: 35px;
+    padding: 24px;
   }
 
   .comparisonCardTop strong {
-    font-size: 29px;
+    font-size: 25px;
     max-width: 100%;
+  }
+
+  .comparisonRow {
+    padding: 16px;
   }
 
   .comparisonRow {
@@ -2366,13 +2389,13 @@
 
   .processVisual,
   .serviceVisual {
-    min-height: 220px;
+    min-height: 180px;
   }
 
   .processBriefing,
   .processLaunch,
   .serviceSeo {
-    padding: 22px;
+    padding: 18px;
   }
 
   .processBriefing {
@@ -2385,11 +2408,13 @@
 
   .planSelectionGrid {
     gap: 8px;
+    grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .planSelectionCard {
     gap: 14px;
-    min-height: 96px;
+    min-height: 0;
     padding: 12px;
   }
 
@@ -2398,8 +2423,17 @@
     font-size: 22px;
   }
 
+  .planSelectionSummary,
+  .reviewComment {
+    white-space: normal;
+  }
+
+  .reviewComment {
+    max-width: calc(100% - 28px);
+  }
+
   .reviewMockup {
-    inset: 16px 40px 14px;
+    inset: 18px 22px 16px;
   }
 
   .launchStatusTitle {
@@ -2415,6 +2449,31 @@
     grid-template-rows: auto;
   }
 
+  .launchGrowthHeader,
+  .seoGrowthHeader,
+  .productDashboardTop,
+  .planHeader,
+  .workRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .launchGrowthHeader,
+  .seoGrowthHeader,
+  .productDashboardTop,
+  .planHeader {
+    gap: 8px;
+  }
+
+  .webHeroMeta {
+    flex-wrap: wrap;
+  }
+
+  .webHeroTitle,
+  .seoArticleTitle {
+    max-width: 100%;
+  }
+
   .seoKeywordPanel {
     grid-row: auto;
   }
@@ -2424,6 +2483,7 @@
   }
 
   .webMobile {
+    bottom: 16px;
     right: 18px;
     width: 84px;
   }
@@ -2436,8 +2496,49 @@
     gap: 26px;
   }
 
+  .workItem {
+    padding: 18px;
+  }
+
+  .workItem h3 {
+    font-size: 21px;
+  }
+
+  .workItem p {
+    font-size: 15px;
+  }
+
+  .workArrow {
+    margin-top: 0;
+  }
+
   .workPreview {
     order: -1;
+  }
+
+  .planCard {
+    gap: 20px;
+    min-height: 0;
+  }
+
+  .planHeader h3 {
+    font-size: 21px;
+  }
+
+  .planPrice {
+    font-size: 44px;
+  }
+
+  .planPeriod,
+  .planFeatures li,
+  .testimonialCard p,
+  .contactBlock p,
+  .faqItem p {
+    font-size: 15px;
+  }
+
+  .testimonialCard h3 {
+    font-size: 24px;
   }
 
   .teamGrid {
@@ -2453,7 +2554,30 @@
   }
 
   .activityTerminal {
-    height: 340px;
+    height: 300px;
+  }
+
+  .contactLayout {
+    gap: 28px;
+  }
+
+  .contactBlock a {
+    font-size: 16px;
+    flex-wrap: wrap;
+  }
+
+  .faqItem summary {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .faqItem summary span:last-child {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .faqItem p {
+    padding: 0 16px 16px 34px;
   }
 
 }

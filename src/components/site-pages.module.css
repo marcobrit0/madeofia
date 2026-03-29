@@ -649,17 +649,59 @@
     grid-template-columns: 1fr;
   }
 
+  .heroTitle {
+    font-size: clamp(2.9rem, 12vw, 4.2rem);
+    line-height: 0.94;
+  }
+
+  .articleTitle {
+    font-size: clamp(2.6rem, 11vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .ctaTitle {
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+  }
+
+  .articleMetaRow {
+    gap: 8px 14px;
+    letter-spacing: 0.09em;
+  }
+
   .heroLead,
   .articleLead,
   .quickSummary div,
   .quickSummary p:last-child {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .legalCard,
   .ctaCard,
   .panel,
   .formCard {
-    padding: 35px;
+    padding: 24px;
+  }
+
+  .surfaceCard,
+  .metricCard,
+  .stepCard,
+  .highlightCard,
+  .successCard,
+  .asideCard,
+  .tableRow {
+    padding: 24px;
+  }
+
+  .quickSummary {
+    margin-bottom: 28px;
+    padding-left: 16px;
+  }
+
+  .tag,
+  .input,
+  .textarea,
+  .select {
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }

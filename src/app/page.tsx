@@ -1181,23 +1181,18 @@ export default function Home() {
                   }
             }
           />
-          <motion.div
-            className={styles.heroCopy}
-            variants={staggerChildren}
-            initial={prefersReducedMotion ? false : "hidden"}
-            animate={prefersReducedMotion ? undefined : "show"}
-          >
-            <motion.div className={styles.heroPill} variants={revealUp}>
+          <div className={styles.heroCopy}>
+            <div className={styles.heroPill}>
               Agência de Desenvolvimento de Produtos Digitais
-            </motion.div>
-            <motion.h1 className={styles.heroTitle} variants={revealUp}>
+            </div>
+            <h1 className={styles.heroTitle}>
               Uma equipe completa de agência —{" "}
               <span className={styles.heroAccent}>movida por IA</span>.
-            </motion.h1>
-            <motion.p className={styles.heroDescription} variants={revealUp}>
+            </h1>
+            <p className={styles.heroDescription}>
               Design, código, SEO e conteúdo. Tudo que uma agência tradicional entrega, mas em semanas — não meses. E por uma fração do custo.
-            </motion.p>
-            <motion.div className={styles.heroActions} variants={revealUp}>
+            </p>
+            <div className={styles.heroActions}>
               <CTAAnchor
                 className={styles.secondaryButton}
                 href="#processo"
@@ -1205,8 +1200,8 @@ export default function Home() {
                 reducedMotion={Boolean(prefersReducedMotion)}
                 showArrow
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

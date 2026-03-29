@@ -387,6 +387,21 @@
     padding-bottom: 56px;
   }
 
+  .pageTitle,
+  .editorialTitle {
+    font-size: clamp(2.9rem, 12vw, 4.4rem);
+    line-height: 0.94;
+  }
+
+  .pageTitleCompact {
+    font-size: clamp(2.5rem, 10vw, 3.6rem);
+  }
+
+  .pageIntro {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
   .section {
     padding-bottom: 72px;
   }
@@ -409,6 +424,11 @@
   }
 
   .featureDescription {
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .featureMeta {
+    gap: 10px 16px;
   }
 }
