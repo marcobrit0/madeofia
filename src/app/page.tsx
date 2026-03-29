@@ -1247,15 +1247,20 @@ export default function Home() {
         variants={staggerChildren}
       >
         <div className={styles.sectionShell}>
-          <motion.h2 className={styles.sectionTitle} variants={revealUp}>
-            Veja os <span>agentes</span> em ação
-          </motion.h2>
-          <motion.p className={styles.sectionLead} variants={revealUp}>
-            Em tempo real, nossa equipe de IA trabalha no seu projeto — código, conteúdo e deploy.
-          </motion.p>
-          <motion.div variants={revealUp}>
-            <ActivityFeed reducedMotion={Boolean(prefersReducedMotion)} />
-          </motion.div>
+          <div className={styles.activityLayout}>
+            <motion.div className={styles.activityCopy} variants={revealUp}>
+              <h2 className={styles.sectionTitle}>
+                Veja os <span>agentes</span> em ação
+              </h2>
+              <p className={styles.sectionLead}>
+                Em tempo real, nossa equipe de IA trabalha no seu projeto — código, conteúdo e
+                deploy.
+              </p>
+            </motion.div>
+            <motion.div className={styles.activityPanel} variants={revealUp}>
+              <ActivityFeed reducedMotion={Boolean(prefersReducedMotion)} />
+            </motion.div>
+          </div>
         </div>
       </motion.section>
 

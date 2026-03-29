@@ -2169,6 +2169,18 @@
     grid-template-columns: 1fr;
   }
 
+  .activityLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .activityCopy {
+    max-width: 640px;
+  }
+
+  .activityPanel {
+    width: 100%;
+  }
+
   .contactLayout {
     gap: 35px;
   }
@@ -2436,8 +2448,12 @@
     grid-template-columns: 1fr;
   }
 
+  .activityLayout {
+    gap: 24px;
+  }
+
   .activityTerminal {
-    max-height: 340px;
+    height: 340px;
   }
 
 }
@@ -2457,13 +2473,41 @@
   position: relative;
 }
 
+.activityLayout {
+  align-items: start;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+}
+
+.activityCopy {
+  align-self: center;
+  max-width: 520px;
+}
+
+.activityCopy .sectionTitle {
+  margin-bottom: 22px;
+}
+
+.activityCopy .sectionLead {
+  margin: 0;
+}
+
+.activityPanel {
+  min-width: 0;
+}
+
 .activityTerminal {
   background: #0a0a0a;
   border: 1px solid var(--nebula-border);
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 380px;
   max-width: 720px;
-  margin: 0 auto;
+  margin-left: auto;
   overflow: hidden;
+  width: 100%;
 }
 
 .activityTerminalBar {
@@ -2503,13 +2547,14 @@
 }
 
 .activityTerminalBody {
-  padding: 16px 18px;
-  max-height: 380px;
-  overflow-y: auto;
-  scrollbar-width: none;
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 6px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 18px;
+  scrollbar-width: none;
 }
 
 .activityTerminalBody::-webkit-scrollbar {
