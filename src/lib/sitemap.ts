@@ -1,8 +1,14 @@
-import fs from "node:fs";
-import path from "node:path";
+import { blogPosts } from "@/app/(site)/blog/posts";
 
-const APP_DIRECTORY = path.join(process.cwd(), "src", "app");
-const PAGE_FILE_PATTERN = /^page\.(tsx|ts|jsx|js)$/;
+const STATIC_ROUTE_PATHS = [
+  "/",
+  "/blog",
+  "/contato",
+  "/portfolio",
+  "/privacidade",
+  "/servicos",
+  "/termos",
+] as const;
 
 type SitemapRouteDefinition = {
   path: string;
@@ -15,38 +21,8 @@ type SitemapRouteDefinition = {
     | "yearly"
     | "never";
   priority: number;
-  lastModified: Date;
+  lastModified?: Date;
 };
-
-function shouldSkipSegment(segment: string) {
-  return (
-    segment.startsWith("(") ||
-    segment.startsWith("@") ||
-    segment.startsWith("_") ||
-    segment.startsWith("[")
-  );
-}
-
-function toRoutePath(pageFilePath: string) {
-  const relativePath = path.relative(APP_DIRECTORY, pageFilePath);
-  const directory = path.dirname(relativePath);
-
-  if (directory === ".") {
-    return "/";
-  }
-
-  const segments = directory
-    .split(path.sep)
-    .filter(Boolean)
-    .filter((segment) => !segment.startsWith("("))
-    .filter((segment) => !segment.startsWith("@"));
-
-  if (segments.some(shouldSkipSegment)) {
-    return null;
-  }
-
-  return `/${segments.join("/")}`;
-}
 
 function inferRoutePriority(routePath: string) {
   if (routePath === "/") {
@@ -57,11 +33,7 @@ function inferRoutePriority(routePath: string) {
     return 0.9;
   }
 
-  if (routePath === "/contato") {
-    return 0.8;
-  }
-
-  if (routePath === "/blog") {
+  if (routePath === "/contato" || routePath === "/blog") {
     return 0.8;
   }
 
@@ -76,7 +48,9 @@ function inferRoutePriority(routePath: string) {
   return 0.7;
 }
 
-function inferChangeFrequency(routePath: string): SitemapRouteDefinition["changeFrequency"] {
+function inferChangeFrequency(
+  routePath: string,
+): SitemapRouteDefinition["changeFrequency"] {
   if (routePath === "/blog" || routePath.startsWith("/blog/")) {
     return "weekly";
   }
@@ -88,46 +62,22 @@ function inferChangeFrequency(routePath: string): SitemapRouteDefinition["change
   return "monthly";
 }
 
-function collectPageFiles(directory: string, accumulator: string[] = []) {
-  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    const fullPath = path.join(directory, entry.name);
-
-    if (entry.isDirectory()) {
-      if (entry.name.startsWith("_")) {
-        continue;
-      }
-
-      collectPageFiles(fullPath, accumulator);
-      continue;
-    }
-
-    if (PAGE_FILE_PATTERN.test(entry.name)) {
-      accumulator.push(fullPath);
-    }
-  }
-
-  return accumulator;
+function createRoute(path: string): SitemapRouteDefinition {
+  return {
+    path,
+    priority: inferRoutePriority(path),
+    changeFrequency: inferChangeFrequency(path),
+  };
 }
 
 export function getSitemapRoutes(): SitemapRouteDefinition[] {
-  const routes = new Map<string, SitemapRouteDefinition>();
+  const staticRoutes = STATIC_ROUTE_PATHS.map(createRoute);
+  const blogRoutes = blogPosts.map((post) => ({
+    ...createRoute(`/blog/${post.slug}`),
+    lastModified: new Date(post.publishedAt),
+  }));
 
-  for (const pageFile of collectPageFiles(APP_DIRECTORY)) {
-    const routePath = toRoutePath(pageFile);
-
-    if (!routePath) {
-      continue;
-    }
-
-    const stats = fs.statSync(pageFile);
-
-    routes.set(routePath, {
-      path: routePath,
-      lastModified: stats.mtime,
-      priority: inferRoutePriority(routePath),
-      changeFrequency: inferChangeFrequency(routePath),
-    });
-  }
-
-  return [...routes.values()].sort((a, b) => a.path.localeCompare(b.path));
+  return [...staticRoutes, ...blogRoutes].toSorted((a, b) =>
+    a.path.localeCompare(b.path),
+  );
 }

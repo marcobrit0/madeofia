@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "madeofia-preview",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-07-29",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "keep_vars": true,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "secrets": {
+    "required": ["RESEND_API_KEY"]
+  },
+  "observability": {
+    "enabled": true
+  }
+}
